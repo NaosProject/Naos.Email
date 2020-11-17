@@ -11,7 +11,37 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		RepoConfig.state = RepoConfig.state
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Naos.Email.Domain", "Naos.Email.Domain\Naos.Email.Domain.csproj", "{88D13021-B6A5-423E-A3D6-713BB990E075}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Naos.Email.Domain.Test", "Naos.Email.Domain.Test\Naos.Email.Domain.Test.csproj", "{61242999-6227-4E8F-8485-C4920C5528FF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Naos.Email.Serialization.Bson", "Naos.Email.Serialization.Bson\Naos.Email.Serialization.Bson.csproj", "{18BE4FC4-D5FD-477B-9605-5F8FEA4C96D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Naos.Email.Serialization.Json", "Naos.Email.Serialization.Json\Naos.Email.Serialization.Json.csproj", "{D83C756F-E8F7-427C-94DE-B2C2FD9D6C1C}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{88D13021-B6A5-423E-A3D6-713BB990E075}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88D13021-B6A5-423E-A3D6-713BB990E075}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88D13021-B6A5-423E-A3D6-713BB990E075}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88D13021-B6A5-423E-A3D6-713BB990E075}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61242999-6227-4E8F-8485-C4920C5528FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61242999-6227-4E8F-8485-C4920C5528FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61242999-6227-4E8F-8485-C4920C5528FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61242999-6227-4E8F-8485-C4920C5528FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18BE4FC4-D5FD-477B-9605-5F8FEA4C96D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18BE4FC4-D5FD-477B-9605-5F8FEA4C96D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18BE4FC4-D5FD-477B-9605-5F8FEA4C96D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18BE4FC4-D5FD-477B-9605-5F8FEA4C96D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D83C756F-E8F7-427C-94DE-B2C2FD9D6C1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D83C756F-E8F7-427C-94DE-B2C2FD9D6C1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D83C756F-E8F7-427C-94DE-B2C2FD9D6C1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D83C756F-E8F7-427C-94DE-B2C2FD9D6C1C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
