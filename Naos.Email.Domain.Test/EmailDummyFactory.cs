@@ -15,6 +15,8 @@ namespace Naos.Email.Domain.Test
 
     using OBeautifulCode.AutoFakeItEasy;
 
+    using static System.FormattableString;
+
     /// <summary>
     /// A Dummy Factory for types in <see cref="Naos.Email.Domain"/>.
     /// </summary>
@@ -29,7 +31,24 @@ namespace Naos.Email.Domain.Test
     {
         public EmailDummyFactory()
         {
-            /* Add any overriding or custom registrations here. */
+            AutoFixtureBackedDummyFactory.AddDummyCreator<ValidatedEmailAddresses>(() =>
+            {
+                string GetDummyEmailAddress() => Invariant($"{A.Dummy<Guid>()}@example.com");
+
+                var from = GetDummyEmailAddress();
+
+                var to = new[] { GetDummyEmailAddress(), GetDummyEmailAddress() };
+
+                var cc = new[] { GetDummyEmailAddress(), GetDummyEmailAddress() };
+
+                var bcc = new[] { GetDummyEmailAddress(), GetDummyEmailAddress() };
+
+                var replyTo = new[] { GetDummyEmailAddress(), GetDummyEmailAddress() };
+
+                var result = new ValidatedEmailAddresses(from, to, cc, bcc, replyTo);
+
+                return result;
+            });
         }
     }
 }

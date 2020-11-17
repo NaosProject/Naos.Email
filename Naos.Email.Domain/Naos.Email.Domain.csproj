@@ -90,10 +90,20 @@
     <Compile Include=".recipes\OBeautifulCode.Type\ToStringReadableOptions.cs" />
     <Compile Include=".recipes\OBeautifulCode.Type\ToStringXmlDocOptions.cs" />
     <Compile Include=".recipes\OBeautifulCode.Type\TypeExtensions.cs" />
+    <Compile Include="Logic\Extensions\EmailAddressBaseExtensions.cs" />
+    <Compile Include="Models\Classes\EmailAddressesBase.designer.cs">
+      <DependentUpon>EmailAddressesBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Classes\UnvalidatedEmailAddresses.designer.cs">
+      <DependentUpon>UnvalidatedEmailAddresses.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Classes\ValidatedEmailAddresses.cs" />
     <Compile Include="Models\Classes\UnvalidatedEmailAddresses.cs" />
     <Compile Include="Models\Classes\EmailAddressesBase.cs" />
     <None Include="Operations\SendEmailOp.cs" />
+    <Compile Include="Models\Classes\ValidatedEmailAddresses.designer.cs">
+      <DependentUpon>ValidatedEmailAddresses.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Properties\ProjectInfo.cs" />
@@ -113,7 +123,6 @@
     <Folder Include="Events\" />
     <Folder Include="Interfaces\" />
     <Folder Include="Logic\Constants\" />
-    <Folder Include="Logic\Extensions\" />
     <Folder Include="Logic\Protocols\" />
     <Folder Include="Models\Enums\" />
     <Folder Include="Models\Interfaces\" />
