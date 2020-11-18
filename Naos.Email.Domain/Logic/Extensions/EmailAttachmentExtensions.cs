@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="EmailAddressBaseExtensions.cs" company="Naos Project">
+// <copyright file="EmailAttachmentExtensions.cs" company="Naos Project">
 //    Copyright (c) Naos Project 2019. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
@@ -8,8 +8,10 @@ namespace Naos.Email.Domain
 {
     using System;
     using System.IO;
+
     using System.Net.Mail;
     using System.Net.Mime;
+
     using OBeautifulCode.Assertion.Recipes;
 
     /// <summary>
@@ -42,8 +44,6 @@ namespace Naos.Email.Domain
 
             var result = new Attachment(contentStream, contentType);
 
-            result.ContentDisposition.Inline = emailAttachment.IncludeFileWithEmail == IncludeFileWithEmail.Inline;
-
             result.ContentDisposition.Size = emailAttachment.FileBytes.Length;
 
             if (!string.IsNullOrWhiteSpace(emailAttachment.FileName))
@@ -51,20 +51,39 @@ namespace Naos.Email.Domain
                 result.ContentDisposition.FileName = emailAttachment.FileName;
             }
 
-            if (emailAttachment.DateCreated != null)
+            return result;
+        }
+
+        /// <summary>
+        /// Converts a <see cref="EmailAttachment"/> to an <see cref="LinkedResource"/>.
+        /// </summary>
+        /// <param name="emailAttachment">The email attachment to convert.</param>
+        /// <param name="contentId">The content id to use for the resource.</param>
+        /// <returns>
+        /// The <see cref="LinkedResource"/> that corresponds to the specified <see cref="EmailAttachment"/>.
+        /// </returns>
+        public static LinkedResource ToLinkedResource(
+            this EmailAttachment emailAttachment,
+            string contentId)
+        {
+            new { emailAttachment }.AsArg().Must().NotBeNull();
+
+            var mimeTypeName = emailAttachment.MediaType.ToMimeTypeName();
+
+            var contentType = new ContentType { MediaType = mimeTypeName };
+
+            if (!string.IsNullOrWhiteSpace(emailAttachment.FileName))
             {
-                result.ContentDisposition.CreationDate = (DateTime)emailAttachment.DateCreated;
+                contentType.Name = emailAttachment.FileName;
             }
 
-            if (emailAttachment.DateModified != null)
-            {
-                result.ContentDisposition.ModificationDate = (DateTime)emailAttachment.DateModified;
-            }
+            var contentStream = new MemoryStream(emailAttachment.FileBytes);
 
-            if (emailAttachment.DateAccessed != null)
+            var result = new LinkedResource(contentStream, contentType)
             {
-                result.ContentDisposition.ReadDate = (DateTime)emailAttachment.DateAccessed;
-            }
+                ContentId = contentId,
+                ContentLink = new Uri("cid:" + contentId),
+            };
 
             return result;
         }
