@@ -84,7 +84,8 @@
     <Compile Include=".recipes\OBeautifulCode.Equality\HashCodeHelper.cs" />
     <Compile Include=".recipes\OBeautifulCode.Equality\ReadOnlyDictionaryEqualityComparer.cs" />
     <Compile Include=".recipes\OBeautifulCode.String\StringExtensions.cs" />
-    <None Include="Models\Classes\Email.cs" />
+    <Compile Include="Models\Classes\Email.cs" />
+    <Compile Include="Models\Classes\EmailResponse.cs" />
     <Compile Include="Models\Classes\EmailRequest.cs" />
     <Compile Include=".recipes\OBeautifulCode.Type\ArrayKind.cs" />
     <Compile Include=".recipes\OBeautifulCode.Type\DeepCloneExtensions.cs" />
@@ -97,6 +98,8 @@
     <Compile Include="Models\Classes\EmailAddressesBase.designer.cs">
       <DependentUpon>EmailAddressesBase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Classes\EmailOptions.cs" />
+    <Compile Include="Models\Classes\EmailContent.cs" />
     <Compile Include="Models\Classes\EmailAttachment.cs" />
     <Compile Include="Models\Classes\UnvalidatedEmailAddresses.designer.cs">
       <DependentUpon>UnvalidatedEmailAddresses.cs</DependentUpon>
@@ -108,6 +111,7 @@
     <Compile Include="Models\Classes\ValidatedEmailAddresses.designer.cs">
       <DependentUpon>ValidatedEmailAddresses.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Enums\SendEmailResult.cs" />
     <Compile Include="Models\Enums\MediaType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GlobalSuppressions.cs" />
