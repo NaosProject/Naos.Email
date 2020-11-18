@@ -19,6 +19,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Naos.Email.Serialization.Bs
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Naos.Email.Serialization.Json", "Naos.Email.Serialization.Json\Naos.Email.Serialization.Json.csproj", "{D83C756F-E8F7-427C-94DE-B2C2FD9D6C1C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Naos.Email.Protocol.Client", "Naos.Email.Protocol.Client\Naos.Email.Protocol.Client.csproj", "{7C7BE804-672B-4EB7-B506-2E4AC3D027DA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Naos.Email.Protocol.Client.Test", "Naos.Email.Protocol.Client.Test\Naos.Email.Protocol.Client.Test.csproj", "{0884B853-221D-47F5-9CCF-ABABB8BCBB19}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +45,14 @@ Global
 		{D83C756F-E8F7-427C-94DE-B2C2FD9D6C1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D83C756F-E8F7-427C-94DE-B2C2FD9D6C1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D83C756F-E8F7-427C-94DE-B2C2FD9D6C1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C7BE804-672B-4EB7-B506-2E4AC3D027DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C7BE804-672B-4EB7-B506-2E4AC3D027DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C7BE804-672B-4EB7-B506-2E4AC3D027DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C7BE804-672B-4EB7-B506-2E4AC3D027DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0884B853-221D-47F5-9CCF-ABABB8BCBB19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0884B853-221D-47F5-9CCF-ABABB8BCBB19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0884B853-221D-47F5-9CCF-ABABB8BCBB19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0884B853-221D-47F5-9CCF-ABABB8BCBB19}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
