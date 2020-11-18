@@ -101,13 +101,14 @@
     <Compile Include="Models\Classes\EmailOptions.cs" />
     <Compile Include="Models\Classes\EmailContent.cs" />
     <Compile Include="Models\Classes\EmailAttachment.cs" />
+    <Compile Include="Models\Classes\SmtpServerConnectionDefinition.cs" />
     <Compile Include="Models\Classes\UnvalidatedEmailAddresses.designer.cs">
       <DependentUpon>UnvalidatedEmailAddresses.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Classes\ValidatedEmailAddresses.cs" />
     <Compile Include="Models\Classes\UnvalidatedEmailAddresses.cs" />
     <Compile Include="Models\Classes\EmailAddressesBase.cs" />
-    <None Include="Operations\SendEmailOp.cs" />
+    <Compile Include="Operations\SendEmailOp.cs" />
     <Compile Include="Models\Classes\ValidatedEmailAddresses.designer.cs">
       <DependentUpon>ValidatedEmailAddresses.cs</DependentUpon>
     </Compile>
