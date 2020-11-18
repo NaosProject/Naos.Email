@@ -23,7 +23,6 @@ namespace Naos.Email.Domain
         public EmailOptions(
             MailPriority? priority = null,
             DeliveryNotificationOptions? deliveryNotification = null)
-
         {
             this.Priority = priority;
             this.DeliveryNotification = deliveryNotification;
