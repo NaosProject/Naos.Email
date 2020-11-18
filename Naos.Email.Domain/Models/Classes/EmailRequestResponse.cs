@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Email.cs" company="Naos Project">
+// <copyright file="EmailRequestResponse.cs" company="Naos Project">
 //    Copyright (c) Naos Project 2019. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
@@ -12,14 +12,14 @@ namespace Naos.Email.Domain
     /// <summary>
     /// An email; the item itself along with information about its delivery.
     /// </summary>
-    public class Email : IModelViaCodeGen
+    public class EmailRequestResponse : IModelViaCodeGen
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Email"/> class.
+        /// Initializes a new instance of the <see cref="EmailRequestResponse"/> class.
         /// </summary>
         /// <param name="emailRequest">The request to send the email.</param>
         /// <param name="emailResponse">The result of sending the email.</param>
-        public Email(
+        public EmailRequestResponse(
             EmailRequest emailRequest,
             EmailResponse emailResponse)
         {
