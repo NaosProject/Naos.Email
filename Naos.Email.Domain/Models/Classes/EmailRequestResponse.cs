@@ -12,7 +12,7 @@ namespace Naos.Email.Domain
     /// <summary>
     /// An email; the item itself along with information about its delivery.
     /// </summary>
-    public class EmailRequestResponse : IModelViaCodeGen
+    public partial class EmailRequestResponse : IModelViaCodeGen
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="EmailRequestResponse"/> class.
@@ -23,6 +23,7 @@ namespace Naos.Email.Domain
             EmailRequest emailRequest,
             EmailResponse emailResponse)
         {
+            // better name for this class?
             new { emailRequest }.AsArg().Must().NotBeNull();
             new { emailResponse }.AsArg().Must().NotBeNull();
 

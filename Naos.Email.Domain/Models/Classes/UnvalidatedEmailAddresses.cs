@@ -11,8 +11,9 @@ namespace Naos.Email.Domain
     using OBeautifulCode.Type;
 
     /// <summary>
-    /// Specifies the email addresses used in an email, where none of the email addresses have been validated.
+    /// Specifies the email addresses used in an email, where NONE of the email addresses have been validated.
     /// </summary>
+    // ReSharper disable once RedundantExtendsListEntry
     public partial class UnvalidatedEmailAddresses : EmailAddressesBase, IModelViaCodeGen
     {
         /// <summary>

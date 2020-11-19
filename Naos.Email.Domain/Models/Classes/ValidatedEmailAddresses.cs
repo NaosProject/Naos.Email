@@ -12,8 +12,9 @@ namespace Naos.Email.Domain
     using OBeautifulCode.Type;
 
     /// <summary>
-    /// Specifies the email addresses used in an email, where all of the email addresses have been validated.
+    /// Specifies the email addresses used in an email, where ALL of the email addresses have been validated.
     /// </summary>
+    // ReSharper disable once RedundantExtendsListEntry
     public partial class ValidatedEmailAddresses : EmailAddressesBase, IModelViaCodeGen
     {
         /// <summary>

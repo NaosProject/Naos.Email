@@ -6,8 +6,6 @@
 
 namespace Naos.Email.Domain
 {
-    using System;
-
     using OBeautifulCode.Assertion.Recipes;
     using OBeautifulCode.Type;
 

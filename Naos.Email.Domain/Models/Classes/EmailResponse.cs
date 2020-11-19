@@ -16,7 +16,7 @@ namespace Naos.Email.Domain
     /// <summary>
     /// The result of sending an email.
     /// </summary>
-    public class EmailResponse : IModelViaCodeGen
+    public partial class EmailResponse : IModelViaCodeGen
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="EmailResponse"/> class.

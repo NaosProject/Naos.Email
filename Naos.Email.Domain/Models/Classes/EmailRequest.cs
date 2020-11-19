@@ -12,7 +12,7 @@ namespace Naos.Email.Domain
     /// <summary>
     /// A request to send an email.
     /// </summary>
-    public class EmailRequest : IModelViaCodeGen
+    public partial class EmailRequest : IModelViaCodeGen
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="EmailRequest"/> class.
