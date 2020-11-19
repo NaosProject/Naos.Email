@@ -28,7 +28,7 @@ namespace Naos.Email.Protocol.Client
     /// <summary>
     /// Executes a <see cref="SendEmailProtocol"/>.
     /// </summary>
-    public class SendEmailProtocol : AsyncSpecificReturningProtocolBase<SendEmailOp, EmailResponse>
+    public class SendEmailProtocol : AsyncSpecificReturningProtocolBase<SendEmailOp, EmailResponse>, ISendEmailProtocol
     {
         private readonly SmtpServerConnectionDefinition smtpServerConnectionDefinition;
 
