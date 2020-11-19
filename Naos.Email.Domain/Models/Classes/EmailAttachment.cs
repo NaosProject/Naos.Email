@@ -6,6 +6,8 @@
 
 namespace Naos.Email.Domain
 {
+    using System.Text;
+
     using OBeautifulCode.Assertion.Recipes;
     using OBeautifulCode.Type;
 
@@ -18,18 +20,21 @@ namespace Naos.Email.Domain
         /// Initializes a new instance of the <see cref="EmailAttachment"/> class.
         /// </summary>
         /// <param name="fileBytes">The bytes of the files.</param>
-        /// <param name="fileName">OPTIONAL suggested file name for the attachment, which an email client might display or use when storing the attachment on the recipient's computer. This name is a suggestion only; the receiving system can ignore it.  DEFAULT is null; no file name specified.</param>
+        /// <param name="fileName">OPTIONAL suggested file name for the attachment, which an email client might display or use when storing the attachment on the recipient's computer. This name is a suggestion only; the receiving system can ignore it.  It is typically honored for attachments but ignored for html body linked resources.  DEFAULT is null; no file name specified.</param>
         /// <param name="mediaType">OPTIONAL value that specifies the MIME type of the file.  DEFAULT is indicate that this is a unknown/unspecified binary file.</param>
+        /// <param name="fileNameEncoding">OPTIONAL encoding to use to encode the <paramref name="fileName"/>.  Ignored when attachment is used as an html body linked resource.  DEFAULT is to use the system default encoding.</param>
         public EmailAttachment(
             byte[] fileBytes,
             string fileName = null,
-            MediaType mediaType = MediaType.ApplicationOctet)
+            MediaType mediaType = MediaType.ApplicationOctet,
+            Encoding fileNameEncoding = null)
         {
             new { fileBytes }.AsArg().Must().NotBeNullNorEmptyEnumerable();
 
             this.FileBytes = fileBytes;
             this.FileName = fileName;
             this.MediaType = mediaType;
+            this.FileNameEncoding = fileNameEncoding;
         }
 
         /// <summary>
@@ -46,5 +51,11 @@ namespace Naos.Email.Domain
         /// Gets a value that specifies the MIME type of the file.
         /// </summary>
         public MediaType MediaType { get; private set; }
+
+        /// <summary>
+        /// Gets the encoding to use to encode the <see cref="FileName"/>.
+        /// Ignored when attachment is used as an html body linked resource.
+        /// </summary>
+        public Encoding FileNameEncoding { get; private set; }
     }
 }

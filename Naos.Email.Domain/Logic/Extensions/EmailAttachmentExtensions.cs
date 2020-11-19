@@ -51,6 +51,11 @@ namespace Naos.Email.Domain
                 result.ContentDisposition.FileName = emailAttachment.FileName;
             }
 
+            if (emailAttachment.FileNameEncoding != null)
+            {
+                result.NameEncoding = emailAttachment.FileNameEncoding;
+            }
+
             return result;
         }
 
