@@ -131,6 +131,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Naos.Email.Domain.Test\EmailDummyFactory.cs">
+      <Link>EmailDummyFactory.cs</Link>
+    </Compile>
+    <Compile Include="..\Naos.Email.Domain.Test\EmailDummyFactory.designer.cs">
+      <Link>EmailDummyFactory.designer.cs</Link>
+    </Compile>
     <Compile Include=".recipes\Naos.Bootstrapper\ConsoleAbstractionBase.cs" />
     <Compile Include=".recipes\Naos.Bootstrapper\TestFailedException.cs" />
     <Compile Include=".recipes\Naos.Bootstrapper\TestRunner.cs" />

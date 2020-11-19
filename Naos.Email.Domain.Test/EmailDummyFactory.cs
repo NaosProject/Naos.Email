@@ -32,7 +32,16 @@ namespace Naos.Email.Domain.Test
     {
         public EmailDummyFactory()
         {
-            AutoFixtureBackedDummyFactory.AddDummyCreator<EmailMailbox>(() =>
+            AutoFixtureBackedDummyFactory.ConstrainDummyToExclude(SecureConnectionMethod.Unknown);
+
+            AutoFixtureBackedDummyFactory.AddDummyCreator(() =>
+            {
+                var result = new SmtpServerConnectionDefinition(A.Dummy<string>(), A.Dummy<PositiveInteger>().ThatIs(_=> _ < 65000), A.Dummy<SecureConnectionMethod>(), A.Dummy<string>(), A.Dummy<string>());
+
+                return result;
+            });
+
+            AutoFixtureBackedDummyFactory.AddDummyCreator(() =>
             {
                 var address = Invariant($"{A.Dummy<Guid>()}@example.com");
 

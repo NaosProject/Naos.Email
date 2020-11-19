@@ -9,6 +9,8 @@ namespace Naos.Email.Protocol.Client.Test
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
+    using FakeItEasy;
+
     using Naos.Email.Domain;
 
     using OBeautifulCode.Assertion.Recipes;
@@ -89,6 +91,89 @@ namespace Naos.Email.Protocol.Client.Test
 
             // Assert
             actual.SendEmailResult.AsTest().Must().BeEqualTo(SendEmailResult.Success);
+        }
+
+        [Fact]
+        public static async Task ExecuteAsync___Should_return_EmailResponse_with_SendEmailResult_FailedToAddParticipantsToEmail___When_EmailRequest_EmailParticipants_contains_malformed_email_address()
+        {
+            // Arrange
+            var smtpServerConnectionDefinition = A.Dummy<SmtpServerConnectionDefinition>();
+
+            var emailParticipants = new EmailParticipants(
+                new EmailMailbox("test@example.com"),
+                new[] { new EmailMailbox("bad-email-address") });
+
+            var emailContent = A.Dummy<EmailContent>();
+
+            var emailRequest = new EmailRequest(emailParticipants, emailContent);
+
+            var operation = new SendEmailOp(emailRequest);
+
+            var protocol = new SendEmailProtocol(smtpServerConnectionDefinition);
+
+            // Act
+            var actual = await protocol.ExecuteAsync(operation);
+
+            // Assert
+            actual.SendEmailResult.AsTest().Must().BeEqualTo(SendEmailResult.FailedToAddParticipantsToEmail);
+        }
+
+        [Fact(Skip = "Not sure how to cause this step in the process to throw.")]
+        public static void ExecuteAsync___Should_return_EmailResponse_with_SendEmailResult_FailedToAddContentToEmail___When_EmailRequest_EmailContent_contains_malformed_content()
+        {
+        }
+
+        [Fact(Skip = "Not sure how to cause this step in the process to throw.")]
+        public static void ExecuteAsync___Should_return_EmailResponse_with_SendEmailResult_FailedToAddOptionsToEmail___When_EmailRequest_EmailOptions_contains_malformed_options()
+        {
+        }
+
+        [Fact(Skip = "Not sure how to cause this step in the process to throw.")]
+        public static void ExecuteAsync___Should_return_EmailResponse_with_SendEmailResult_FailedToPackageEmailForSending___When_MailMessage_cannot_be_cast_to_MimeMessage()
+        {
+        }
+
+        [Fact]
+        public static async Task ExecuteAsync___Should_return_EmailResponse_with_SendEmailResult_FailedToConnectToServer___When_when_server_does_not_exist()
+        {
+            // Arrange
+            var smtpServerConnectionDefinition = A.Dummy<SmtpServerConnectionDefinition>();
+
+            var emailRequest = A.Dummy<EmailRequest>();
+
+            var operation = new SendEmailOp(emailRequest);
+
+            var protocol = new SendEmailProtocol(smtpServerConnectionDefinition);
+
+            // Act
+            var actual = await protocol.ExecuteAsync(operation);
+
+            // Assert
+            actual.SendEmailResult.AsTest().Must().BeEqualTo(SendEmailResult.FailedToConnectToServer);
+        }
+
+        [Fact]
+        public static async Task ExecuteAsync___Should_return_EmailResponse_with_SendEmailResult_FailedToAuthenticateWithServer___When_when_credentials_are_invalid()
+        {
+            // Arrange
+            var smtpServerConnectionDefinition = new SmtpServerConnectionDefinition("email-smtp.us-east-1.amazonaws.com", 587, SecureConnectionMethod.StartTls, "username", "password");
+
+            var emailRequest = A.Dummy<EmailRequest>();
+
+            var operation = new SendEmailOp(emailRequest);
+
+            var protocol = new SendEmailProtocol(smtpServerConnectionDefinition);
+
+            // Act
+            var actual = await protocol.ExecuteAsync(operation);
+
+            // Assert
+            actual.SendEmailResult.AsTest().Must().BeEqualTo(SendEmailResult.FailedToAuthenticateWithServer);
+        }
+
+        [Fact(Skip = "Not sure how to cause this step in the process to throw.")]
+        public static void ExecuteAsync___Should_return_EmailResponse_with_SendEmailResult_FailedToSendEmailToServer___When_server_rejects_email()
+        {
         }
     }
 }
