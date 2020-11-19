@@ -27,18 +27,18 @@ namespace Naos.Email.Domain
         /// <param name="htmlBody">OPTIONAL body of the email in HTML.  DEFAULT is to have no HTML body.</param>
         /// <param name="attachments">OPTIONAL attachments to the email.  These will be attached to the email (NOT linked in the email body, those should be specified in <paramref name="contentIdToHtmlBodyLinkedResourceMap"/>).  DEFAULT is none.</param>
         /// <param name="contentIdToHtmlBodyLinkedResourceMap">OPTIONAL collection of attachments that are linked in the HTML body, as a map of content identifier (cid, e.g. 'My_Content_Identifier') to resources linked in the <paramref name="htmlBody"/> (e.g. &lt;img src='cid:My_Content_Identifier' /&gt;).  DEFAULT is none.</param>
-        /// <param name="subjectEncoding">OPTIONAL encoding to use to encode the subject.  DEFAULT is to use the system default encoding.</param>
-        /// <param name="plainTextBodyEncoding">OPTIONAL encoding to use to encode the <paramref name="plainTextBody"/>.  DEFAULT is to use the system default encoding.</param>
-        /// <param name="htmlBodyEncoding">OPTIONAL encoding to use to encode the <paramref name="htmlBody"/>.  DEFAULT is to use the system default encoding.</param>
+        /// <param name="subjectEncodingKind">OPTIONAL encoding to use to encode the subject.  DEFAULT is to use the system default encoding.</param>
+        /// <param name="plainTextBodyEncodingKind">OPTIONAL encoding to use to encode the <paramref name="plainTextBody"/>.  DEFAULT is to use the system default encoding.</param>
+        /// <param name="htmlBodyEncodingKind">OPTIONAL encoding to use to encode the <paramref name="htmlBody"/>.  DEFAULT is to use the system default encoding.</param>
         public EmailContent(
             string subject,
             string plainTextBody,
             string htmlBody = null,
             IReadOnlyCollection<EmailAttachment> attachments = null,
             IReadOnlyDictionary<string, EmailAttachment> contentIdToHtmlBodyLinkedResourceMap = null,
-            Encoding subjectEncoding = null,
-            Encoding plainTextBodyEncoding = null,
-            Encoding htmlBodyEncoding = null)
+            EncodingKind? subjectEncodingKind = null,
+            EncodingKind? plainTextBodyEncodingKind = null,
+            EncodingKind? htmlBodyEncodingKind = null)
         {
             if (attachments != null)
             {
@@ -56,9 +56,9 @@ namespace Naos.Email.Domain
             this.HtmlBody = htmlBody;
             this.Attachments = attachments;
             this.ContentIdToHtmlBodyLinkedResourceMap = contentIdToHtmlBodyLinkedResourceMap;
-            this.SubjectEncoding = subjectEncoding;
-            this.PlainTextBodyEncoding = plainTextBodyEncoding;
-            this.HtmlBodyEncoding = htmlBodyEncoding;
+            this.SubjectEncodingKind = subjectEncodingKind;
+            this.PlainTextBodyEncodingKind = plainTextBodyEncodingKind;
+            this.HtmlBodyEncodingKind = htmlBodyEncodingKind;
         }
 
         /// <summary>
@@ -89,16 +89,16 @@ namespace Naos.Email.Domain
         /// <summary>
         /// Gets the encoding to use to encode the subject.
         /// </summary>
-        public Encoding SubjectEncoding { get; private set; }
+        public EncodingKind? SubjectEncodingKind { get; private set; }
 
         /// <summary>
         /// Gets the encoding to use to encode the <see cref="PlainTextBody"/>.
         /// </summary>
-        public Encoding PlainTextBodyEncoding { get; private set; }
+        public EncodingKind? PlainTextBodyEncodingKind { get; private set; }
 
         /// <summary>
         /// Gets the encoding to use to encode the <see cref="HtmlBody"/>.
         /// </summary>
-        public Encoding HtmlBodyEncoding { get; private set; }
+        public EncodingKind? HtmlBodyEncodingKind { get; private set; }
     }
 }

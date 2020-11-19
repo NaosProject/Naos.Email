@@ -13,6 +13,7 @@ namespace Naos.Email.Domain
     using System.Net.Mime;
 
     using OBeautifulCode.Assertion.Recipes;
+    using OBeautifulCode.Type;
 
     /// <summary>
     /// Extension methods on <see cref="EmailAttachment"/>.
@@ -51,9 +52,9 @@ namespace Naos.Email.Domain
                 result.ContentDisposition.FileName = emailAttachment.FileName;
             }
 
-            if (emailAttachment.FileNameEncoding != null)
+            if (emailAttachment.FileNameEncodingKind != null)
             {
-                result.NameEncoding = emailAttachment.FileNameEncoding;
+                result.NameEncoding = emailAttachment.FileNameEncodingKind?.ToEncoding();
             }
 
             return result;

@@ -22,6 +22,7 @@ namespace Naos.Email.Protocol.Client
     using Naos.Protocol.Domain;
 
     using OBeautifulCode.Assertion.Recipes;
+    using OBeautifulCode.Type;
 
     using static System.FormattableString;
 
@@ -143,9 +144,9 @@ namespace Naos.Email.Protocol.Client
                 message.Subject = emailContent.Subject;
             }
 
-            if (emailContent.SubjectEncoding != null)
+            if (emailContent.SubjectEncodingKind != null)
             {
-                message.SubjectEncoding = emailContent.SubjectEncoding;
+                message.SubjectEncoding = emailContent.SubjectEncodingKind?.ToEncoding();
             }
 
             if (emailContent.Attachments != null)
@@ -164,14 +165,14 @@ namespace Naos.Email.Protocol.Client
 
             if (hasPlainTextBody)
             {
-                var plainTextAlternateView = AlternateView.CreateAlternateViewFromString(emailContent.PlainTextBody, emailContent.PlainTextBodyEncoding, MediaType.TextPlain.ToMimeTypeName());
+                var plainTextAlternateView = AlternateView.CreateAlternateViewFromString(emailContent.PlainTextBody, emailContent.PlainTextBodyEncodingKind?.ToEncoding(), MediaType.TextPlain.ToMimeTypeName());
 
                 message.AlternateViews.Add(plainTextAlternateView);
             }
 
             if (hasHtmlBody)
             {
-                var htmlAlternateView = AlternateView.CreateAlternateViewFromString(emailContent.HtmlBody, emailContent.HtmlBodyEncoding, MediaType.TextHtml.ToMimeTypeName());
+                var htmlAlternateView = AlternateView.CreateAlternateViewFromString(emailContent.HtmlBody, emailContent.HtmlBodyEncodingKind?.ToEncoding(), MediaType.TextHtml.ToMimeTypeName());
 
                 if (emailContent.ContentIdToHtmlBodyLinkedResourceMap != null)
                 {
