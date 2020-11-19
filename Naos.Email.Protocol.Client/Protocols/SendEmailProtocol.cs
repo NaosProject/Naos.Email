@@ -58,7 +58,7 @@ namespace Naos.Email.Protocol.Client
                 }
                 catch (Exception ex)
                 {
-                    result = new EmailResponse(SendEmailResult.FailedToAddParticipantsToEmail, ex.ToString(), null);
+                    result = new EmailResponse(SendEmailResult.FailedToAddParticipantsToEmail, ex.ToString());
 
                     return result;
                 }
@@ -69,7 +69,7 @@ namespace Naos.Email.Protocol.Client
                 }
                 catch (Exception ex)
                 {
-                    result = new EmailResponse(SendEmailResult.FailedToAddContentToEmail, ex.ToString(), null);
+                    result = new EmailResponse(SendEmailResult.FailedToAddContentToEmail, ex.ToString());
 
                     return result;
                 }
@@ -80,7 +80,7 @@ namespace Naos.Email.Protocol.Client
                 }
                 catch (Exception ex)
                 {
-                    result = new EmailResponse(SendEmailResult.FailedToAddOptionsToEmail, ex.ToString(), null);
+                    result = new EmailResponse(SendEmailResult.FailedToAddOptionsToEmail, ex.ToString());
 
                     return result;
                 }
@@ -93,7 +93,7 @@ namespace Naos.Email.Protocol.Client
                 }
                 catch (Exception ex)
                 {
-                    result = new EmailResponse(SendEmailResult.FailedToPackageEmailForSending, ex.ToString(), null);
+                    result = new EmailResponse(SendEmailResult.FailedToPackageEmailForSending, ex.ToString());
 
                     return result;
                 }
@@ -268,6 +268,7 @@ namespace Naos.Email.Protocol.Client
                         }
                         catch (Exception)
                         {
+                            // This doesn't constitute a failure; the email has been sent.
                         }
 
                         logMessages = GetLogMessages(logStream);

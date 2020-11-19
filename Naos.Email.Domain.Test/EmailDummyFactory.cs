@@ -33,6 +33,7 @@ namespace Naos.Email.Domain.Test
         public EmailDummyFactory()
         {
             AutoFixtureBackedDummyFactory.ConstrainDummyToExclude(SecureConnectionMethod.Unknown);
+            AutoFixtureBackedDummyFactory.ConstrainDummyToExclude(SendEmailResult.Unknown);
 
             AutoFixtureBackedDummyFactory.AddDummyCreator(() =>
             {

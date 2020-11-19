@@ -24,23 +24,22 @@ namespace Naos.Email.Domain
         /// </summary>
         /// <param name="subject">The subject of the email.</param>
         /// <param name="plainTextBody">The body of the email in plain text.</param>
-        /// <param name="htmlBody">The body of the email in HTML.</param>
-        /// <param name="attachments">OPTIONAL attachments to the email.  DEFAULT is none.</param>
-        /// <param name="contentIdToHtmlBodyLinkedResourceMap">OPTIONAL map of content identifier (cid) to resources linked in the <paramref name="htmlBody"/> (e.g. &lt;img src='cid:Content_Identifier_Here' /&gt;).  DEFAULT is none.</param>
+        /// <param name="htmlBody">OPTIONAL body of the email in HTML.  DEFAULT is to have no HTML body.</param>
+        /// <param name="attachments">OPTIONAL attachments to the email.  These will be attached to the email (NOT linked in the email body, those should be specified in <paramref name="contentIdToHtmlBodyLinkedResourceMap"/>).  DEFAULT is none.</param>
+        /// <param name="contentIdToHtmlBodyLinkedResourceMap">OPTIONAL collection of attachments that are linked in the HTML body, as a map of content identifier (cid, e.g. 'My_Content_Identifier') to resources linked in the <paramref name="htmlBody"/> (e.g. &lt;img src='cid:My_Content_Identifier' /&gt;).  DEFAULT is none.</param>
         /// <param name="subjectEncoding">OPTIONAL encoding to use to encode the subject.  DEFAULT is to use the system default encoding.</param>
         /// <param name="plainTextBodyEncoding">OPTIONAL encoding to use to encode the <paramref name="plainTextBody"/>.  DEFAULT is to use the system default encoding.</param>
         /// <param name="htmlBodyEncoding">OPTIONAL encoding to use to encode the <paramref name="htmlBody"/>.  DEFAULT is to use the system default encoding.</param>
         public EmailContent(
             string subject,
             string plainTextBody,
-            string htmlBody,
+            string htmlBody = null,
             IReadOnlyCollection<EmailAttachment> attachments = null,
             IReadOnlyDictionary<string, EmailAttachment> contentIdToHtmlBodyLinkedResourceMap = null,
             Encoding subjectEncoding = null,
             Encoding plainTextBodyEncoding = null,
             Encoding htmlBodyEncoding = null)
         {
-            // html body relative URI?
             if (attachments != null)
             {
                 new { attachments }.AsTest().Must().NotContainAnyNullElements();

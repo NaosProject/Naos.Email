@@ -22,12 +22,12 @@ namespace Naos.Email.Domain
         /// Initializes a new instance of the <see cref="EmailResponse"/> class.
         /// </summary>
         /// <param name="sendEmailResult">The result of sending the email.</param>
-        /// <param name="exceptionToString">If there's a failure, the <see cref="object.ToString()"/> of the <see cref="Exception"/>.</param>
-        /// <param name="communicationLog">The log of communication between client and server.</param>
+        /// <param name="exceptionToString">OPTIONAL <see cref="object.ToString()"/> of the <see cref="Exception"/> if a failure has occurred.  DEFAULT is no exception information.</param>
+        /// <param name="communicationLog">OPTIONAL log of communication between client and server.  DEFAULT is the absence of any communication log.</param>
         public EmailResponse(
             SendEmailResult sendEmailResult,
-            string exceptionToString,
-            string communicationLog)
+            string exceptionToString = null,
+            string communicationLog = null)
         {
             new { sendEmailResult }.AsArg().Must().NotBeEqualTo(SendEmailResult.Unknown);
 

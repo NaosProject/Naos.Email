@@ -25,12 +25,6 @@ namespace Naos.Email.Domain
             string fileName = null,
             MediaType mediaType = MediaType.ApplicationOctet)
         {
-            // required versus optional?
-            // - TransferEncoding, NameEncoding
-            //       there's an option to specify the encoding to use for the media type, but that feels like overkill
-            //      .net will figure that out for us.
-            // Charset?
-            // Extra parameters?
             new { fileBytes }.AsArg().Must().NotBeNullNorEmptyEnumerable();
 
             this.FileBytes = fileBytes;

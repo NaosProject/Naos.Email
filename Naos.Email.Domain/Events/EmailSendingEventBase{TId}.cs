@@ -1,29 +1,39 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="EmailRequestResponse.cs" company="Naos Project">
+// <copyright file="EmailSendingEventBase{TId}.cs" company="Naos Project">
 //    Copyright (c) Naos Project 2019. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace Naos.Email.Domain
 {
+    using System;
+
+    using Naos.Protocol.Domain;
+
     using OBeautifulCode.Assertion.Recipes;
     using OBeautifulCode.Type;
 
     /// <summary>
-    /// An email; the item itself along with information about its delivery.
+    /// Base class that tracks an email request/response pair.
     /// </summary>
-    public partial class EmailRequestResponse : IModelViaCodeGen
+    /// <typeparam name="TId">The type of the identifier.</typeparam>
+    // ReSharper disable once RedundantExtendsListEntry
+    public abstract partial class EmailSendingEventBase<TId> : EventBase<TId>, IModelViaCodeGen
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="EmailRequestResponse"/> class.
+        /// Initializes a new instance of the <see cref="EmailSendingEventBase{TId}"/> class.
         /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="timestampUtc">The timestamp in UTC.</param>
         /// <param name="emailRequest">The request to send the email.</param>
         /// <param name="emailResponse">The result of sending the email.</param>
-        public EmailRequestResponse(
+        protected EmailSendingEventBase(
+            TId id,
+            DateTime timestampUtc,
             EmailRequest emailRequest,
             EmailResponse emailResponse)
+            : base(id, timestampUtc)
         {
-            // better name for this class?
             new { emailRequest }.AsArg().Must().NotBeNull();
             new { emailResponse }.AsArg().Must().NotBeNull();
 

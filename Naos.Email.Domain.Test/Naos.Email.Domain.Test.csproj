@@ -295,6 +295,7 @@
     <Content Include=".analyzers\dictionary.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Events\" />
     <Folder Include="Models\Classes\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
