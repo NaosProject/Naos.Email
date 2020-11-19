@@ -86,6 +86,7 @@
     <Compile Include=".recipes\OBeautifulCode.Equality\HashCodeHelper.cs" />
     <Compile Include=".recipes\OBeautifulCode.Equality\ReadOnlyDictionaryEqualityComparer.cs" />
     <Compile Include=".recipes\OBeautifulCode.String\StringExtensions.cs" />
+    <Compile Include="Interfaces\ISendEmailProtocol.cs" />
     <Compile Include="Models\Classes\EmailRequestResponse.cs" />
     <Compile Include="Models\Classes\EmailResponse.cs" />
     <Compile Include="Models\Classes\EmailRequest.cs" />
@@ -131,7 +132,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Events\" />
-    <Folder Include="Interfaces\" />
     <Folder Include="Logic\Constants\" />
     <Folder Include="Logic\Protocols\" />
     <Folder Include="Models\Interfaces\" />
