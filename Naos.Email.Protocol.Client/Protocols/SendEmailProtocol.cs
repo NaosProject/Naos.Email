@@ -8,9 +8,12 @@ namespace Naos.Email.Protocol.Client
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Net.Mail;
+    using System.Text;
     using System.Threading.Tasks;
 
+    using MailKit;
     using MailKit.Security;
 
     using MimeKit;
@@ -167,82 +170,118 @@ namespace Naos.Email.Protocol.Client
             MailMessage message,
             SmtpServerConnectionDefinition smtpServerConnectionDefinition)
         {
-            using (var smtpClient = new MailKit.Net.Smtp.SmtpClient())
+            using (var logStream = new MemoryStream())
             {
-                EmailResponse result;
-
-                SecureSocketOptions secureSocketOptions;
-
-                switch (smtpServerConnectionDefinition.SecureConnectionMethod)
+                using (var protocolLogger = new ProtocolLogger(logStream, leaveOpen: false))
                 {
-                    case SecureConnectionMethod.UseTlsOnConnect:
-                        secureSocketOptions = SecureSocketOptions.SslOnConnect;
-                        break;
-                    case SecureConnectionMethod.StartTls:
-                        secureSocketOptions = SecureSocketOptions.StartTls;
-                        break;
-                    default:
-                        throw new NotSupportedException(Invariant($"This {nameof(SecureConnectionMethod)} is not supported: {smtpServerConnectionDefinition.SecureConnectionMethod}."));
+                    using (var smtpClient = new MailKit.Net.Smtp.SmtpClient(protocolLogger))
+                    {
+                        string logMessages;
+
+                        EmailResponse result;
+
+                        var secureSocketOptions = GetSecureSocketOptions(smtpServerConnectionDefinition.SecureConnectionMethod);
+
+                        try
+                        {
+                            await smtpClient.ConnectAsync(smtpServerConnectionDefinition.Host, smtpServerConnectionDefinition.Port, secureSocketOptions);
+                        }
+                        catch (Exception ex)
+                        {
+                            logMessages = GetLogMessages(logStream);
+
+                            result = new EmailResponse(SendEmailResult.FailedToConnectToServer, ex.ToString(), logMessages);
+
+                            return result;
+                        }
+
+                        try
+                        {
+                            await smtpClient.AuthenticateAsync(smtpServerConnectionDefinition.Username, smtpServerConnectionDefinition.ClearTextPassword);
+                        }
+                        catch (Exception ex)
+                        {
+                            logMessages = GetLogMessages(logStream);
+
+                            result = new EmailResponse(SendEmailResult.FailedToAuthenticateWithServer, ex.ToString(), logMessages);
+
+                            return result;
+                        }
+
+                        MimeMessage mimeMessage;
+
+                        try
+                        {
+                            mimeMessage = (MimeMessage)message;
+                        }
+                        catch (Exception ex)
+                        {
+                            logMessages = GetLogMessages(logStream);
+
+                            result = new EmailResponse(SendEmailResult.FailedToPrepareEmailForSending, ex.ToString(), logMessages);
+
+                            return result;
+                        }
+
+                        try
+                        {
+                            await smtpClient.SendAsync(mimeMessage);
+                        }
+                        catch (Exception ex)
+                        {
+                            logMessages = GetLogMessages(logStream);
+
+                            result = new EmailResponse(SendEmailResult.FailedToSendEmailToServer, ex.ToString(), logMessages);
+
+                            return result;
+                        }
+
+                        try
+                        {
+                            await smtpClient.DisconnectAsync(true);
+                        }
+                        catch (Exception)
+                        {
+                        }
+
+                        logMessages = GetLogMessages(logStream);
+
+                        result = new EmailResponse(SendEmailResult.Success, null, logMessages);
+
+                        return result;
+                    }
                 }
-
-                try
-                {
-                    await smtpClient.ConnectAsync(smtpServerConnectionDefinition.Host, smtpServerConnectionDefinition.Port, secureSocketOptions);
-                }
-                catch (Exception ex)
-                {
-                    result = new EmailResponse(SendEmailResult.FailedToConnectToServer, ex.ToString());
-
-                    return result;
-                }
-
-                try
-                {
-                    await smtpClient.AuthenticateAsync(smtpServerConnectionDefinition.Username, smtpServerConnectionDefinition.ClearTextPassword);
-                }
-                catch (Exception ex)
-                {
-                    result = new EmailResponse(SendEmailResult.FailedToAuthenticateWithServer, ex.ToString());
-
-                    return result;
-                }
-
-                MimeMessage mimeMessage;
-
-                try
-                {
-                    mimeMessage = (MimeMessage)message;
-                }
-                catch (Exception ex)
-                {
-                    result = new EmailResponse(SendEmailResult.FailedToPrepareEmailForSending, ex.ToString());
-
-                    return result;
-                }
-
-                try
-                {
-                    await smtpClient.SendAsync(mimeMessage);
-                }
-                catch (Exception ex)
-                {
-                    result = new EmailResponse(SendEmailResult.FailedToSendEmailToServer, ex.ToString());
-
-                    return result;
-                }
-
-                try
-                {
-                    await smtpClient.DisconnectAsync(true);
-                }
-                catch (Exception)
-                {
-                }
-
-                result = new EmailResponse(SendEmailResult.Success, null);
-
-                return result;
             }
+        }
+
+        private static SecureSocketOptions GetSecureSocketOptions(
+            SecureConnectionMethod secureConnectionMethod)
+        {
+            SecureSocketOptions result;
+
+            switch (secureConnectionMethod)
+            {
+                case SecureConnectionMethod.UseTlsOnConnect:
+                    result = SecureSocketOptions.SslOnConnect;
+                    break;
+                case SecureConnectionMethod.StartTls:
+                    result = SecureSocketOptions.StartTls;
+                    break;
+                default:
+                    throw new NotSupportedException(Invariant($"This {nameof(SecureConnectionMethod)} is not supported: {secureConnectionMethod}."));
+            }
+
+            return result;
+        }
+
+        private static string GetLogMessages(
+            MemoryStream logStream)
+        {
+            var logBytes = logStream.ToArray();
+
+            var result = Encoding.UTF8.GetString(logBytes);
+
+            return result;
         }
     }
 }

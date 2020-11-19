@@ -23,11 +23,14 @@ namespace Naos.Email.Domain
         /// </summary>
         /// <param name="sendEmailResult">The result of sending the email.</param>
         /// <param name="exceptionToString">If there's a failure, the <see cref="object.ToString()"/> of the <see cref="Exception"/>.</param>
+        /// <param name="communicationLog">The log of communication between client and server.</param>
         public EmailResponse(
             SendEmailResult sendEmailResult,
-            string exceptionToString)
+            string exceptionToString,
+            string communicationLog)
         {
             new { sendEmailResult }.AsArg().Must().NotBeEqualTo(SendEmailResult.Unknown);
+            new { communicationLog }.AsArg().Must().NotBeNullNorWhiteSpace();
 
             if (sendEmailResult != SendEmailResult.Success)
             {
@@ -36,6 +39,7 @@ namespace Naos.Email.Domain
 
             this.SendEmailResult = sendEmailResult;
             this.ExceptionToString = exceptionToString;
+            this.CommunicationLog = communicationLog;
         }
 
         /// <summary>
@@ -47,5 +51,10 @@ namespace Naos.Email.Domain
         /// Gets the <see cref="object.ToString()"/> of the <see cref="Exception"/> for failures.
         /// </summary>
         public string ExceptionToString { get; private set; }
+
+        /// <summary>
+        /// Gets the log of communication between client and server.
+        /// </summary>
+        public string CommunicationLog { get; private set; }
     }
 }
