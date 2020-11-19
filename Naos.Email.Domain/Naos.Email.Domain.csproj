@@ -90,6 +90,7 @@
     <Compile Include="Events\EmailSentEvent{TId}.cs" />
     <Compile Include="Interfaces\ISendEmailProtocol.cs" />
     <Compile Include="Logic\Extensions\EmailMailboxExtensions.cs" />
+    <Compile Include="Logic\Extensions\HtmlBodyExtensions.cs" />
     <Compile Include="Models\Classes\EmailMailbox.cs" />
     <Compile Include="Events\EmailSendingEventBase{TId}.cs" />
     <Compile Include="Models\Classes\EmailResponse.cs" />
