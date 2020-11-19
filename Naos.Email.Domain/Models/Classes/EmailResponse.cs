@@ -30,7 +30,6 @@ namespace Naos.Email.Domain
             string communicationLog)
         {
             new { sendEmailResult }.AsArg().Must().NotBeEqualTo(SendEmailResult.Unknown);
-            new { communicationLog }.AsArg().Must().NotBeNullNorWhiteSpace();
 
             if (sendEmailResult != SendEmailResult.Success)
             {

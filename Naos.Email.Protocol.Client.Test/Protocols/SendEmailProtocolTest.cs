@@ -29,12 +29,12 @@ namespace Naos.Email.Protocol.Client.Test
                 "USERNAME_HERE",
                 "PASSWORD_HERE");
 
-            var validatedEmailAddresses = new ValidatedEmailAddresses(
-                "FROM_ADDRESS_HERE",
-                new[] { "TO_ADDRESS_HERE" },
-                new string[] { },
-                new string[] { },
-                new string[] { });
+            var emailParticipants = new EmailParticipants(
+                new EmailMailbox("FROM_ADDRESS_HERE"),
+                new[] { new EmailMailbox("TO_ADDRESS_HERE") },
+                new EmailMailbox[] { },
+                new EmailMailbox[] { },
+                new EmailMailbox[] { });
 
             const string heartFileName = "heart.png";
             const string documentFileName = "document.pdf";
@@ -78,7 +78,7 @@ namespace Naos.Email.Protocol.Client.Test
                 null,
                 null);
 
-            var emailRequest = new EmailRequest(validatedEmailAddresses, emailContent);
+            var emailRequest = new EmailRequest(emailParticipants, emailContent);
 
             var operation = new SendEmailOp(emailRequest);
 

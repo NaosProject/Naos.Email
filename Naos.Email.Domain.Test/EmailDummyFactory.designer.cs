@@ -35,39 +35,6 @@ namespace Naos.Email.Domain.Test
     {
         public DefaultEmailDummyFactory()
         {
-            AutoFixtureBackedDummyFactory.AddDummyCreator(
-                () => new ValidatedEmailAddresses(
-                                 A.Dummy<string>(),
-                                 A.Dummy<IReadOnlyCollection<string>>(),
-                                 A.Dummy<IReadOnlyCollection<string>>(),
-                                 A.Dummy<IReadOnlyCollection<string>>(),
-                                 A.Dummy<IReadOnlyCollection<string>>()));
-
-            AutoFixtureBackedDummyFactory.AddDummyCreator(
-                () => new UnvalidatedEmailAddresses(
-                                 A.Dummy<string>(),
-                                 A.Dummy<IReadOnlyCollection<string>>(),
-                                 A.Dummy<IReadOnlyCollection<string>>(),
-                                 A.Dummy<IReadOnlyCollection<string>>(),
-                                 A.Dummy<IReadOnlyCollection<string>>()));
-
-            AutoFixtureBackedDummyFactory.AddDummyCreator(
-                () =>
-                {
-                    var availableTypes = new[]
-                    {
-                        typeof(ValidatedEmailAddresses),
-                        typeof(UnvalidatedEmailAddresses)
-                    };
-
-                    var randomIndex = ThreadSafeRandom.Next(0, availableTypes.Length);
-
-                    var randomType = availableTypes[randomIndex];
-
-                    var result = (EmailAddressesBase)AD.ummy(randomType);
-
-                    return result;
-                });
         }
 
         /// <inheritdoc />

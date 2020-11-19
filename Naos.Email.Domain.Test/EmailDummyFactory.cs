@@ -14,6 +14,7 @@ namespace Naos.Email.Domain.Test
     using FakeItEasy;
 
     using OBeautifulCode.AutoFakeItEasy;
+    using OBeautifulCode.Math.Recipes;
 
     using static System.FormattableString;
 
@@ -31,21 +32,21 @@ namespace Naos.Email.Domain.Test
     {
         public EmailDummyFactory()
         {
-            AutoFixtureBackedDummyFactory.AddDummyCreator<ValidatedEmailAddresses>(() =>
+            AutoFixtureBackedDummyFactory.AddDummyCreator<EmailMailbox>(() =>
             {
-                string GetDummyEmailAddress() => Invariant($"{A.Dummy<Guid>()}@example.com");
+                var address = Invariant($"{A.Dummy<Guid>()}@example.com");
 
-                var from = GetDummyEmailAddress();
+                var firstNames = new[] { "Bob", "Sara", "Jane", "Joe", "Tommy", "Nora" };
 
-                var to = new[] { GetDummyEmailAddress(), GetDummyEmailAddress() };
+                var lastNames = new[] { "Jones", "Smith", "Tailor", "Wright", "Glass", "Willis" };
 
-                var cc = new[] { GetDummyEmailAddress(), GetDummyEmailAddress() };
+                var firstNameIndex = ThreadSafeRandom.Next(0, firstNames.Length);
 
-                var bcc = new[] { GetDummyEmailAddress(), GetDummyEmailAddress() };
+                var lastNameIndex = ThreadSafeRandom.Next(0, lastNames.Length);
 
-                var replyTo = new[] { GetDummyEmailAddress(), GetDummyEmailAddress() };
+                var name = firstNames[firstNameIndex] + " " + lastNames[lastNameIndex];
 
-                var result = new ValidatedEmailAddresses(from, to, cc, bcc, replyTo);
+                var result = new EmailMailbox(address, name);
 
                 return result;
             });

@@ -87,6 +87,8 @@
     <Compile Include=".recipes\OBeautifulCode.Equality\ReadOnlyDictionaryEqualityComparer.cs" />
     <Compile Include=".recipes\OBeautifulCode.String\StringExtensions.cs" />
     <Compile Include="Interfaces\ISendEmailProtocol.cs" />
+    <Compile Include="Logic\Extensions\EmailMailboxExtensions.cs" />
+    <Compile Include="Models\Classes\EmailMailbox.cs" />
     <Compile Include="Models\Classes\EmailRequestResponse.cs" />
     <Compile Include="Models\Classes\EmailResponse.cs" />
     <Compile Include="Models\Classes\EmailRequest.cs" />
@@ -97,25 +99,13 @@
     <Compile Include=".recipes\OBeautifulCode.Type\TypeExtensions.cs" />
     <Compile Include="Logic\Extensions\MediaTypeExtensions.cs" />
     <Compile Include="Logic\Extensions\EmailAttachmentExtensions.cs" />
-    <Compile Include="Logic\Extensions\EmailAddressBaseExtensions.cs" />
-    <Compile Include="Models\Classes\EmailAddressesBase.designer.cs">
-      <DependentUpon>EmailAddressesBase.cs</DependentUpon>
-    </Compile>
     <Compile Include="Models\Classes\EmailOptions.cs" />
     <Compile Include="Models\Classes\EmailContent.cs" />
     <Compile Include="Models\Classes\EmailAttachment.cs" />
     <Compile Include="Models\Classes\SmtpServerConnectionDefinition.cs" />
-    <Compile Include="Models\Classes\UnvalidatedEmailAddresses.designer.cs">
-      <DependentUpon>UnvalidatedEmailAddresses.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Classes\ValidatedEmailAddresses.cs" />
-    <Compile Include="Models\Classes\UnvalidatedEmailAddresses.cs" />
-    <Compile Include="Models\Classes\EmailAddressesBase.cs" />
+    <Compile Include="Models\Classes\EmailParticipants.cs" />
     <Compile Include="Models\Enums\SecureConnectionMethod.cs" />
     <Compile Include="Operations\SendEmailOp.cs" />
-    <Compile Include="Models\Classes\ValidatedEmailAddresses.designer.cs">
-      <DependentUpon>ValidatedEmailAddresses.cs</DependentUpon>
-    </Compile>
     <Compile Include="Models\Enums\SendEmailResult.cs" />
     <Compile Include="Models\Enums\MediaType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

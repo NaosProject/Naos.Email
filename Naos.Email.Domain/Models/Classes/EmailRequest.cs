@@ -17,26 +17,26 @@ namespace Naos.Email.Domain
         /// <summary>
         /// Initializes a new instance of the <see cref="EmailRequest"/> class.
         /// </summary>
-        /// <param name="validatedEmailAddresses">The email addresses to use in the email, where all of the email addresses have been validated.</param>
+        /// <param name="emailParticipants">The email mailboxes of all of the participants in an email.</param>
         /// <param name="emailContent">The content of the email.</param>
         /// <param name="emailOptions">OPTIONAL options/instructions for sending the email.  DEFAULT is to use the system defaults.</param>
         public EmailRequest(
-            ValidatedEmailAddresses validatedEmailAddresses,
+            EmailParticipants emailParticipants,
             EmailContent emailContent,
             EmailOptions emailOptions = null)
         {
-            new { validatedEmailAddresses }.AsArg().Must().NotBeNull();
+            new { emailParticipants }.AsArg().Must().NotBeNull();
             new { emailContent }.AsArg().Must().NotBeNull();
 
-            this.ValidatedEmailAddresses = validatedEmailAddresses;
+            this.EmailParticipants = emailParticipants;
             this.EmailContent = emailContent;
             this.EmailOptions = emailOptions;
         }
 
         /// <summary>
-        /// Gets the email addresses to use in the email, where all of the email addresses have been validated.
+        /// Gets the email mailboxes of all of the participants in an email.
         /// </summary>
-        public ValidatedEmailAddresses ValidatedEmailAddresses { get; private set; }
+        public EmailParticipants EmailParticipants { get; private set; }
 
         /// <summary>
         /// Gets the content of the email.

@@ -50,45 +50,86 @@ namespace Naos.Email.Protocol.Client
         {
             using (var message = new MailMessage())
             {
-                AddValidatedEmailAddressesToMessage(message, operation.EmailRequest.ValidatedEmailAddresses);
+                EmailResponse result;
 
-                AddContentToMessage(message, operation.EmailRequest.EmailContent);
+                try
+                {
+                    AddEmailParticipantsToMessage(message, operation.EmailRequest.EmailParticipants);
+                }
+                catch (Exception ex)
+                {
+                    result = new EmailResponse(SendEmailResult.FailedToAddParticipantsToEmail, ex.ToString(), null);
 
-                AddOptionsToMessage(message, operation.EmailRequest.EmailOptions);
+                    return result;
+                }
 
-                var result = await SendMessageAsync(message, this.smtpServerConnectionDefinition);
+                try
+                {
+                    AddContentToMessage(message, operation.EmailRequest.EmailContent);
+                }
+                catch (Exception ex)
+                {
+                    result = new EmailResponse(SendEmailResult.FailedToAddContentToEmail, ex.ToString(), null);
+
+                    return result;
+                }
+
+                try
+                {
+                    AddOptionsToMessage(message, operation.EmailRequest.EmailOptions);
+                }
+                catch (Exception ex)
+                {
+                    result = new EmailResponse(SendEmailResult.FailedToAddOptionsToEmail, ex.ToString(), null);
+
+                    return result;
+                }
+
+                MimeMessage mimeMessage;
+
+                try
+                {
+                    mimeMessage = (MimeMessage)message;
+                }
+                catch (Exception ex)
+                {
+                    result = new EmailResponse(SendEmailResult.FailedToPackageEmailForSending, ex.ToString(), null);
+
+                    return result;
+                }
+
+                result = await SendMessageAsync(mimeMessage, this.smtpServerConnectionDefinition);
 
                 return result;
             }
         }
 
-        private static void AddValidatedEmailAddressesToMessage(
+        private static void AddEmailParticipantsToMessage(
             MailMessage message,
-            ValidatedEmailAddresses validatedEmailAddresses)
+            EmailParticipants emailParticipants)
         {
-            if (!string.IsNullOrWhiteSpace(validatedEmailAddresses.From))
-            {
-                message.From = new MailAddress(validatedEmailAddresses.From);
-            }
+            message.From = emailParticipants.From.ToMailAddress();
 
-            AddEmailAddresses(message.To, validatedEmailAddresses.To);
+            AddEmailAddresses(message.To, emailParticipants.To);
 
-            AddEmailAddresses(message.CC, validatedEmailAddresses.Cc);
+            AddEmailAddresses(message.CC, emailParticipants.Cc);
 
-            AddEmailAddresses(message.Bcc, validatedEmailAddresses.Bcc);
+            AddEmailAddresses(message.Bcc, emailParticipants.Bcc);
 
-            AddEmailAddresses(message.ReplyToList, validatedEmailAddresses.ReplyTo);
+            AddEmailAddresses(message.ReplyToList, emailParticipants.ReplyTo);
         }
 
         private static void AddEmailAddresses(
             MailAddressCollection mailAddressCollection,
-            IReadOnlyCollection<string> emailAddresses)
+            IReadOnlyCollection<EmailMailbox> emailMailboxes)
         {
-            if (emailAddresses != null)
+            if (emailMailboxes != null)
             {
-                foreach (var emailAddress in emailAddresses)
+                foreach (var emailMailbox in emailMailboxes)
                 {
-                    mailAddressCollection.Add(new MailAddress(emailAddress));
+                    var mailAddress = emailMailbox.ToMailAddress();
+
+                    mailAddressCollection.Add(mailAddress);
                 }
             }
         }
@@ -167,7 +208,7 @@ namespace Naos.Email.Protocol.Client
         }
 
         private static async Task<EmailResponse> SendMessageAsync(
-            MailMessage message,
+            MimeMessage mimeMessage,
             SmtpServerConnectionDefinition smtpServerConnectionDefinition)
         {
             using (var logStream = new MemoryStream())
@@ -176,9 +217,9 @@ namespace Naos.Email.Protocol.Client
                 {
                     using (var smtpClient = new MailKit.Net.Smtp.SmtpClient(protocolLogger))
                     {
-                        string logMessages;
-
                         EmailResponse result;
+
+                        string logMessages;
 
                         var secureSocketOptions = GetSecureSocketOptions(smtpServerConnectionDefinition.SecureConnectionMethod);
 
@@ -204,21 +245,6 @@ namespace Naos.Email.Protocol.Client
                             logMessages = GetLogMessages(logStream);
 
                             result = new EmailResponse(SendEmailResult.FailedToAuthenticateWithServer, ex.ToString(), logMessages);
-
-                            return result;
-                        }
-
-                        MimeMessage mimeMessage;
-
-                        try
-                        {
-                            mimeMessage = (MimeMessage)message;
-                        }
-                        catch (Exception ex)
-                        {
-                            logMessages = GetLogMessages(logStream);
-
-                            result = new EmailResponse(SendEmailResult.FailedToPrepareEmailForSending, ex.ToString(), logMessages);
 
                             return result;
                         }
