@@ -253,7 +253,7 @@
     <Compile Include=".recipes\OBeautifulCode.Type\TypeDummyFactory.designer.cs" />
     <Compile Include=".recipes\OBeautifulCode.Type\TypeExtensions.cs" />
     <Compile Include="ConsoleAbstraction.cs" />
-    <Compile Include="Logic\Extensions\EmailAddressesBaseExtensionsTest.cs" />
+    <Compile Include="Logic\Extensions\EmailMailboxExtensionsTest.cs" />
     <Compile Include="EmailDummyFactoryTest.designer.cs">
       <DependentUpon>EmailDummyFactoryTest.cs</DependentUpon>
     </Compile>
