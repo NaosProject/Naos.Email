@@ -52,6 +52,11 @@ namespace Naos.Email.Domain
         ImageTiff,
 
         /// <summary>
+        /// The image data in Portable Network Graphics (PNG) format.
+        /// </summary>
+        ImagePng,
+
+        /// <summary>
         /// The text data is in HTML format.
         /// </summary>
         TextHtml,

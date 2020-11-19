@@ -44,6 +44,8 @@ namespace Naos.Email.Domain
                     return MediaTypeNames.Image.Jpeg;
                 case MediaType.ImageTiff:
                     return MediaTypeNames.Image.Tiff;
+                case MediaType.ImagePng:
+                    return "image/png";
                 case MediaType.TextHtml:
                     return MediaTypeNames.Text.Html;
                 case MediaType.TextPlain:

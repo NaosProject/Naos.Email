@@ -4,9 +4,8 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace CoMetrics.Notification.Domain
+namespace Naos.Email.Domain
 {
-    using Naos.Email.Domain;
     using Naos.Protocol.Domain;
 
     using OBeautifulCode.Assertion.Recipes;

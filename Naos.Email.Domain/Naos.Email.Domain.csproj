@@ -110,6 +110,7 @@
     <Compile Include="Models\Classes\ValidatedEmailAddresses.cs" />
     <Compile Include="Models\Classes\UnvalidatedEmailAddresses.cs" />
     <Compile Include="Models\Classes\EmailAddressesBase.cs" />
+    <Compile Include="Models\Enums\SecureConnectionMethod.cs" />
     <Compile Include="Operations\SendEmailOp.cs" />
     <Compile Include="Models\Classes\ValidatedEmailAddresses.designer.cs">
       <DependentUpon>ValidatedEmailAddresses.cs</DependentUpon>

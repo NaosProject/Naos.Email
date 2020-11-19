@@ -32,6 +32,11 @@ namespace Naos.Email.Domain
         FailedToAuthenticateWithServer,
 
         /// <summary>
+        /// The email was not sent; failed to prepare the email for sending.
+        /// </summary>
+        FailedToPrepareEmailForSending,
+
+        /// <summary>
         /// The email was not sent; a failure occurred when sending the email.
         /// </summary>
         FailedToSendEmailToServer,
