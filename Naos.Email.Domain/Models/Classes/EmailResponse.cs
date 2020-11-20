@@ -7,6 +7,9 @@
 namespace Naos.Email.Domain
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
+
+    using Naos.CodeAnalysis.Recipes;
 
     using OBeautifulCode.Assertion.Recipes;
     using OBeautifulCode.Type;
@@ -24,6 +27,7 @@ namespace Naos.Email.Domain
         /// <param name="sendEmailResult">The result of sending the email.</param>
         /// <param name="exceptionToString">OPTIONAL <see cref="object.ToString()"/> of the <see cref="Exception"/> if a failure has occurred.  DEFAULT is no exception information.</param>
         /// <param name="communicationLog">OPTIONAL log of communication between client and server.  DEFAULT is the absence of any communication log.</param>
+        [SuppressMessage("Microsoft.Naming", "CA1720:IdentifiersShouldNotContainTypeNames", MessageId = "string", Justification = NaosSuppressBecause.CA1720_IdentifiersShouldNotContainTypeNames_TypeNameAddsClarityToIdentifierAndAlternativesDegradeClarity)]
         public EmailResponse(
             SendEmailResult sendEmailResult,
             string exceptionToString = null,

@@ -6,6 +6,10 @@
 
 namespace Naos.Email.Domain
 {
+    using System.Diagnostics.CodeAnalysis;
+
+    using Naos.CodeAnalysis.Recipes;
+
     using OBeautifulCode.Assertion.Recipes;
 
     /// <summary>
@@ -21,6 +25,7 @@ namespace Naos.Email.Domain
         /// <returns>
         /// The div tag to use.
         /// </returns>
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Div", Justification = NaosSuppressBecause.CA1704_IdentifiersShouldBeSpelledCorrectly_SpellingIsCorrectInContextOfTheDomain)]
         public static string ToPreviewTextHtmlDiv(
             this string previewText)
         {

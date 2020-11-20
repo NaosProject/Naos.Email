@@ -1,14 +1,14 @@
-﻿<?xml version="1.0"?>
-<package >
+<?xml version="1.0"?>
+<package>
   <metadata>
     <id>Naos.Email.Domain.Recipes.DummyFactory</id>
     <description>A Dummy Factory for types in Naos.Email.Domain</description>
     <tags>dummyfactory dummy factory fakeiteasy autofixture snippet codeinclude utility shared recipe Email</tags>
     <dependencies>
-        <dependency id="Naos.Email.Domain" version="$version$" />
-        <dependency id="OBeautifulCode.AutoFakeItEasy" version ="1.0.126" />
-        <dependency id="Naos.CodeAnalysis.Recipes.SuppressBecause" version="1.0.6" />
-        <dependency id="Naos.Protocol.Recipes.DummyFactory" version="1.0.63" />
+      <dependency id="Naos.Email.Domain" version="$version$" />
+      <dependency id="OBeautifulCode.AutoFakeItEasy" version="1.0.130" />
+      <dependency id="Naos.CodeAnalysis.Recipes.SuppressBecause" version="1.0.128" />
+      <dependency id="Naos.Protocol.Recipes.DummyFactory" version="1.0.82" />
     </dependencies>
   </metadata>
   <files>

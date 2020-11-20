@@ -8,6 +8,7 @@ namespace Naos.Email.Protocol.Client
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Net.Mail;
     using System.Text;
@@ -18,6 +19,7 @@ namespace Naos.Email.Protocol.Client
 
     using MimeKit;
 
+    using Naos.CodeAnalysis.Recipes;
     using Naos.Email.Domain;
     using Naos.Protocol.Domain;
 
@@ -135,6 +137,7 @@ namespace Naos.Email.Protocol.Client
             }
         }
 
+        [SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = NaosSuppressBecause.CA2000_DisposeObjectsBeforeLosingScope_MethodCreatesDisposableObjectButItCannotBeDisposedBecauseReturnObjectRequiresDisposableObjectToBeFullyIntact)]
         private static void AddContentToMessage(
             MailMessage message,
             EmailContent emailContent)
@@ -159,15 +162,15 @@ namespace Naos.Email.Protocol.Client
                 }
             }
 
-            var hasPlainTextBody = !string.IsNullOrWhiteSpace(emailContent.PlainTextBody);
+            var hasPlaintextBody = !string.IsNullOrWhiteSpace(emailContent.PlaintextBody);
 
             var hasHtmlBody = !string.IsNullOrWhiteSpace(emailContent.HtmlBody);
 
-            if (hasPlainTextBody)
+            if (hasPlaintextBody)
             {
-                var plainTextAlternateView = AlternateView.CreateAlternateViewFromString(emailContent.PlainTextBody, emailContent.PlainTextBodyEncodingKind?.ToEncoding(), MediaType.TextPlain.ToMimeTypeName());
+                var plaintextAlternateView = AlternateView.CreateAlternateViewFromString(emailContent.PlaintextBody, emailContent.PlaintextBodyEncodingKind?.ToEncoding(), MediaType.TextPlain.ToMimeTypeName());
 
-                message.AlternateViews.Add(plainTextAlternateView);
+                message.AlternateViews.Add(plaintextAlternateView);
             }
 
             if (hasHtmlBody)
@@ -239,7 +242,7 @@ namespace Naos.Email.Protocol.Client
 
                         try
                         {
-                            await smtpClient.AuthenticateAsync(smtpServerConnectionDefinition.Username, smtpServerConnectionDefinition.ClearTextPassword);
+                            await smtpClient.AuthenticateAsync(smtpServerConnectionDefinition.UserName, smtpServerConnectionDefinition.ClearTextPassword);
                         }
                         catch (Exception ex)
                         {

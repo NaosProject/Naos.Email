@@ -69,12 +69,12 @@ namespace Naos.Email.Domain
             }
 
             var result = this.Subject.IsEqualTo(other.Subject, StringComparer.Ordinal)
-                      && this.PlainTextBody.IsEqualTo(other.PlainTextBody, StringComparer.Ordinal)
+                      && this.PlaintextBody.IsEqualTo(other.PlaintextBody, StringComparer.Ordinal)
                       && this.HtmlBody.IsEqualTo(other.HtmlBody, StringComparer.Ordinal)
                       && this.Attachments.IsEqualTo(other.Attachments)
                       && this.ContentIdToHtmlBodyLinkedResourceMap.IsEqualTo(other.ContentIdToHtmlBodyLinkedResourceMap)
                       && this.SubjectEncodingKind.IsEqualTo(other.SubjectEncodingKind)
-                      && this.PlainTextBodyEncodingKind.IsEqualTo(other.PlainTextBodyEncodingKind)
+                      && this.PlaintextBodyEncodingKind.IsEqualTo(other.PlaintextBodyEncodingKind)
                       && this.HtmlBodyEncodingKind.IsEqualTo(other.HtmlBodyEncodingKind);
 
             return result;
@@ -86,12 +86,12 @@ namespace Naos.Email.Domain
         /// <inheritdoc />
         public override int GetHashCode() => HashCodeHelper.Initialize()
             .Hash(this.Subject)
-            .Hash(this.PlainTextBody)
+            .Hash(this.PlaintextBody)
             .Hash(this.HtmlBody)
             .Hash(this.Attachments)
             .Hash(this.ContentIdToHtmlBodyLinkedResourceMap)
             .Hash(this.SubjectEncodingKind)
-            .Hash(this.PlainTextBodyEncodingKind)
+            .Hash(this.PlaintextBodyEncodingKind)
             .Hash(this.HtmlBodyEncodingKind)
             .Value;
 
@@ -103,12 +103,12 @@ namespace Naos.Email.Domain
         {
             var result = new EmailContent(
                                  this.Subject?.DeepClone(),
-                                 this.PlainTextBody?.DeepClone(),
+                                 this.PlaintextBody?.DeepClone(),
                                  this.HtmlBody?.DeepClone(),
                                  this.Attachments?.Select(i => i?.DeepClone()).ToList(),
                                  this.ContentIdToHtmlBodyLinkedResourceMap?.ToDictionary(k => k.Key?.DeepClone(), v => v.Value?.DeepClone()),
                                  this.SubjectEncodingKind,
-                                 this.PlainTextBodyEncodingKind,
+                                 this.PlaintextBodyEncodingKind,
                                  this.HtmlBodyEncodingKind);
 
             return result;
@@ -138,22 +138,22 @@ namespace Naos.Email.Domain
         {
             var result = new EmailContent(
                                  subject,
-                                 this.PlainTextBody?.DeepClone(),
+                                 this.PlaintextBody?.DeepClone(),
                                  this.HtmlBody?.DeepClone(),
                                  this.Attachments?.Select(i => i?.DeepClone()).ToList(),
                                  this.ContentIdToHtmlBodyLinkedResourceMap?.ToDictionary(k => k.Key?.DeepClone(), v => v.Value?.DeepClone()),
                                  this.SubjectEncodingKind,
-                                 this.PlainTextBodyEncodingKind,
+                                 this.PlaintextBodyEncodingKind,
                                  this.HtmlBodyEncodingKind);
 
             return result;
         }
 
         /// <summary>
-        /// Deep clones this object with a new <see cref="PlainTextBody" />.
+        /// Deep clones this object with a new <see cref="PlaintextBody" />.
         /// </summary>
-        /// <param name="plainTextBody">The new <see cref="PlainTextBody" />.  This object will NOT be deep cloned; it is used as-is.</param>
-        /// <returns>New <see cref="EmailContent" /> using the specified <paramref name="plainTextBody" /> for <see cref="PlainTextBody" /> and a deep clone of every other property.</returns>
+        /// <param name="plaintextBody">The new <see cref="PlaintextBody" />.  This object will NOT be deep cloned; it is used as-is.</param>
+        /// <returns>New <see cref="EmailContent" /> using the specified <paramref name="plaintextBody" /> for <see cref="PlaintextBody" /> and a deep clone of every other property.</returns>
         [SuppressMessage("Microsoft.Design", "CA1002: DoNotExposeGenericLists")]
         [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly")]
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly")]
@@ -169,16 +169,16 @@ namespace Naos.Email.Domain
         [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
         [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
-        public EmailContent DeepCloneWithPlainTextBody(string plainTextBody)
+        public EmailContent DeepCloneWithPlaintextBody(string plaintextBody)
         {
             var result = new EmailContent(
                                  this.Subject?.DeepClone(),
-                                 plainTextBody,
+                                 plaintextBody,
                                  this.HtmlBody?.DeepClone(),
                                  this.Attachments?.Select(i => i?.DeepClone()).ToList(),
                                  this.ContentIdToHtmlBodyLinkedResourceMap?.ToDictionary(k => k.Key?.DeepClone(), v => v.Value?.DeepClone()),
                                  this.SubjectEncodingKind,
-                                 this.PlainTextBodyEncodingKind,
+                                 this.PlaintextBodyEncodingKind,
                                  this.HtmlBodyEncodingKind);
 
             return result;
@@ -208,12 +208,12 @@ namespace Naos.Email.Domain
         {
             var result = new EmailContent(
                                  this.Subject?.DeepClone(),
-                                 this.PlainTextBody?.DeepClone(),
+                                 this.PlaintextBody?.DeepClone(),
                                  htmlBody,
                                  this.Attachments?.Select(i => i?.DeepClone()).ToList(),
                                  this.ContentIdToHtmlBodyLinkedResourceMap?.ToDictionary(k => k.Key?.DeepClone(), v => v.Value?.DeepClone()),
                                  this.SubjectEncodingKind,
-                                 this.PlainTextBodyEncodingKind,
+                                 this.PlaintextBodyEncodingKind,
                                  this.HtmlBodyEncodingKind);
 
             return result;
@@ -243,12 +243,12 @@ namespace Naos.Email.Domain
         {
             var result = new EmailContent(
                                  this.Subject?.DeepClone(),
-                                 this.PlainTextBody?.DeepClone(),
+                                 this.PlaintextBody?.DeepClone(),
                                  this.HtmlBody?.DeepClone(),
                                  attachments,
                                  this.ContentIdToHtmlBodyLinkedResourceMap?.ToDictionary(k => k.Key?.DeepClone(), v => v.Value?.DeepClone()),
                                  this.SubjectEncodingKind,
-                                 this.PlainTextBodyEncodingKind,
+                                 this.PlaintextBodyEncodingKind,
                                  this.HtmlBodyEncodingKind);
 
             return result;
@@ -278,12 +278,12 @@ namespace Naos.Email.Domain
         {
             var result = new EmailContent(
                                  this.Subject?.DeepClone(),
-                                 this.PlainTextBody?.DeepClone(),
+                                 this.PlaintextBody?.DeepClone(),
                                  this.HtmlBody?.DeepClone(),
                                  this.Attachments?.Select(i => i?.DeepClone()).ToList(),
                                  contentIdToHtmlBodyLinkedResourceMap,
                                  this.SubjectEncodingKind,
-                                 this.PlainTextBodyEncodingKind,
+                                 this.PlaintextBodyEncodingKind,
                                  this.HtmlBodyEncodingKind);
 
             return result;
@@ -313,22 +313,22 @@ namespace Naos.Email.Domain
         {
             var result = new EmailContent(
                                  this.Subject?.DeepClone(),
-                                 this.PlainTextBody?.DeepClone(),
+                                 this.PlaintextBody?.DeepClone(),
                                  this.HtmlBody?.DeepClone(),
                                  this.Attachments?.Select(i => i?.DeepClone()).ToList(),
                                  this.ContentIdToHtmlBodyLinkedResourceMap?.ToDictionary(k => k.Key?.DeepClone(), v => v.Value?.DeepClone()),
                                  subjectEncodingKind,
-                                 this.PlainTextBodyEncodingKind,
+                                 this.PlaintextBodyEncodingKind,
                                  this.HtmlBodyEncodingKind);
 
             return result;
         }
 
         /// <summary>
-        /// Deep clones this object with a new <see cref="PlainTextBodyEncodingKind" />.
+        /// Deep clones this object with a new <see cref="PlaintextBodyEncodingKind" />.
         /// </summary>
-        /// <param name="plainTextBodyEncodingKind">The new <see cref="PlainTextBodyEncodingKind" />.  This object will NOT be deep cloned; it is used as-is.</param>
-        /// <returns>New <see cref="EmailContent" /> using the specified <paramref name="plainTextBodyEncodingKind" /> for <see cref="PlainTextBodyEncodingKind" /> and a deep clone of every other property.</returns>
+        /// <param name="plaintextBodyEncodingKind">The new <see cref="PlaintextBodyEncodingKind" />.  This object will NOT be deep cloned; it is used as-is.</param>
+        /// <returns>New <see cref="EmailContent" /> using the specified <paramref name="plaintextBodyEncodingKind" /> for <see cref="PlaintextBodyEncodingKind" /> and a deep clone of every other property.</returns>
         [SuppressMessage("Microsoft.Design", "CA1002: DoNotExposeGenericLists")]
         [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly")]
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly")]
@@ -344,16 +344,16 @@ namespace Naos.Email.Domain
         [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
         [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
-        public EmailContent DeepCloneWithPlainTextBodyEncodingKind(EncodingKind? plainTextBodyEncodingKind)
+        public EmailContent DeepCloneWithPlaintextBodyEncodingKind(EncodingKind? plaintextBodyEncodingKind)
         {
             var result = new EmailContent(
                                  this.Subject?.DeepClone(),
-                                 this.PlainTextBody?.DeepClone(),
+                                 this.PlaintextBody?.DeepClone(),
                                  this.HtmlBody?.DeepClone(),
                                  this.Attachments?.Select(i => i?.DeepClone()).ToList(),
                                  this.ContentIdToHtmlBodyLinkedResourceMap?.ToDictionary(k => k.Key?.DeepClone(), v => v.Value?.DeepClone()),
                                  this.SubjectEncodingKind,
-                                 plainTextBodyEncodingKind,
+                                 plaintextBodyEncodingKind,
                                  this.HtmlBodyEncodingKind);
 
             return result;
@@ -383,12 +383,12 @@ namespace Naos.Email.Domain
         {
             var result = new EmailContent(
                                  this.Subject?.DeepClone(),
-                                 this.PlainTextBody?.DeepClone(),
+                                 this.PlaintextBody?.DeepClone(),
                                  this.HtmlBody?.DeepClone(),
                                  this.Attachments?.Select(i => i?.DeepClone()).ToList(),
                                  this.ContentIdToHtmlBodyLinkedResourceMap?.ToDictionary(k => k.Key?.DeepClone(), v => v.Value?.DeepClone()),
                                  this.SubjectEncodingKind,
-                                 this.PlainTextBodyEncodingKind,
+                                 this.PlaintextBodyEncodingKind,
                                  htmlBodyEncodingKind);
 
             return result;
@@ -398,7 +398,7 @@ namespace Naos.Email.Domain
         [SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity")]
         public override string ToString()
         {
-            var result = Invariant($"Naos.Email.Domain.EmailContent: Subject = {this.Subject?.ToString(CultureInfo.InvariantCulture) ?? "<null>"}, PlainTextBody = {this.PlainTextBody?.ToString(CultureInfo.InvariantCulture) ?? "<null>"}, HtmlBody = {this.HtmlBody?.ToString(CultureInfo.InvariantCulture) ?? "<null>"}, Attachments = {this.Attachments?.ToString() ?? "<null>"}, ContentIdToHtmlBodyLinkedResourceMap = {this.ContentIdToHtmlBodyLinkedResourceMap?.ToString() ?? "<null>"}, SubjectEncodingKind = {this.SubjectEncodingKind?.ToString() ?? "<null>"}, PlainTextBodyEncodingKind = {this.PlainTextBodyEncodingKind?.ToString() ?? "<null>"}, HtmlBodyEncodingKind = {this.HtmlBodyEncodingKind?.ToString() ?? "<null>"}.");
+            var result = Invariant($"Naos.Email.Domain.EmailContent: Subject = {this.Subject?.ToString(CultureInfo.InvariantCulture) ?? "<null>"}, PlaintextBody = {this.PlaintextBody?.ToString(CultureInfo.InvariantCulture) ?? "<null>"}, HtmlBody = {this.HtmlBody?.ToString(CultureInfo.InvariantCulture) ?? "<null>"}, Attachments = {this.Attachments?.ToString() ?? "<null>"}, ContentIdToHtmlBodyLinkedResourceMap = {this.ContentIdToHtmlBodyLinkedResourceMap?.ToString() ?? "<null>"}, SubjectEncodingKind = {this.SubjectEncodingKind?.ToString() ?? "<null>"}, PlaintextBodyEncodingKind = {this.PlaintextBodyEncodingKind?.ToString() ?? "<null>"}, HtmlBodyEncodingKind = {this.HtmlBodyEncodingKind?.ToString() ?? "<null>"}.");
 
             return result;
         }

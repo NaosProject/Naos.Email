@@ -7,6 +7,9 @@
 namespace Naos.Email.Domain
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+
+    using Naos.CodeAnalysis.Recipes;
 
     using OBeautifulCode.Assertion.Recipes;
     using OBeautifulCode.Type;
@@ -69,6 +72,7 @@ namespace Naos.Email.Domain
         /// <summary>
         /// Gets the email mailboxes of the carbon copy recipients of the email.
         /// </summary>
+        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "Cc", Justification = NaosSuppressBecause.CA1709_IdentifiersShouldBeCasedCorrectly_CasingIsAsPreferred)]
         public IReadOnlyCollection<EmailMailbox> Cc { get; private set; }
 
         /// <summary>

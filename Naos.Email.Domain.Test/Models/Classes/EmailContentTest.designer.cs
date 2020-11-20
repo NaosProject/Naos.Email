@@ -47,7 +47,7 @@ namespace Naos.Email.Domain.Test
                         var result = new SystemUnderTestExpectedStringRepresentation<EmailContent>
                         {
                             SystemUnderTest = systemUnderTest,
-                            ExpectedStringRepresentation = Invariant($"Naos.Email.Domain.EmailContent: Subject = {systemUnderTest.Subject?.ToString(CultureInfo.InvariantCulture) ?? "<null>"}, PlainTextBody = {systemUnderTest.PlainTextBody?.ToString(CultureInfo.InvariantCulture) ?? "<null>"}, HtmlBody = {systemUnderTest.HtmlBody?.ToString(CultureInfo.InvariantCulture) ?? "<null>"}, Attachments = {systemUnderTest.Attachments?.ToString() ?? "<null>"}, ContentIdToHtmlBodyLinkedResourceMap = {systemUnderTest.ContentIdToHtmlBodyLinkedResourceMap?.ToString() ?? "<null>"}, SubjectEncodingKind = {systemUnderTest.SubjectEncodingKind?.ToString() ?? "<null>"}, PlainTextBodyEncodingKind = {systemUnderTest.PlainTextBodyEncodingKind?.ToString() ?? "<null>"}, HtmlBodyEncodingKind = {systemUnderTest.HtmlBodyEncodingKind?.ToString() ?? "<null>"}."),
+                            ExpectedStringRepresentation = Invariant($"Naos.Email.Domain.EmailContent: Subject = {systemUnderTest.Subject?.ToString(CultureInfo.InvariantCulture) ?? "<null>"}, PlaintextBody = {systemUnderTest.PlaintextBody?.ToString(CultureInfo.InvariantCulture) ?? "<null>"}, HtmlBody = {systemUnderTest.HtmlBody?.ToString(CultureInfo.InvariantCulture) ?? "<null>"}, Attachments = {systemUnderTest.Attachments?.ToString() ?? "<null>"}, ContentIdToHtmlBodyLinkedResourceMap = {systemUnderTest.ContentIdToHtmlBodyLinkedResourceMap?.ToString() ?? "<null>"}, SubjectEncodingKind = {systemUnderTest.SubjectEncodingKind?.ToString() ?? "<null>"}, PlaintextBodyEncodingKind = {systemUnderTest.PlaintextBodyEncodingKind?.ToString() ?? "<null>"}, HtmlBodyEncodingKind = {systemUnderTest.HtmlBodyEncodingKind?.ToString() ?? "<null>"}."),
                         };
 
                         return result;
@@ -65,12 +65,12 @@ namespace Naos.Email.Domain.Test
 
                         var result = new EmailContent(
                                              null,
-                                             referenceObject.PlainTextBody,
+                                             referenceObject.PlaintextBody,
                                              referenceObject.HtmlBody,
                                              referenceObject.Attachments,
                                              referenceObject.ContentIdToHtmlBodyLinkedResourceMap,
                                              referenceObject.SubjectEncodingKind,
-                                             referenceObject.PlainTextBodyEncodingKind,
+                                             referenceObject.PlaintextBodyEncodingKind,
                                              referenceObject.HtmlBodyEncodingKind);
 
                         return result;
@@ -88,12 +88,12 @@ namespace Naos.Email.Domain.Test
 
                         var result = new EmailContent(
                                              Invariant($"  {Environment.NewLine}  "),
-                                             referenceObject.PlainTextBody,
+                                             referenceObject.PlaintextBody,
                                              referenceObject.HtmlBody,
                                              referenceObject.Attachments,
                                              referenceObject.ContentIdToHtmlBodyLinkedResourceMap,
                                              referenceObject.SubjectEncodingKind,
-                                             referenceObject.PlainTextBodyEncodingKind,
+                                             referenceObject.PlaintextBodyEncodingKind,
                                              referenceObject.HtmlBodyEncodingKind);
 
                         return result;
@@ -104,7 +104,7 @@ namespace Naos.Email.Domain.Test
             .AddScenario(() =>
                 new ConstructorArgumentValidationTestScenario<EmailContent>
                 {
-                    Name = "constructor should throw ArgumentNullException when parameter 'plainTextBody' is null scenario",
+                    Name = "constructor should throw ArgumentNullException when parameter 'plaintextBody' is null scenario",
                     ConstructionFunc = () =>
                     {
                         var referenceObject = A.Dummy<EmailContent>();
@@ -116,18 +116,18 @@ namespace Naos.Email.Domain.Test
                                              referenceObject.Attachments,
                                              referenceObject.ContentIdToHtmlBodyLinkedResourceMap,
                                              referenceObject.SubjectEncodingKind,
-                                             referenceObject.PlainTextBodyEncodingKind,
+                                             referenceObject.PlaintextBodyEncodingKind,
                                              referenceObject.HtmlBodyEncodingKind);
 
                         return result;
                     },
                     ExpectedExceptionType = typeof(ArgumentNullException),
-                    ExpectedExceptionMessageContains = new[] { "plainTextBody", },
+                    ExpectedExceptionMessageContains = new[] { "plaintextBody", },
                 })
             .AddScenario(() =>
                 new ConstructorArgumentValidationTestScenario<EmailContent>
                 {
-                    Name = "constructor should throw ArgumentException when parameter 'plainTextBody' is white space scenario",
+                    Name = "constructor should throw ArgumentException when parameter 'plaintextBody' is white space scenario",
                     ConstructionFunc = () =>
                     {
                         var referenceObject = A.Dummy<EmailContent>();
@@ -139,13 +139,13 @@ namespace Naos.Email.Domain.Test
                                              referenceObject.Attachments,
                                              referenceObject.ContentIdToHtmlBodyLinkedResourceMap,
                                              referenceObject.SubjectEncodingKind,
-                                             referenceObject.PlainTextBodyEncodingKind,
+                                             referenceObject.PlaintextBodyEncodingKind,
                                              referenceObject.HtmlBodyEncodingKind);
 
                         return result;
                     },
                     ExpectedExceptionType = typeof(ArgumentException),
-                    ExpectedExceptionMessageContains = new[] { "plainTextBody", "white space", },
+                    ExpectedExceptionMessageContains = new[] { "plaintextBody", "white space", },
                 })
             .AddScenario(() =>
                 new ConstructorArgumentValidationTestScenario<EmailContent>
@@ -157,12 +157,12 @@ namespace Naos.Email.Domain.Test
 
                         var result = new EmailContent(
                                              referenceObject.Subject,
-                                             referenceObject.PlainTextBody,
+                                             referenceObject.PlaintextBody,
                                              null,
                                              referenceObject.Attachments,
                                              referenceObject.ContentIdToHtmlBodyLinkedResourceMap,
                                              referenceObject.SubjectEncodingKind,
-                                             referenceObject.PlainTextBodyEncodingKind,
+                                             referenceObject.PlaintextBodyEncodingKind,
                                              referenceObject.HtmlBodyEncodingKind);
 
                         return result;
@@ -180,12 +180,12 @@ namespace Naos.Email.Domain.Test
 
                         var result = new EmailContent(
                                              referenceObject.Subject,
-                                             referenceObject.PlainTextBody,
+                                             referenceObject.PlaintextBody,
                                              Invariant($"  {Environment.NewLine}  "),
                                              referenceObject.Attachments,
                                              referenceObject.ContentIdToHtmlBodyLinkedResourceMap,
                                              referenceObject.SubjectEncodingKind,
-                                             referenceObject.PlainTextBodyEncodingKind,
+                                             referenceObject.PlaintextBodyEncodingKind,
                                              referenceObject.HtmlBodyEncodingKind);
 
                         return result;
@@ -203,12 +203,12 @@ namespace Naos.Email.Domain.Test
 
                         var result = new EmailContent(
                                              referenceObject.Subject,
-                                             referenceObject.PlainTextBody,
+                                             referenceObject.PlaintextBody,
                                              referenceObject.HtmlBody,
                                              null,
                                              referenceObject.ContentIdToHtmlBodyLinkedResourceMap,
                                              referenceObject.SubjectEncodingKind,
-                                             referenceObject.PlainTextBodyEncodingKind,
+                                             referenceObject.PlaintextBodyEncodingKind,
                                              referenceObject.HtmlBodyEncodingKind);
 
                         return result;
@@ -226,12 +226,12 @@ namespace Naos.Email.Domain.Test
 
                         var result = new EmailContent(
                                              referenceObject.Subject,
-                                             referenceObject.PlainTextBody,
+                                             referenceObject.PlaintextBody,
                                              referenceObject.HtmlBody,
                                              new List<EmailAttachment>(),
                                              referenceObject.ContentIdToHtmlBodyLinkedResourceMap,
                                              referenceObject.SubjectEncodingKind,
-                                             referenceObject.PlainTextBodyEncodingKind,
+                                             referenceObject.PlaintextBodyEncodingKind,
                                              referenceObject.HtmlBodyEncodingKind);
 
                         return result;
@@ -249,12 +249,12 @@ namespace Naos.Email.Domain.Test
 
                         var result = new EmailContent(
                                              referenceObject.Subject,
-                                             referenceObject.PlainTextBody,
+                                             referenceObject.PlaintextBody,
                                              referenceObject.HtmlBody,
                                              new EmailAttachment[0].Concat(referenceObject.Attachments).Concat(new EmailAttachment[] { null }).Concat(referenceObject.Attachments).ToList(),
                                              referenceObject.ContentIdToHtmlBodyLinkedResourceMap,
                                              referenceObject.SubjectEncodingKind,
-                                             referenceObject.PlainTextBodyEncodingKind,
+                                             referenceObject.PlaintextBodyEncodingKind,
                                              referenceObject.HtmlBodyEncodingKind);
 
                         return result;
@@ -272,12 +272,12 @@ namespace Naos.Email.Domain.Test
 
                         var result = new EmailContent(
                                              referenceObject.Subject,
-                                             referenceObject.PlainTextBody,
+                                             referenceObject.PlaintextBody,
                                              referenceObject.HtmlBody,
                                              referenceObject.Attachments,
                                              null,
                                              referenceObject.SubjectEncodingKind,
-                                             referenceObject.PlainTextBodyEncodingKind,
+                                             referenceObject.PlaintextBodyEncodingKind,
                                              referenceObject.HtmlBodyEncodingKind);
 
                         return result;
@@ -295,12 +295,12 @@ namespace Naos.Email.Domain.Test
 
                         var result = new EmailContent(
                                              referenceObject.Subject,
-                                             referenceObject.PlainTextBody,
+                                             referenceObject.PlaintextBody,
                                              referenceObject.HtmlBody,
                                              referenceObject.Attachments,
                                              new Dictionary<string, EmailAttachment>(),
                                              referenceObject.SubjectEncodingKind,
-                                             referenceObject.PlainTextBodyEncodingKind,
+                                             referenceObject.PlaintextBodyEncodingKind,
                                              referenceObject.HtmlBodyEncodingKind);
 
                         return result;
@@ -324,12 +324,12 @@ namespace Naos.Email.Domain.Test
 
                         var result = new EmailContent(
                                              referenceObject.Subject,
-                                             referenceObject.PlainTextBody,
+                                             referenceObject.PlaintextBody,
                                              referenceObject.HtmlBody,
                                              referenceObject.Attachments,
                                              dictionaryWithNullValue,
                                              referenceObject.SubjectEncodingKind,
-                                             referenceObject.PlainTextBodyEncodingKind,
+                                             referenceObject.PlaintextBodyEncodingKind,
                                              referenceObject.HtmlBodyEncodingKind);
 
                         return result;
@@ -351,12 +351,12 @@ namespace Naos.Email.Domain.Test
                         {
                             SystemUnderTest = new EmailContent(
                                                       referenceObject.Subject,
-                                                      referenceObject.PlainTextBody,
+                                                      referenceObject.PlaintextBody,
                                                       referenceObject.HtmlBody,
                                                       referenceObject.Attachments,
                                                       referenceObject.ContentIdToHtmlBodyLinkedResourceMap,
                                                       referenceObject.SubjectEncodingKind,
-                                                      referenceObject.PlainTextBodyEncodingKind,
+                                                      referenceObject.PlaintextBodyEncodingKind,
                                                       referenceObject.HtmlBodyEncodingKind),
                             ExpectedPropertyValue = referenceObject.Subject,
                         };
@@ -368,7 +368,7 @@ namespace Naos.Email.Domain.Test
             .AddScenario(() =>
                 new ConstructorPropertyAssignmentTestScenario<EmailContent>
                 {
-                    Name = "PlainTextBody should return same 'plainTextBody' parameter passed to constructor when getting",
+                    Name = "PlaintextBody should return same 'plaintextBody' parameter passed to constructor when getting",
                     SystemUnderTestExpectedPropertyValueFunc = () =>
                     {
                         var referenceObject = A.Dummy<EmailContent>();
@@ -377,19 +377,19 @@ namespace Naos.Email.Domain.Test
                         {
                             SystemUnderTest = new EmailContent(
                                                       referenceObject.Subject,
-                                                      referenceObject.PlainTextBody,
+                                                      referenceObject.PlaintextBody,
                                                       referenceObject.HtmlBody,
                                                       referenceObject.Attachments,
                                                       referenceObject.ContentIdToHtmlBodyLinkedResourceMap,
                                                       referenceObject.SubjectEncodingKind,
-                                                      referenceObject.PlainTextBodyEncodingKind,
+                                                      referenceObject.PlaintextBodyEncodingKind,
                                                       referenceObject.HtmlBodyEncodingKind),
-                            ExpectedPropertyValue = referenceObject.PlainTextBody,
+                            ExpectedPropertyValue = referenceObject.PlaintextBody,
                         };
 
                         return result;
                     },
-                    PropertyName = "PlainTextBody",
+                    PropertyName = "PlaintextBody",
                 })
             .AddScenario(() =>
                 new ConstructorPropertyAssignmentTestScenario<EmailContent>
@@ -403,12 +403,12 @@ namespace Naos.Email.Domain.Test
                         {
                             SystemUnderTest = new EmailContent(
                                                       referenceObject.Subject,
-                                                      referenceObject.PlainTextBody,
+                                                      referenceObject.PlaintextBody,
                                                       referenceObject.HtmlBody,
                                                       referenceObject.Attachments,
                                                       referenceObject.ContentIdToHtmlBodyLinkedResourceMap,
                                                       referenceObject.SubjectEncodingKind,
-                                                      referenceObject.PlainTextBodyEncodingKind,
+                                                      referenceObject.PlaintextBodyEncodingKind,
                                                       referenceObject.HtmlBodyEncodingKind),
                             ExpectedPropertyValue = referenceObject.HtmlBody,
                         };
@@ -429,12 +429,12 @@ namespace Naos.Email.Domain.Test
                         {
                             SystemUnderTest = new EmailContent(
                                                       referenceObject.Subject,
-                                                      referenceObject.PlainTextBody,
+                                                      referenceObject.PlaintextBody,
                                                       referenceObject.HtmlBody,
                                                       referenceObject.Attachments,
                                                       referenceObject.ContentIdToHtmlBodyLinkedResourceMap,
                                                       referenceObject.SubjectEncodingKind,
-                                                      referenceObject.PlainTextBodyEncodingKind,
+                                                      referenceObject.PlaintextBodyEncodingKind,
                                                       referenceObject.HtmlBodyEncodingKind),
                             ExpectedPropertyValue = referenceObject.Attachments,
                         };
@@ -455,12 +455,12 @@ namespace Naos.Email.Domain.Test
                         {
                             SystemUnderTest = new EmailContent(
                                                       referenceObject.Subject,
-                                                      referenceObject.PlainTextBody,
+                                                      referenceObject.PlaintextBody,
                                                       referenceObject.HtmlBody,
                                                       referenceObject.Attachments,
                                                       referenceObject.ContentIdToHtmlBodyLinkedResourceMap,
                                                       referenceObject.SubjectEncodingKind,
-                                                      referenceObject.PlainTextBodyEncodingKind,
+                                                      referenceObject.PlaintextBodyEncodingKind,
                                                       referenceObject.HtmlBodyEncodingKind),
                             ExpectedPropertyValue = referenceObject.ContentIdToHtmlBodyLinkedResourceMap,
                         };
@@ -481,12 +481,12 @@ namespace Naos.Email.Domain.Test
                         {
                             SystemUnderTest = new EmailContent(
                                                       referenceObject.Subject,
-                                                      referenceObject.PlainTextBody,
+                                                      referenceObject.PlaintextBody,
                                                       referenceObject.HtmlBody,
                                                       referenceObject.Attachments,
                                                       referenceObject.ContentIdToHtmlBodyLinkedResourceMap,
                                                       referenceObject.SubjectEncodingKind,
-                                                      referenceObject.PlainTextBodyEncodingKind,
+                                                      referenceObject.PlaintextBodyEncodingKind,
                                                       referenceObject.HtmlBodyEncodingKind),
                             ExpectedPropertyValue = referenceObject.SubjectEncodingKind,
                         };
@@ -498,7 +498,7 @@ namespace Naos.Email.Domain.Test
             .AddScenario(() =>
                 new ConstructorPropertyAssignmentTestScenario<EmailContent>
                 {
-                    Name = "PlainTextBodyEncodingKind should return same 'plainTextBodyEncodingKind' parameter passed to constructor when getting",
+                    Name = "PlaintextBodyEncodingKind should return same 'plaintextBodyEncodingKind' parameter passed to constructor when getting",
                     SystemUnderTestExpectedPropertyValueFunc = () =>
                     {
                         var referenceObject = A.Dummy<EmailContent>();
@@ -507,19 +507,19 @@ namespace Naos.Email.Domain.Test
                         {
                             SystemUnderTest = new EmailContent(
                                                       referenceObject.Subject,
-                                                      referenceObject.PlainTextBody,
+                                                      referenceObject.PlaintextBody,
                                                       referenceObject.HtmlBody,
                                                       referenceObject.Attachments,
                                                       referenceObject.ContentIdToHtmlBodyLinkedResourceMap,
                                                       referenceObject.SubjectEncodingKind,
-                                                      referenceObject.PlainTextBodyEncodingKind,
+                                                      referenceObject.PlaintextBodyEncodingKind,
                                                       referenceObject.HtmlBodyEncodingKind),
-                            ExpectedPropertyValue = referenceObject.PlainTextBodyEncodingKind,
+                            ExpectedPropertyValue = referenceObject.PlaintextBodyEncodingKind,
                         };
 
                         return result;
                     },
-                    PropertyName = "PlainTextBodyEncodingKind",
+                    PropertyName = "PlaintextBodyEncodingKind",
                 })
             .AddScenario(() =>
                 new ConstructorPropertyAssignmentTestScenario<EmailContent>
@@ -533,12 +533,12 @@ namespace Naos.Email.Domain.Test
                         {
                             SystemUnderTest = new EmailContent(
                                                       referenceObject.Subject,
-                                                      referenceObject.PlainTextBody,
+                                                      referenceObject.PlaintextBody,
                                                       referenceObject.HtmlBody,
                                                       referenceObject.Attachments,
                                                       referenceObject.ContentIdToHtmlBodyLinkedResourceMap,
                                                       referenceObject.SubjectEncodingKind,
-                                                      referenceObject.PlainTextBodyEncodingKind,
+                                                      referenceObject.PlaintextBodyEncodingKind,
                                                       referenceObject.HtmlBodyEncodingKind),
                             ExpectedPropertyValue = referenceObject.HtmlBodyEncodingKind,
                         };
@@ -572,18 +572,18 @@ namespace Naos.Email.Domain.Test
             .AddScenario(() =>
                 new DeepCloneWithTestScenario<EmailContent>
                 {
-                    Name = "DeepCloneWithPlainTextBody should deep clone object and replace PlainTextBody with the provided plainTextBody",
-                    WithPropertyName = "PlainTextBody",
+                    Name = "DeepCloneWithPlaintextBody should deep clone object and replace PlaintextBody with the provided plaintextBody",
+                    WithPropertyName = "PlaintextBody",
                     SystemUnderTestDeepCloneWithValueFunc = () =>
                     {
                         var systemUnderTest = A.Dummy<EmailContent>();
 
-                        var referenceObject = A.Dummy<EmailContent>().ThatIs(_ => !systemUnderTest.PlainTextBody.IsEqualTo(_.PlainTextBody));
+                        var referenceObject = A.Dummy<EmailContent>().ThatIs(_ => !systemUnderTest.PlaintextBody.IsEqualTo(_.PlaintextBody));
 
                         var result = new SystemUnderTestDeepCloneWithValue<EmailContent>
                         {
                             SystemUnderTest = systemUnderTest,
-                            DeepCloneWithValue = referenceObject.PlainTextBody,
+                            DeepCloneWithValue = referenceObject.PlaintextBody,
                         };
 
                         return result;
@@ -672,18 +672,18 @@ namespace Naos.Email.Domain.Test
             .AddScenario(() =>
                 new DeepCloneWithTestScenario<EmailContent>
                 {
-                    Name = "DeepCloneWithPlainTextBodyEncodingKind should deep clone object and replace PlainTextBodyEncodingKind with the provided plainTextBodyEncodingKind",
-                    WithPropertyName = "PlainTextBodyEncodingKind",
+                    Name = "DeepCloneWithPlaintextBodyEncodingKind should deep clone object and replace PlaintextBodyEncodingKind with the provided plaintextBodyEncodingKind",
+                    WithPropertyName = "PlaintextBodyEncodingKind",
                     SystemUnderTestDeepCloneWithValueFunc = () =>
                     {
                         var systemUnderTest = A.Dummy<EmailContent>();
 
-                        var referenceObject = A.Dummy<EmailContent>().ThatIs(_ => !systemUnderTest.PlainTextBodyEncodingKind.IsEqualTo(_.PlainTextBodyEncodingKind));
+                        var referenceObject = A.Dummy<EmailContent>().ThatIs(_ => !systemUnderTest.PlaintextBodyEncodingKind.IsEqualTo(_.PlaintextBodyEncodingKind));
 
                         var result = new SystemUnderTestDeepCloneWithValue<EmailContent>
                         {
                             SystemUnderTest = systemUnderTest,
-                            DeepCloneWithValue = referenceObject.PlainTextBodyEncodingKind,
+                            DeepCloneWithValue = referenceObject.PlaintextBodyEncodingKind,
                         };
 
                         return result;
@@ -722,87 +722,87 @@ namespace Naos.Email.Domain.Test
                     {
                         new EmailContent(
                                 ReferenceObjectForEquatableTestScenarios.Subject,
-                                ReferenceObjectForEquatableTestScenarios.PlainTextBody,
+                                ReferenceObjectForEquatableTestScenarios.PlaintextBody,
                                 ReferenceObjectForEquatableTestScenarios.HtmlBody,
                                 ReferenceObjectForEquatableTestScenarios.Attachments,
                                 ReferenceObjectForEquatableTestScenarios.ContentIdToHtmlBodyLinkedResourceMap,
                                 ReferenceObjectForEquatableTestScenarios.SubjectEncodingKind,
-                                ReferenceObjectForEquatableTestScenarios.PlainTextBodyEncodingKind,
+                                ReferenceObjectForEquatableTestScenarios.PlaintextBodyEncodingKind,
                                 ReferenceObjectForEquatableTestScenarios.HtmlBodyEncodingKind),
                     },
                     ObjectsThatAreNotEqualToReferenceObject = new EmailContent[]
                     {
                         new EmailContent(
                                 A.Dummy<EmailContent>().Whose(_ => !_.Subject.IsEqualTo(ReferenceObjectForEquatableTestScenarios.Subject)).Subject,
-                                ReferenceObjectForEquatableTestScenarios.PlainTextBody,
+                                ReferenceObjectForEquatableTestScenarios.PlaintextBody,
                                 ReferenceObjectForEquatableTestScenarios.HtmlBody,
                                 ReferenceObjectForEquatableTestScenarios.Attachments,
                                 ReferenceObjectForEquatableTestScenarios.ContentIdToHtmlBodyLinkedResourceMap,
                                 ReferenceObjectForEquatableTestScenarios.SubjectEncodingKind,
-                                ReferenceObjectForEquatableTestScenarios.PlainTextBodyEncodingKind,
+                                ReferenceObjectForEquatableTestScenarios.PlaintextBodyEncodingKind,
                                 ReferenceObjectForEquatableTestScenarios.HtmlBodyEncodingKind),
                         new EmailContent(
                                 ReferenceObjectForEquatableTestScenarios.Subject,
-                                A.Dummy<EmailContent>().Whose(_ => !_.PlainTextBody.IsEqualTo(ReferenceObjectForEquatableTestScenarios.PlainTextBody)).PlainTextBody,
+                                A.Dummy<EmailContent>().Whose(_ => !_.PlaintextBody.IsEqualTo(ReferenceObjectForEquatableTestScenarios.PlaintextBody)).PlaintextBody,
                                 ReferenceObjectForEquatableTestScenarios.HtmlBody,
                                 ReferenceObjectForEquatableTestScenarios.Attachments,
                                 ReferenceObjectForEquatableTestScenarios.ContentIdToHtmlBodyLinkedResourceMap,
                                 ReferenceObjectForEquatableTestScenarios.SubjectEncodingKind,
-                                ReferenceObjectForEquatableTestScenarios.PlainTextBodyEncodingKind,
+                                ReferenceObjectForEquatableTestScenarios.PlaintextBodyEncodingKind,
                                 ReferenceObjectForEquatableTestScenarios.HtmlBodyEncodingKind),
                         new EmailContent(
                                 ReferenceObjectForEquatableTestScenarios.Subject,
-                                ReferenceObjectForEquatableTestScenarios.PlainTextBody,
+                                ReferenceObjectForEquatableTestScenarios.PlaintextBody,
                                 A.Dummy<EmailContent>().Whose(_ => !_.HtmlBody.IsEqualTo(ReferenceObjectForEquatableTestScenarios.HtmlBody)).HtmlBody,
                                 ReferenceObjectForEquatableTestScenarios.Attachments,
                                 ReferenceObjectForEquatableTestScenarios.ContentIdToHtmlBodyLinkedResourceMap,
                                 ReferenceObjectForEquatableTestScenarios.SubjectEncodingKind,
-                                ReferenceObjectForEquatableTestScenarios.PlainTextBodyEncodingKind,
+                                ReferenceObjectForEquatableTestScenarios.PlaintextBodyEncodingKind,
                                 ReferenceObjectForEquatableTestScenarios.HtmlBodyEncodingKind),
                         new EmailContent(
                                 ReferenceObjectForEquatableTestScenarios.Subject,
-                                ReferenceObjectForEquatableTestScenarios.PlainTextBody,
+                                ReferenceObjectForEquatableTestScenarios.PlaintextBody,
                                 ReferenceObjectForEquatableTestScenarios.HtmlBody,
                                 A.Dummy<EmailContent>().Whose(_ => !_.Attachments.IsEqualTo(ReferenceObjectForEquatableTestScenarios.Attachments)).Attachments,
                                 ReferenceObjectForEquatableTestScenarios.ContentIdToHtmlBodyLinkedResourceMap,
                                 ReferenceObjectForEquatableTestScenarios.SubjectEncodingKind,
-                                ReferenceObjectForEquatableTestScenarios.PlainTextBodyEncodingKind,
+                                ReferenceObjectForEquatableTestScenarios.PlaintextBodyEncodingKind,
                                 ReferenceObjectForEquatableTestScenarios.HtmlBodyEncodingKind),
                         new EmailContent(
                                 ReferenceObjectForEquatableTestScenarios.Subject,
-                                ReferenceObjectForEquatableTestScenarios.PlainTextBody,
+                                ReferenceObjectForEquatableTestScenarios.PlaintextBody,
                                 ReferenceObjectForEquatableTestScenarios.HtmlBody,
                                 ReferenceObjectForEquatableTestScenarios.Attachments,
                                 A.Dummy<EmailContent>().Whose(_ => !_.ContentIdToHtmlBodyLinkedResourceMap.IsEqualTo(ReferenceObjectForEquatableTestScenarios.ContentIdToHtmlBodyLinkedResourceMap)).ContentIdToHtmlBodyLinkedResourceMap,
                                 ReferenceObjectForEquatableTestScenarios.SubjectEncodingKind,
-                                ReferenceObjectForEquatableTestScenarios.PlainTextBodyEncodingKind,
+                                ReferenceObjectForEquatableTestScenarios.PlaintextBodyEncodingKind,
                                 ReferenceObjectForEquatableTestScenarios.HtmlBodyEncodingKind),
                         new EmailContent(
                                 ReferenceObjectForEquatableTestScenarios.Subject,
-                                ReferenceObjectForEquatableTestScenarios.PlainTextBody,
+                                ReferenceObjectForEquatableTestScenarios.PlaintextBody,
                                 ReferenceObjectForEquatableTestScenarios.HtmlBody,
                                 ReferenceObjectForEquatableTestScenarios.Attachments,
                                 ReferenceObjectForEquatableTestScenarios.ContentIdToHtmlBodyLinkedResourceMap,
                                 A.Dummy<EmailContent>().Whose(_ => !_.SubjectEncodingKind.IsEqualTo(ReferenceObjectForEquatableTestScenarios.SubjectEncodingKind)).SubjectEncodingKind,
-                                ReferenceObjectForEquatableTestScenarios.PlainTextBodyEncodingKind,
+                                ReferenceObjectForEquatableTestScenarios.PlaintextBodyEncodingKind,
                                 ReferenceObjectForEquatableTestScenarios.HtmlBodyEncodingKind),
                         new EmailContent(
                                 ReferenceObjectForEquatableTestScenarios.Subject,
-                                ReferenceObjectForEquatableTestScenarios.PlainTextBody,
+                                ReferenceObjectForEquatableTestScenarios.PlaintextBody,
                                 ReferenceObjectForEquatableTestScenarios.HtmlBody,
                                 ReferenceObjectForEquatableTestScenarios.Attachments,
                                 ReferenceObjectForEquatableTestScenarios.ContentIdToHtmlBodyLinkedResourceMap,
                                 ReferenceObjectForEquatableTestScenarios.SubjectEncodingKind,
-                                A.Dummy<EmailContent>().Whose(_ => !_.PlainTextBodyEncodingKind.IsEqualTo(ReferenceObjectForEquatableTestScenarios.PlainTextBodyEncodingKind)).PlainTextBodyEncodingKind,
+                                A.Dummy<EmailContent>().Whose(_ => !_.PlaintextBodyEncodingKind.IsEqualTo(ReferenceObjectForEquatableTestScenarios.PlaintextBodyEncodingKind)).PlaintextBodyEncodingKind,
                                 ReferenceObjectForEquatableTestScenarios.HtmlBodyEncodingKind),
                         new EmailContent(
                                 ReferenceObjectForEquatableTestScenarios.Subject,
-                                ReferenceObjectForEquatableTestScenarios.PlainTextBody,
+                                ReferenceObjectForEquatableTestScenarios.PlaintextBody,
                                 ReferenceObjectForEquatableTestScenarios.HtmlBody,
                                 ReferenceObjectForEquatableTestScenarios.Attachments,
                                 ReferenceObjectForEquatableTestScenarios.ContentIdToHtmlBodyLinkedResourceMap,
                                 ReferenceObjectForEquatableTestScenarios.SubjectEncodingKind,
-                                ReferenceObjectForEquatableTestScenarios.PlainTextBodyEncodingKind,
+                                ReferenceObjectForEquatableTestScenarios.PlaintextBodyEncodingKind,
                                 A.Dummy<EmailContent>().Whose(_ => !_.HtmlBodyEncodingKind.IsEqualTo(ReferenceObjectForEquatableTestScenarios.HtmlBodyEncodingKind)).HtmlBodyEncodingKind),
                     },
                     ObjectsThatAreNotOfTheSameTypeAsReferenceObject = new object[]
@@ -1113,7 +1113,7 @@ namespace Naos.Email.Domain.Test
             [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
             public static void DeepCloneWith___Should_deep_clone_object_and_replace_the_associated_property_with_the_provided_value___When_called()
             {
-                var propertyNames = new string[] { "Subject", "PlainTextBody", "HtmlBody", "Attachments", "ContentIdToHtmlBodyLinkedResourceMap", "SubjectEncodingKind", "PlainTextBodyEncodingKind", "HtmlBodyEncodingKind" };
+                var propertyNames = new string[] { "Subject", "PlaintextBody", "HtmlBody", "Attachments", "ContentIdToHtmlBodyLinkedResourceMap", "SubjectEncodingKind", "PlaintextBodyEncodingKind", "HtmlBodyEncodingKind" };
 
                 var scenarios = DeepCloneWithTestScenarios.ValidateAndPrepareForTesting();
 

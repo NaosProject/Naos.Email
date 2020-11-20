@@ -6,7 +6,9 @@
 
 namespace Naos.Email.Domain
 {
-    using System.Text;
+    using System.Diagnostics.CodeAnalysis;
+
+    using Naos.CodeAnalysis.Recipes;
 
     using OBeautifulCode.Assertion.Recipes;
     using OBeautifulCode.Type;
@@ -23,6 +25,7 @@ namespace Naos.Email.Domain
         /// <param name="fileName">OPTIONAL suggested file name for the attachment, which an email client might display or use when storing the attachment on the recipient's computer. This name is a suggestion only; the receiving system can ignore it.  It is typically honored for attachments but ignored for html body linked resources.  DEFAULT is null; no file name specified.</param>
         /// <param name="mediaType">OPTIONAL value that specifies the MIME type of the file.  DEFAULT is indicate that this is a unknown/unspecified binary file.</param>
         /// <param name="fileNameEncodingKind">OPTIONAL encoding to use to encode the <paramref name="fileName"/>.  Ignored when attachment is used as an html body linked resource.  DEFAULT is to use the system default encoding.</param>
+        [SuppressMessage("Microsoft.Naming", "CA1720:IdentifiersShouldNotContainTypeNames", MessageId = "bytes", Justification = NaosSuppressBecause.CA1720_IdentifiersShouldNotContainTypeNames_TypeNameAddsClarityToIdentifierAndAlternativesDegradeClarity)]
         public EmailAttachment(
             byte[] fileBytes,
             string fileName = null,
@@ -40,6 +43,7 @@ namespace Naos.Email.Domain
         /// <summary>
         /// Gets the bytes of the files.
         /// </summary>
+        [SuppressMessage("Microsoft.Performance", "CA1819:PropertiesShouldNotReturnArrays", Justification = NaosSuppressBecause.CA1819_PropertiesShouldNotReturnArrays_DataPayloadsAreCommonlyRepresentedAsByteArrays)]
         public byte[] FileBytes { get; private set; }
 
         /// <summary>

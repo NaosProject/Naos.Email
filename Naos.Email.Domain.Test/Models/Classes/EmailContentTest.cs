@@ -41,12 +41,12 @@ namespace Naos.Email.Domain.Test
 
                             var result = new EmailContent(
                                                  referenceObject.Subject,
-                                                 referenceObject.PlainTextBody,
+                                                 referenceObject.PlaintextBody,
                                                  referenceObject.HtmlBody,
                                                  new EmailAttachment[0].Concat(referenceObject.Attachments).Concat(new EmailAttachment[] { null }).Concat(referenceObject.Attachments).ToList(),
                                                  referenceObject.ContentIdToHtmlBodyLinkedResourceMap,
                                                  referenceObject.SubjectEncodingKind,
-                                                 referenceObject.PlainTextBodyEncodingKind,
+                                                 referenceObject.PlaintextBodyEncodingKind,
                                                  referenceObject.HtmlBodyEncodingKind);
 
                             return result;
@@ -68,12 +68,12 @@ namespace Naos.Email.Domain.Test
 
                             var result = new EmailContent(
                                                  referenceObject.Subject,
-                                                 referenceObject.PlainTextBody,
+                                                 referenceObject.PlaintextBody,
                                                  referenceObject.HtmlBody,
                                                  referenceObject.Attachments,
                                                  dictionaryWithWhiteSpaceKey,
                                                  referenceObject.SubjectEncodingKind,
-                                                 referenceObject.PlainTextBodyEncodingKind,
+                                                 referenceObject.PlaintextBodyEncodingKind,
                                                  referenceObject.HtmlBodyEncodingKind);
 
                             return result;
@@ -97,12 +97,12 @@ namespace Naos.Email.Domain.Test
 
                             var result = new EmailContent(
                                                  referenceObject.Subject,
-                                                 referenceObject.PlainTextBody,
+                                                 referenceObject.PlaintextBody,
                                                  referenceObject.HtmlBody,
                                                  referenceObject.Attachments,
                                                  dictionaryWithNullValue,
                                                  referenceObject.SubjectEncodingKind,
-                                                 referenceObject.PlainTextBodyEncodingKind,
+                                                 referenceObject.PlaintextBodyEncodingKind,
                                                  referenceObject.HtmlBodyEncodingKind);
 
                             return result;

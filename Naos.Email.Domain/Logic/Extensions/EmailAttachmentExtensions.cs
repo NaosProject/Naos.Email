@@ -7,10 +7,13 @@
 namespace Naos.Email.Domain
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.IO;
 
     using System.Net.Mail;
     using System.Net.Mime;
+
+    using Naos.CodeAnalysis.Recipes;
 
     using OBeautifulCode.Assertion.Recipes;
     using OBeautifulCode.Type;
@@ -27,6 +30,7 @@ namespace Naos.Email.Domain
         /// <returns>
         /// The <see cref="Attachment"/> that corresponds to the specified <see cref="EmailAttachment"/>.
         /// </returns>
+        [SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = NaosSuppressBecause.CA2000_DisposeObjectsBeforeLosingScope_MethodCreatesDisposableObjectButItCannotBeDisposedBecauseReturnObjectRequiresDisposableObjectToBeFullyIntact)]
         public static Attachment ToAttachment(
             this EmailAttachment emailAttachment)
         {
@@ -68,6 +72,7 @@ namespace Naos.Email.Domain
         /// <returns>
         /// The <see cref="LinkedResource"/> that corresponds to the specified <see cref="EmailAttachment"/>.
         /// </returns>
+        [SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = NaosSuppressBecause.CA2000_DisposeObjectsBeforeLosingScope_MethodCreatesDisposableObjectButItCannotBeDisposedBecauseReturnObjectRequiresDisposableObjectToBeFullyIntact)]
         public static LinkedResource ToLinkedResource(
             this EmailAttachment emailAttachment,
             string contentId)

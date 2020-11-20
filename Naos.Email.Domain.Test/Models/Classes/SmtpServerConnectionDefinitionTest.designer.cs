@@ -47,7 +47,7 @@ namespace Naos.Email.Domain.Test
                         var result = new SystemUnderTestExpectedStringRepresentation<SmtpServerConnectionDefinition>
                         {
                             SystemUnderTest = systemUnderTest,
-                            ExpectedStringRepresentation = Invariant($"Naos.Email.Domain.SmtpServerConnectionDefinition: Host = {systemUnderTest.Host?.ToString(CultureInfo.InvariantCulture) ?? "<null>"}, Port = {systemUnderTest.Port.ToString(CultureInfo.InvariantCulture) ?? "<null>"}, SecureConnectionMethod = {systemUnderTest.SecureConnectionMethod.ToString() ?? "<null>"}, Username = {systemUnderTest.Username?.ToString(CultureInfo.InvariantCulture) ?? "<null>"}, ClearTextPassword = {systemUnderTest.ClearTextPassword?.ToString(CultureInfo.InvariantCulture) ?? "<null>"}."),
+                            ExpectedStringRepresentation = Invariant($"Naos.Email.Domain.SmtpServerConnectionDefinition: Host = {systemUnderTest.Host?.ToString(CultureInfo.InvariantCulture) ?? "<null>"}, Port = {systemUnderTest.Port.ToString(CultureInfo.InvariantCulture) ?? "<null>"}, SecureConnectionMethod = {systemUnderTest.SecureConnectionMethod.ToString() ?? "<null>"}, UserName = {systemUnderTest.UserName?.ToString(CultureInfo.InvariantCulture) ?? "<null>"}, ClearTextPassword = {systemUnderTest.ClearTextPassword?.ToString(CultureInfo.InvariantCulture) ?? "<null>"}."),
                         };
 
                         return result;
@@ -67,7 +67,7 @@ namespace Naos.Email.Domain.Test
                                              null,
                                              referenceObject.Port,
                                              referenceObject.SecureConnectionMethod,
-                                             referenceObject.Username,
+                                             referenceObject.UserName,
                                              referenceObject.ClearTextPassword);
 
                         return result;
@@ -87,7 +87,7 @@ namespace Naos.Email.Domain.Test
                                              Invariant($"  {Environment.NewLine}  "),
                                              referenceObject.Port,
                                              referenceObject.SecureConnectionMethod,
-                                             referenceObject.Username,
+                                             referenceObject.UserName,
                                              referenceObject.ClearTextPassword);
 
                         return result;
@@ -98,7 +98,7 @@ namespace Naos.Email.Domain.Test
             .AddScenario(() =>
                 new ConstructorArgumentValidationTestScenario<SmtpServerConnectionDefinition>
                 {
-                    Name = "constructor should throw ArgumentNullException when parameter 'username' is null scenario",
+                    Name = "constructor should throw ArgumentNullException when parameter 'userName' is null scenario",
                     ConstructionFunc = () =>
                     {
                         var referenceObject = A.Dummy<SmtpServerConnectionDefinition>();
@@ -113,12 +113,12 @@ namespace Naos.Email.Domain.Test
                         return result;
                     },
                     ExpectedExceptionType = typeof(ArgumentNullException),
-                    ExpectedExceptionMessageContains = new[] { "username", },
+                    ExpectedExceptionMessageContains = new[] { "userName", },
                 })
             .AddScenario(() =>
                 new ConstructorArgumentValidationTestScenario<SmtpServerConnectionDefinition>
                 {
-                    Name = "constructor should throw ArgumentException when parameter 'username' is white space scenario",
+                    Name = "constructor should throw ArgumentException when parameter 'userName' is white space scenario",
                     ConstructionFunc = () =>
                     {
                         var referenceObject = A.Dummy<SmtpServerConnectionDefinition>();
@@ -133,7 +133,7 @@ namespace Naos.Email.Domain.Test
                         return result;
                     },
                     ExpectedExceptionType = typeof(ArgumentException),
-                    ExpectedExceptionMessageContains = new[] { "username", "white space", },
+                    ExpectedExceptionMessageContains = new[] { "userName", "white space", },
                 })
             .AddScenario(() =>
                 new ConstructorArgumentValidationTestScenario<SmtpServerConnectionDefinition>
@@ -147,7 +147,7 @@ namespace Naos.Email.Domain.Test
                                              referenceObject.Host,
                                              referenceObject.Port,
                                              referenceObject.SecureConnectionMethod,
-                                             referenceObject.Username,
+                                             referenceObject.UserName,
                                              null);
 
                         return result;
@@ -167,7 +167,7 @@ namespace Naos.Email.Domain.Test
                                              referenceObject.Host,
                                              referenceObject.Port,
                                              referenceObject.SecureConnectionMethod,
-                                             referenceObject.Username,
+                                             referenceObject.UserName,
                                              Invariant($"  {Environment.NewLine}  "));
 
                         return result;
@@ -191,7 +191,7 @@ namespace Naos.Email.Domain.Test
                                                       referenceObject.Host,
                                                       referenceObject.Port,
                                                       referenceObject.SecureConnectionMethod,
-                                                      referenceObject.Username,
+                                                      referenceObject.UserName,
                                                       referenceObject.ClearTextPassword),
                             ExpectedPropertyValue = referenceObject.Host,
                         };
@@ -214,7 +214,7 @@ namespace Naos.Email.Domain.Test
                                                       referenceObject.Host,
                                                       referenceObject.Port,
                                                       referenceObject.SecureConnectionMethod,
-                                                      referenceObject.Username,
+                                                      referenceObject.UserName,
                                                       referenceObject.ClearTextPassword),
                             ExpectedPropertyValue = referenceObject.Port,
                         };
@@ -237,7 +237,7 @@ namespace Naos.Email.Domain.Test
                                                       referenceObject.Host,
                                                       referenceObject.Port,
                                                       referenceObject.SecureConnectionMethod,
-                                                      referenceObject.Username,
+                                                      referenceObject.UserName,
                                                       referenceObject.ClearTextPassword),
                             ExpectedPropertyValue = referenceObject.SecureConnectionMethod,
                         };
@@ -249,7 +249,7 @@ namespace Naos.Email.Domain.Test
             .AddScenario(() =>
                 new ConstructorPropertyAssignmentTestScenario<SmtpServerConnectionDefinition>
                 {
-                    Name = "Username should return same 'username' parameter passed to constructor when getting",
+                    Name = "UserName should return same 'userName' parameter passed to constructor when getting",
                     SystemUnderTestExpectedPropertyValueFunc = () =>
                     {
                         var referenceObject = A.Dummy<SmtpServerConnectionDefinition>();
@@ -260,14 +260,14 @@ namespace Naos.Email.Domain.Test
                                                       referenceObject.Host,
                                                       referenceObject.Port,
                                                       referenceObject.SecureConnectionMethod,
-                                                      referenceObject.Username,
+                                                      referenceObject.UserName,
                                                       referenceObject.ClearTextPassword),
-                            ExpectedPropertyValue = referenceObject.Username,
+                            ExpectedPropertyValue = referenceObject.UserName,
                         };
 
                         return result;
                     },
-                    PropertyName = "Username",
+                    PropertyName = "UserName",
                 })
             .AddScenario(() =>
                 new ConstructorPropertyAssignmentTestScenario<SmtpServerConnectionDefinition>
@@ -283,7 +283,7 @@ namespace Naos.Email.Domain.Test
                                                       referenceObject.Host,
                                                       referenceObject.Port,
                                                       referenceObject.SecureConnectionMethod,
-                                                      referenceObject.Username,
+                                                      referenceObject.UserName,
                                                       referenceObject.ClearTextPassword),
                             ExpectedPropertyValue = referenceObject.ClearTextPassword,
                         };
@@ -357,18 +357,18 @@ namespace Naos.Email.Domain.Test
             .AddScenario(() =>
                 new DeepCloneWithTestScenario<SmtpServerConnectionDefinition>
                 {
-                    Name = "DeepCloneWithUsername should deep clone object and replace Username with the provided username",
-                    WithPropertyName = "Username",
+                    Name = "DeepCloneWithUserName should deep clone object and replace UserName with the provided userName",
+                    WithPropertyName = "UserName",
                     SystemUnderTestDeepCloneWithValueFunc = () =>
                     {
                         var systemUnderTest = A.Dummy<SmtpServerConnectionDefinition>();
 
-                        var referenceObject = A.Dummy<SmtpServerConnectionDefinition>().ThatIs(_ => !systemUnderTest.Username.IsEqualTo(_.Username));
+                        var referenceObject = A.Dummy<SmtpServerConnectionDefinition>().ThatIs(_ => !systemUnderTest.UserName.IsEqualTo(_.UserName));
 
                         var result = new SystemUnderTestDeepCloneWithValue<SmtpServerConnectionDefinition>
                         {
                             SystemUnderTest = systemUnderTest,
-                            DeepCloneWithValue = referenceObject.Username,
+                            DeepCloneWithValue = referenceObject.UserName,
                         };
 
                         return result;
@@ -409,7 +409,7 @@ namespace Naos.Email.Domain.Test
                                 ReferenceObjectForEquatableTestScenarios.Host,
                                 ReferenceObjectForEquatableTestScenarios.Port,
                                 ReferenceObjectForEquatableTestScenarios.SecureConnectionMethod,
-                                ReferenceObjectForEquatableTestScenarios.Username,
+                                ReferenceObjectForEquatableTestScenarios.UserName,
                                 ReferenceObjectForEquatableTestScenarios.ClearTextPassword),
                     },
                     ObjectsThatAreNotEqualToReferenceObject = new SmtpServerConnectionDefinition[]
@@ -418,31 +418,31 @@ namespace Naos.Email.Domain.Test
                                 A.Dummy<SmtpServerConnectionDefinition>().Whose(_ => !_.Host.IsEqualTo(ReferenceObjectForEquatableTestScenarios.Host)).Host,
                                 ReferenceObjectForEquatableTestScenarios.Port,
                                 ReferenceObjectForEquatableTestScenarios.SecureConnectionMethod,
-                                ReferenceObjectForEquatableTestScenarios.Username,
+                                ReferenceObjectForEquatableTestScenarios.UserName,
                                 ReferenceObjectForEquatableTestScenarios.ClearTextPassword),
                         new SmtpServerConnectionDefinition(
                                 ReferenceObjectForEquatableTestScenarios.Host,
                                 A.Dummy<SmtpServerConnectionDefinition>().Whose(_ => !_.Port.IsEqualTo(ReferenceObjectForEquatableTestScenarios.Port)).Port,
                                 ReferenceObjectForEquatableTestScenarios.SecureConnectionMethod,
-                                ReferenceObjectForEquatableTestScenarios.Username,
+                                ReferenceObjectForEquatableTestScenarios.UserName,
                                 ReferenceObjectForEquatableTestScenarios.ClearTextPassword),
                         new SmtpServerConnectionDefinition(
                                 ReferenceObjectForEquatableTestScenarios.Host,
                                 ReferenceObjectForEquatableTestScenarios.Port,
                                 A.Dummy<SmtpServerConnectionDefinition>().Whose(_ => !_.SecureConnectionMethod.IsEqualTo(ReferenceObjectForEquatableTestScenarios.SecureConnectionMethod)).SecureConnectionMethod,
-                                ReferenceObjectForEquatableTestScenarios.Username,
+                                ReferenceObjectForEquatableTestScenarios.UserName,
                                 ReferenceObjectForEquatableTestScenarios.ClearTextPassword),
                         new SmtpServerConnectionDefinition(
                                 ReferenceObjectForEquatableTestScenarios.Host,
                                 ReferenceObjectForEquatableTestScenarios.Port,
                                 ReferenceObjectForEquatableTestScenarios.SecureConnectionMethod,
-                                A.Dummy<SmtpServerConnectionDefinition>().Whose(_ => !_.Username.IsEqualTo(ReferenceObjectForEquatableTestScenarios.Username)).Username,
+                                A.Dummy<SmtpServerConnectionDefinition>().Whose(_ => !_.UserName.IsEqualTo(ReferenceObjectForEquatableTestScenarios.UserName)).UserName,
                                 ReferenceObjectForEquatableTestScenarios.ClearTextPassword),
                         new SmtpServerConnectionDefinition(
                                 ReferenceObjectForEquatableTestScenarios.Host,
                                 ReferenceObjectForEquatableTestScenarios.Port,
                                 ReferenceObjectForEquatableTestScenarios.SecureConnectionMethod,
-                                ReferenceObjectForEquatableTestScenarios.Username,
+                                ReferenceObjectForEquatableTestScenarios.UserName,
                                 A.Dummy<SmtpServerConnectionDefinition>().Whose(_ => !_.ClearTextPassword.IsEqualTo(ReferenceObjectForEquatableTestScenarios.ClearTextPassword)).ClearTextPassword),
                     },
                     ObjectsThatAreNotOfTheSameTypeAsReferenceObject = new object[]
@@ -735,7 +735,7 @@ namespace Naos.Email.Domain.Test
             [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
             public static void DeepCloneWith___Should_deep_clone_object_and_replace_the_associated_property_with_the_provided_value___When_called()
             {
-                var propertyNames = new string[] { "Host", "Port", "SecureConnectionMethod", "Username", "ClearTextPassword" };
+                var propertyNames = new string[] { "Host", "Port", "SecureConnectionMethod", "UserName", "ClearTextPassword" };
 
                 var scenarios = DeepCloneWithTestScenarios.ValidateAndPrepareForTesting();
 
