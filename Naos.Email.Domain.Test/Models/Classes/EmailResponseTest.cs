@@ -171,6 +171,57 @@ namespace Naos.Email.Domain.Test
                             return result;
                         },
                     });
+
+            EquatableTestScenarios
+                .RemoveAllScenarios()
+                .AddScenario(() =>
+                    new EquatableTestScenario<EmailResponse>
+                    {
+                        Name = "Equatable Scenario",
+                        ReferenceObject = ReferenceObjectForEquatableTestScenarios,
+                        ObjectsThatAreEqualToButNotTheSameAsReferenceObject = new EmailResponse[]
+                        {
+                            new EmailResponse(
+                                    ReferenceObjectForEquatableTestScenarios.SendEmailResult,
+                                    ReferenceObjectForEquatableTestScenarios.ExceptionToString,
+                                    ReferenceObjectForEquatableTestScenarios.CommunicationLog),
+                        },
+                        ObjectsThatAreNotEqualToReferenceObject = new EmailResponse[]
+                        {
+                            // If SendEmailResult == Success, we can just tweak that parameter
+                            // because the constructor will throw when it finds a null ExceptionToString,
+                            // so we'll just tweak CommunicationLog.  Setting to null breaks the test.
+                            ReferenceObjectForEquatableTestScenarios.SendEmailResult == SendEmailResult.Success
+                                ? new EmailResponse(SendEmailResult.Success, null, A.Dummy<string>())
+                                : new EmailResponse(
+                                    A.Dummy<EmailResponse>().Whose(_ => !_.SendEmailResult.IsEqualTo(ReferenceObjectForEquatableTestScenarios.SendEmailResult) && (_.SendEmailResult != SendEmailResult.Success)).SendEmailResult,
+                                    ReferenceObjectForEquatableTestScenarios.ExceptionToString,
+                                    ReferenceObjectForEquatableTestScenarios.CommunicationLog),
+
+                            // If SendEmailResult == Success, we can just tweak that parameter
+                            // because the constructor will throw when it finds a null ExceptionToString
+                            // so we'll just tweak CommunicationLog.  Setting to null breaks the test.
+                            ReferenceObjectForEquatableTestScenarios.SendEmailResult == SendEmailResult.Success
+                                ? new EmailResponse(SendEmailResult.Success, null, A.Dummy<string>())
+                                : new EmailResponse(
+                                    ReferenceObjectForEquatableTestScenarios.SendEmailResult,
+                                    A.Dummy<EmailResponse>().Whose(_ => !_.ExceptionToString.IsEqualTo(ReferenceObjectForEquatableTestScenarios.ExceptionToString) && (_.SendEmailResult != SendEmailResult.Success)).ExceptionToString,
+                                    ReferenceObjectForEquatableTestScenarios.CommunicationLog),
+
+                            new EmailResponse(
+                                    ReferenceObjectForEquatableTestScenarios.SendEmailResult,
+                                    ReferenceObjectForEquatableTestScenarios.ExceptionToString,
+                                    A.Dummy<EmailResponse>().Whose(_ => !_.CommunicationLog.IsEqualTo(ReferenceObjectForEquatableTestScenarios.CommunicationLog)).CommunicationLog),
+                        },
+                        ObjectsThatAreNotOfTheSameTypeAsReferenceObject = new object[]
+                        {
+                            A.Dummy<object>(),
+                            A.Dummy<string>(),
+                            A.Dummy<int>(),
+                            A.Dummy<int?>(),
+                            A.Dummy<Guid>(),
+                        },
+                    });
         }
     }
 }
