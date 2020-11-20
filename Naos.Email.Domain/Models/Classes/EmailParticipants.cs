@@ -36,17 +36,17 @@ namespace Naos.Email.Domain
 
             if (cc != null)
             {
-                new { cc }.AsArg().Must().Each().NotBeNull();
+                new { cc }.AsArg().Must().NotContainAnyNullElements();
             }
 
             if (bcc != null)
             {
-                new { bcc }.AsArg().Must().Each().NotBeNull();
+                new { bcc }.AsArg().Must().NotContainAnyNullElements();
             }
 
             if (replyTo != null)
             {
-                new { replyTo }.AsArg().Must().Each().NotBeNull();
+                new { replyTo }.AsArg().Must().NotContainAnyNullElements();
             }
 
             this.From = from;

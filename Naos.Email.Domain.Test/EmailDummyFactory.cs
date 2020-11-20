@@ -10,10 +10,13 @@
 namespace Naos.Email.Domain.Test
 {
     using System;
+    using System.Linq;
+    using System.Net.Mail;
 
     using FakeItEasy;
 
     using OBeautifulCode.AutoFakeItEasy;
+    using OBeautifulCode.Enum.Recipes;
     using OBeautifulCode.Math.Recipes;
 
     using static System.FormattableString;
@@ -37,6 +40,19 @@ namespace Naos.Email.Domain.Test
 
             AutoFixtureBackedDummyFactory.AddDummyCreator(() =>
             {
+                // DeliveryNotificationOptions.Never cannot be used in combination with any other flag
+                // otherwise adding options to the MailMessage will throw.
+                var validValues = EnumExtensions.GetAllPossibleEnumValues<DeliveryNotificationOptions>().Where(_ => !_.HasFlag(DeliveryNotificationOptions.Never)).ToList();
+
+                var indexToUse = ThreadSafeRandom.Next(0, validValues.Count);
+
+                var result = validValues[indexToUse];
+
+                return result;
+            });
+
+            AutoFixtureBackedDummyFactory.AddDummyCreator(() =>
+            {
                 var result = new SmtpServerConnectionDefinition(A.Dummy<string>(), A.Dummy<PositiveInteger>().ThatIs(_=> _ < 65000), A.Dummy<SecureConnectionMethod>(), A.Dummy<string>(), A.Dummy<string>());
 
                 return result;
@@ -57,6 +73,39 @@ namespace Naos.Email.Domain.Test
                 var name = firstNames[firstNameIndex] + " " + lastNames[lastNameIndex];
 
                 var result = new EmailMailbox(address, name);
+
+                return result;
+            });
+
+            AutoFixtureBackedDummyFactory.AddDummyCreator(() =>
+            {
+                var emailResponse = new EmailResponse(A.Dummy<SendEmailResult>().ThatIsNot(SendEmailResult.Success), A.Dummy<string>());
+
+                var result = new EmailFailedToSendEvent<Version>(A.Dummy<Version>(), A.Dummy<DateTime>().ToUniversalTime(), A.Dummy<EmailRequest>(), emailResponse);
+
+                return result;
+            });
+
+            AutoFixtureBackedDummyFactory.AddDummyCreator(() =>
+            {
+                var emailResponse = new EmailResponse(SendEmailResult.Success, null, A.Dummy<string>());
+
+                var result = new EmailSentEvent<Version>(A.Dummy<Version>(), A.Dummy<DateTime>().ToUniversalTime(), A.Dummy<EmailRequest>(), emailResponse);
+
+                return result;
+            });
+
+            AutoFixtureBackedDummyFactory.AddDummyCreator(() =>
+            {
+                var sendEmailResult = A.Dummy<SendEmailResult>();
+
+                var exceptionToString = sendEmailResult == SendEmailResult.Success
+                    ? null
+                    : A.Dummy<string>();
+
+                var communicationLog = A.Dummy<string>();
+
+                var result = new EmailResponse(sendEmailResult, exceptionToString, communicationLog);
 
                 return result;
             });

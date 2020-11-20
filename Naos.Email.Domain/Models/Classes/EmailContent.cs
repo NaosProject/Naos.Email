@@ -42,13 +42,13 @@ namespace Naos.Email.Domain
         {
             if (attachments != null)
             {
-                new { attachments }.AsTest().Must().NotContainAnyNullElements();
+                new { attachments }.AsArg().Must().NotContainAnyNullElements();
             }
 
             if (contentIdToHtmlBodyLinkedResourceMap != null)
             {
-                new { contentIdToHtmlBodyLinkedResourceMap.Keys }.AsTest(Invariant($"{nameof(contentIdToHtmlBodyLinkedResourceMap)}.Keys")).Must().Each().NotBeNullNorWhiteSpace();
-                new { contentIdToHtmlBodyLinkedResourceMap.Values }.AsTest(Invariant($"{nameof(contentIdToHtmlBodyLinkedResourceMap)}.Values")).Must().Each().NotBeNull();
+                new { contentIdToHtmlBodyLinkedResourceMap.Keys }.AsArg(Invariant($"{nameof(contentIdToHtmlBodyLinkedResourceMap)}.Keys")).Must().Each().NotBeNullNorWhiteSpace();
+                new { contentIdToHtmlBodyLinkedResourceMap }.AsArg().Must().NotContainAnyKeyValuePairsWithNullValue();
             }
 
             this.Subject = subject;

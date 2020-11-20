@@ -92,12 +92,39 @@
     <Compile Include=".recipes\OBeautifulCode.Type\ToStringXmlDocOptions.cs" />
     <Compile Include=".recipes\OBeautifulCode.Type\TypeExtensions.cs" />
     <Compile Include="Events\EmailFailedToSendEvent{TId}.cs" />
+    <Compile Include="Events\EmailFailedToSendEvent{TId}.designer.cs">
+      <DependentUpon>EmailFailedToSendEvent{TId}.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Events\EmailSendingEventBase{TId}.designer.cs">
+      <DependentUpon>EmailSendingEventBase{TId}.cs</DependentUpon>
+    </Compile>
     <Compile Include="Events\EmailSentEvent{TId}.cs" />
+    <Compile Include="Events\EmailSentEvent{TId}.designer.cs">
+      <DependentUpon>EmailSentEvent{TId}.cs</DependentUpon>
+    </Compile>
     <Compile Include="Interfaces\ISendEmailProtocol.cs" />
     <Compile Include="Logic\Extensions\EmailMailboxExtensions.cs" />
     <Compile Include="Logic\Extensions\HtmlBodyExtensions.cs" />
+    <Compile Include="Models\Classes\EmailAttachment.designer.cs">
+      <DependentUpon>EmailAttachment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Classes\EmailContent.designer.cs">
+      <DependentUpon>EmailContent.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Classes\EmailMailbox.cs" />
     <Compile Include="Events\EmailSendingEventBase{TId}.cs" />
+    <Compile Include="Models\Classes\EmailMailbox.designer.cs">
+      <DependentUpon>EmailMailbox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Classes\EmailOptions.designer.cs">
+      <DependentUpon>EmailOptions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Classes\EmailParticipants.designer.cs">
+      <DependentUpon>EmailParticipants.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Classes\EmailRequest.designer.cs">
+      <DependentUpon>EmailRequest.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Classes\EmailResponse.cs" />
     <Compile Include="Models\Classes\EmailRequest.cs" />
     <Compile Include="Logic\Extensions\MediaTypeExtensions.cs" />
@@ -105,12 +132,21 @@
     <Compile Include="Models\Classes\EmailOptions.cs" />
     <Compile Include="Models\Classes\EmailContent.cs" />
     <Compile Include="Models\Classes\EmailAttachment.cs" />
+    <Compile Include="Models\Classes\EmailResponse.designer.cs">
+      <DependentUpon>EmailResponse.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Classes\SmtpServerConnectionDefinition.cs" />
     <Compile Include="Models\Classes\EmailParticipants.cs" />
+    <Compile Include="Models\Classes\SmtpServerConnectionDefinition.designer.cs">
+      <DependentUpon>SmtpServerConnectionDefinition.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Enums\SecureConnectionMethod.cs" />
     <Compile Include="Operations\SendEmailOp.cs" />
     <Compile Include="Models\Enums\SendEmailResult.cs" />
     <Compile Include="Models\Enums\MediaType.cs" />
+    <Compile Include="Operations\SendEmailOp.designer.cs">
+      <DependentUpon>SendEmailOp.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Properties\ProjectInfo.cs" />

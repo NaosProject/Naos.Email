@@ -33,7 +33,12 @@ namespace Naos.Email.Domain
 
             if (sendEmailResult != SendEmailResult.Success)
             {
-                new { exceptionToString }.AsArg().Must().NotBeNullNorWhiteSpace(Invariant($"When {nameof(sendEmailResult)} indicates a failure, {nameof(exceptionToString)} is required."));
+                new { exceptionToString }.AsArg().Must().NotBeNullNorWhiteSpace(Invariant($"When {nameof(sendEmailResult)} indicates a failure, {nameof(exceptionToString)} must not be null nor white space."));
+            }
+
+            if (sendEmailResult == SendEmailResult.Success)
+            {
+                new { exceptionToString }.AsArg().Must().BeNull(Invariant($"When {nameof(sendEmailResult)} indicates success, {nameof(exceptionToString)} must be null."));
             }
 
             this.SendEmailResult = sendEmailResult;
