@@ -135,7 +135,7 @@ namespace Naos.Email.Domain
         [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
         [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
-        public override EventBase<TId> DeepCloneWithTimestampUtc(DateTime timestampUtc)
+        public override EventBaseBase DeepCloneWithTimestampUtc(DateTime timestampUtc)
         {
             var result = new EmailSentEvent<TId>(
                                  DeepCloneGeneric(this.Id),
