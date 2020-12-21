@@ -29,6 +29,26 @@ namespace Naos.Email.Domain.Test
         [SuppressMessage("Microsoft.Performance", "CA1810:InitializeReferenceTypeStaticFieldsInline", Justification = ObcSuppressBecause.CA1810_InitializeReferenceTypeStaticFieldsInline_FieldsDeclaredInCodeGeneratedPartialTestClass)]
         static SendEmailRequestedEventTIdTest()
         {
+            ConstructorArgumentValidationTestScenarios
+                .RemoveAllScenarios()
+                .AddScenario(() =>
+                    new ConstructorArgumentValidationTestScenario<SendEmailRequestedEvent<Version>>
+                    {
+                        Name = "constructor should throw ArgumentNullException when parameter 'emailRequest' is null scenario",
+                        ConstructionFunc = () =>
+                        {
+                            var referenceObject = A.Dummy<SendEmailRequestedEvent<Version>>();
+
+                            var result = new SendEmailRequestedEvent<Version>(
+                                                 referenceObject.Id,
+                                                 referenceObject.TimestampUtc,
+                                                 null);
+
+                            return result;
+                        },
+                        ExpectedExceptionType = typeof(ArgumentNullException),
+                        ExpectedExceptionMessageContains = new[] { "emailRequest", },
+                    });
         }
     }
 }

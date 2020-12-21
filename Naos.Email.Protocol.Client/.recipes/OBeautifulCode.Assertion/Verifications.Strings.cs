@@ -147,6 +147,10 @@ namespace OBeautifulCode.Assertion.Recipes
 
         public const string NotBeEqualToExceptionMessageSuffix = "is equal to the comparison value";
 
+        public const string BeEqualToWhenNotNullExceptionMessageSuffix = "is not null and is not equal to the comparison value";
+
+        public const string NotBeEqualToWhenNotNullExceptionMessageSuffix = "is not null and is equal to the comparison value";
+
         public const string BeInRangeExceptionMessageSuffix = "is not within the specified range";
 
         public const string NotBeInRangeExceptionMessageSuffix = "is within the specified range";
@@ -154,6 +158,14 @@ namespace OBeautifulCode.Assertion.Recipes
         public const string ContainElementExceptionMessageSuffix = "does not contain the item to search for";
 
         public const string NotContainElementExceptionMessageSuffix = "contains the item to search for";
+
+        public const string ContainElementWhenNotNullExceptionMessageSuffix = "is not null and does not contain the item to search for";
+
+        public const string NotContainElementWhenNotNullExceptionMessageSuffix = "is not null and contains the item to search for";
+
+        public const string ContainOnlyDistinctElementsExceptionMessageSuffix = "contains two or more elements that are equal";
+
+        public const string ContainOnlyDistinctElementsWhenNotNullExceptionMessageSuffix = "is not null and contains two or more elements that are equal";
 
         public const string BeAlphabeticExceptionMessageSuffix = "is not alphabetic";
 

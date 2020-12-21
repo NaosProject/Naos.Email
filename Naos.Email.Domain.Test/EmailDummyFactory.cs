@@ -79,6 +79,13 @@ namespace Naos.Email.Domain.Test
 
             AutoFixtureBackedDummyFactory.AddDummyCreator(() =>
             {
+                var result = new SendEmailRequestedEvent<Version>(A.Dummy<Version>(), A.Dummy<DateTime>().ToUniversalTime(), A.Dummy<EmailRequest>());
+
+                return result;
+            });
+
+            AutoFixtureBackedDummyFactory.AddDummyCreator(() =>
+            {
                 var emailResponse = new EmailResponse(A.Dummy<SendEmailResult>().ThatIsNot(SendEmailResult.Success), A.Dummy<string>());
 
                 var result = new FailedToSendEmailEvent<Version>(A.Dummy<Version>(), A.Dummy<DateTime>().ToUniversalTime(), emailResponse);
