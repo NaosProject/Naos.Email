@@ -24,15 +24,15 @@ namespace Naos.Email.Domain
     using static global::System.FormattableString;
 
     [Serializable]
-    public partial class EmailFailedToSendEvent<TId> : IModel<EmailFailedToSendEvent<TId>>
+    public partial class FailedToSendEmailEvent<TId> : IModel<FailedToSendEmailEvent<TId>>
     {
         /// <summary>
-        /// Determines whether two objects of type <see cref="EmailFailedToSendEvent{TId}"/> are equal.
+        /// Determines whether two objects of type <see cref="FailedToSendEmailEvent{TId}"/> are equal.
         /// </summary>
         /// <param name="left">The object to the left of the equality operator.</param>
         /// <param name="right">The object to the right of the equality operator.</param>
         /// <returns>true if the two items are equal; otherwise false.</returns>
-        public static bool operator ==(EmailFailedToSendEvent<TId> left, EmailFailedToSendEvent<TId> right)
+        public static bool operator ==(FailedToSendEmailEvent<TId> left, FailedToSendEmailEvent<TId> right)
         {
             if (ReferenceEquals(left, right))
             {
@@ -50,15 +50,15 @@ namespace Naos.Email.Domain
         }
 
         /// <summary>
-        /// Determines whether two objects of type <see cref="EmailFailedToSendEvent{TId}"/> are not equal.
+        /// Determines whether two objects of type <see cref="FailedToSendEmailEvent{TId}"/> are not equal.
         /// </summary>
         /// <param name="left">The object to the left of the equality operator.</param>
         /// <param name="right">The object to the right of the equality operator.</param>
         /// <returns>true if the two items are not equal; otherwise false.</returns>
-        public static bool operator !=(EmailFailedToSendEvent<TId> left, EmailFailedToSendEvent<TId> right) => !(left == right);
+        public static bool operator !=(FailedToSendEmailEvent<TId> left, FailedToSendEmailEvent<TId> right) => !(left == right);
 
         /// <inheritdoc />
-        public bool Equals(EmailFailedToSendEvent<TId> other)
+        public bool Equals(FailedToSendEmailEvent<TId> other)
         {
             if (ReferenceEquals(this, other))
             {
@@ -72,25 +72,23 @@ namespace Naos.Email.Domain
 
             var result = this.TimestampUtc.IsEqualTo(other.TimestampUtc)
                       && this.Id.IsEqualTo(other.Id)
-                      && this.EmailRequest.IsEqualTo(other.EmailRequest)
                       && this.EmailResponse.IsEqualTo(other.EmailResponse);
 
             return result;
         }
 
         /// <inheritdoc />
-        public override bool Equals(object obj) => this == (obj as EmailFailedToSendEvent<TId>);
+        public override bool Equals(object obj) => this == (obj as FailedToSendEmailEvent<TId>);
 
         /// <inheritdoc />
         public override int GetHashCode() => HashCodeHelper.Initialize()
             .Hash(this.TimestampUtc)
             .Hash(this.Id)
-            .Hash(this.EmailRequest)
             .Hash(this.EmailResponse)
             .Value;
 
         /// <inheritdoc />
-        public new EmailFailedToSendEvent<TId> DeepClone() => (EmailFailedToSendEvent<TId>)this.DeepCloneInternal();
+        public new FailedToSendEmailEvent<TId> DeepClone() => (FailedToSendEmailEvent<TId>)this.DeepCloneInternal();
 
         /// <inheritdoc />
         [SuppressMessage("Microsoft.Design", "CA1002: DoNotExposeGenericLists")]
@@ -110,10 +108,9 @@ namespace Naos.Email.Domain
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public override EventBaseBase DeepCloneWithTimestampUtc(DateTime timestampUtc)
         {
-            var result = new EmailFailedToSendEvent<TId>(
+            var result = new FailedToSendEmailEvent<TId>(
                                  DeepCloneGeneric(this.Id),
                                  timestampUtc,
-                                 this.EmailRequest?.DeepClone(),
                                  this.EmailResponse?.DeepClone());
 
             return result;
@@ -137,10 +134,9 @@ namespace Naos.Email.Domain
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public override EventBase<TId> DeepCloneWithId(TId id)
         {
-            var result = new EmailFailedToSendEvent<TId>(
+            var result = new FailedToSendEmailEvent<TId>(
                                  id,
                                  this.TimestampUtc,
-                                 this.EmailRequest?.DeepClone(),
                                  this.EmailResponse?.DeepClone());
 
             return result;
@@ -162,39 +158,11 @@ namespace Naos.Email.Domain
         [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
         [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
-        public override EmailSendingEventBase<TId> DeepCloneWithEmailRequest(EmailRequest emailRequest)
+        public override EmailResponseEventBase<TId> DeepCloneWithEmailResponse(EmailResponse emailResponse)
         {
-            var result = new EmailFailedToSendEvent<TId>(
+            var result = new FailedToSendEmailEvent<TId>(
                                  DeepCloneGeneric(this.Id),
                                  this.TimestampUtc,
-                                 emailRequest,
-                                 this.EmailResponse?.DeepClone());
-
-            return result;
-        }
-
-        /// <inheritdoc />
-        [SuppressMessage("Microsoft.Design", "CA1002: DoNotExposeGenericLists")]
-        [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly")]
-        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly")]
-        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly")]
-        [SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix")]
-        [SuppressMessage("Microsoft.Naming", "CA1711:IdentifiersShouldNotHaveIncorrectSuffix")]
-        [SuppressMessage("Microsoft.Naming", "CA1715:IdentifiersShouldHaveCorrectPrefix")]
-        [SuppressMessage("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords")]
-        [SuppressMessage("Microsoft.Naming", "CA1719:ParameterNamesShouldNotMatchMemberNames")]
-        [SuppressMessage("Microsoft.Naming", "CA1720:IdentifiersShouldNotContainTypeNames")]
-        [SuppressMessage("Microsoft.Naming", "CA1722:IdentifiersShouldNotHaveIncorrectPrefix")]
-        [SuppressMessage("Microsoft.Naming", "CA1725:ParameterNamesShouldMatchBaseDeclaration")]
-        [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
-        [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
-        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
-        public override EmailSendingEventBase<TId> DeepCloneWithEmailResponse(EmailResponse emailResponse)
-        {
-            var result = new EmailFailedToSendEvent<TId>(
-                                 DeepCloneGeneric(this.Id),
-                                 this.TimestampUtc,
-                                 this.EmailRequest?.DeepClone(),
                                  emailResponse);
 
             return result;
@@ -203,10 +171,9 @@ namespace Naos.Email.Domain
         /// <inheritdoc />
         protected override EventBaseBase DeepCloneInternal()
         {
-            var result = new EmailFailedToSendEvent<TId>(
+            var result = new FailedToSendEmailEvent<TId>(
                                  DeepCloneGeneric(this.Id),
                                  this.TimestampUtc,
-                                 this.EmailRequest?.DeepClone(),
                                  this.EmailResponse?.DeepClone());
 
             return result;
@@ -257,7 +224,7 @@ namespace Naos.Email.Domain
         [SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity")]
         public override string ToString()
         {
-            var result = Invariant($"Naos.Email.Domain.{this.GetType().ToStringReadable()}: TimestampUtc = {this.TimestampUtc.ToString(CultureInfo.InvariantCulture) ?? "<null>"}, Id = {this.Id?.ToString() ?? "<null>"}, EmailRequest = {this.EmailRequest?.ToString() ?? "<null>"}, EmailResponse = {this.EmailResponse?.ToString() ?? "<null>"}.");
+            var result = Invariant($"Naos.Email.Domain.{this.GetType().ToStringReadable()}: TimestampUtc = {this.TimestampUtc.ToString(CultureInfo.InvariantCulture) ?? "<null>"}, Id = {this.Id?.ToString() ?? "<null>"}, EmailResponse = {this.EmailResponse?.ToString() ?? "<null>"}.");
 
             return result;
         }

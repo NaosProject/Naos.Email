@@ -24,15 +24,15 @@ namespace Naos.Email.Domain
     using static global::System.FormattableString;
 
     [Serializable]
-    public partial class EmailSendingEventBase<TId> : IModel<EmailSendingEventBase<TId>>
+    public partial class EmailResponseEventBase<TId> : IModel<EmailResponseEventBase<TId>>
     {
         /// <summary>
-        /// Determines whether two objects of type <see cref="EmailSendingEventBase{TId}"/> are equal.
+        /// Determines whether two objects of type <see cref="EmailResponseEventBase{TId}"/> are equal.
         /// </summary>
         /// <param name="left">The object to the left of the equality operator.</param>
         /// <param name="right">The object to the right of the equality operator.</param>
         /// <returns>true if the two items are equal; otherwise false.</returns>
-        public static bool operator ==(EmailSendingEventBase<TId> left, EmailSendingEventBase<TId> right)
+        public static bool operator ==(EmailResponseEventBase<TId> left, EmailResponseEventBase<TId> right)
         {
             if (ReferenceEquals(left, right))
             {
@@ -50,15 +50,15 @@ namespace Naos.Email.Domain
         }
 
         /// <summary>
-        /// Determines whether two objects of type <see cref="EmailSendingEventBase{TId}"/> are not equal.
+        /// Determines whether two objects of type <see cref="EmailResponseEventBase{TId}"/> are not equal.
         /// </summary>
         /// <param name="left">The object to the left of the equality operator.</param>
         /// <param name="right">The object to the right of the equality operator.</param>
         /// <returns>true if the two items are not equal; otherwise false.</returns>
-        public static bool operator !=(EmailSendingEventBase<TId> left, EmailSendingEventBase<TId> right) => !(left == right);
+        public static bool operator !=(EmailResponseEventBase<TId> left, EmailResponseEventBase<TId> right) => !(left == right);
 
         /// <inheritdoc />
-        public bool Equals(EmailSendingEventBase<TId> other) => this == other;
+        public bool Equals(EmailResponseEventBase<TId> other) => this == other;
 
         /// <inheritdoc />
         [SuppressMessage("Microsoft.Design", "CA1065:DoNotRaiseExceptionsInUnexpectedLocations")]
@@ -75,38 +75,13 @@ namespace Naos.Email.Domain
         }
 
         /// <inheritdoc />
-        public new EmailSendingEventBase<TId> DeepClone() => (EmailSendingEventBase<TId>)this.DeepCloneInternal();
-
-        /// <summary>
-        /// Deep clones this object with a new <see cref="EmailRequest" />.
-        /// </summary>
-        /// <param name="emailRequest">The new <see cref="EmailRequest" />.  This object will NOT be deep cloned; it is used as-is.</param>
-        /// <returns>New <see cref="EmailSendingEventBase{TId}" /> using the specified <paramref name="emailRequest" /> for <see cref="EmailRequest" /> and a deep clone of every other property.</returns>
-        [SuppressMessage("Microsoft.Design", "CA1002: DoNotExposeGenericLists")]
-        [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly")]
-        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly")]
-        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly")]
-        [SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix")]
-        [SuppressMessage("Microsoft.Naming", "CA1711:IdentifiersShouldNotHaveIncorrectSuffix")]
-        [SuppressMessage("Microsoft.Naming", "CA1715:IdentifiersShouldHaveCorrectPrefix")]
-        [SuppressMessage("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords")]
-        [SuppressMessage("Microsoft.Naming", "CA1719:ParameterNamesShouldNotMatchMemberNames")]
-        [SuppressMessage("Microsoft.Naming", "CA1720:IdentifiersShouldNotContainTypeNames")]
-        [SuppressMessage("Microsoft.Naming", "CA1722:IdentifiersShouldNotHaveIncorrectPrefix")]
-        [SuppressMessage("Microsoft.Naming", "CA1725:ParameterNamesShouldMatchBaseDeclaration")]
-        [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
-        [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
-        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
-        public virtual EmailSendingEventBase<TId> DeepCloneWithEmailRequest(EmailRequest emailRequest)
-        {
-            throw new NotImplementedException("This method should be abstract.  It was generated as virtual so that you aren't forced to override it when you create a new model that derives from this model.  It will be overridden in the generated designer file.");
-        }
+        public new EmailResponseEventBase<TId> DeepClone() => (EmailResponseEventBase<TId>)this.DeepCloneInternal();
 
         /// <summary>
         /// Deep clones this object with a new <see cref="EmailResponse" />.
         /// </summary>
         /// <param name="emailResponse">The new <see cref="EmailResponse" />.  This object will NOT be deep cloned; it is used as-is.</param>
-        /// <returns>New <see cref="EmailSendingEventBase{TId}" /> using the specified <paramref name="emailResponse" /> for <see cref="EmailResponse" /> and a deep clone of every other property.</returns>
+        /// <returns>New <see cref="EmailResponseEventBase{TId}" /> using the specified <paramref name="emailResponse" /> for <see cref="EmailResponse" /> and a deep clone of every other property.</returns>
         [SuppressMessage("Microsoft.Design", "CA1002: DoNotExposeGenericLists")]
         [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly")]
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly")]
@@ -122,7 +97,7 @@ namespace Naos.Email.Domain
         [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
         [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
-        public virtual EmailSendingEventBase<TId> DeepCloneWithEmailResponse(EmailResponse emailResponse)
+        public virtual EmailResponseEventBase<TId> DeepCloneWithEmailResponse(EmailResponse emailResponse)
         {
             throw new NotImplementedException("This method should be abstract.  It was generated as virtual so that you aren't forced to override it when you create a new model that derives from this model.  It will be overridden in the generated designer file.");
         }

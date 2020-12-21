@@ -81,7 +81,7 @@ namespace Naos.Email.Domain.Test
             {
                 var emailResponse = new EmailResponse(A.Dummy<SendEmailResult>().ThatIsNot(SendEmailResult.Success), A.Dummy<string>());
 
-                var result = new EmailFailedToSendEvent<Version>(A.Dummy<Version>(), A.Dummy<DateTime>().ToUniversalTime(), A.Dummy<EmailRequest>(), emailResponse);
+                var result = new FailedToSendEmailEvent<Version>(A.Dummy<Version>(), A.Dummy<DateTime>().ToUniversalTime(), emailResponse);
 
                 return result;
             });
@@ -90,7 +90,7 @@ namespace Naos.Email.Domain.Test
             {
                 var emailResponse = new EmailResponse(SendEmailResult.Success, null, A.Dummy<string>());
 
-                var result = new EmailSentEvent<Version>(A.Dummy<Version>(), A.Dummy<DateTime>().ToUniversalTime(), A.Dummy<EmailRequest>(), emailResponse);
+                var result = new SucceededInSendingEmailEvent<Version>(A.Dummy<Version>(), A.Dummy<DateTime>().ToUniversalTime(), emailResponse);
 
                 return result;
             });

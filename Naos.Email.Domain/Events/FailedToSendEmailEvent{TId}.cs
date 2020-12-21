@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="EmailFailedToSendEvent{TId}.cs" company="Naos Project">
+// <copyright file="FailedToSendEmailEvent{TId}.cs" company="Naos Project">
 //    Copyright (c) Naos Project 2019. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
@@ -18,21 +18,19 @@ namespace Naos.Email.Domain
     /// </summary>
     /// <typeparam name="TId">The type of the identifier.</typeparam>
     // ReSharper disable once RedundantExtendsListEntry
-    public partial class EmailFailedToSendEvent<TId> : EmailSendingEventBase<TId>, IModelViaCodeGen
+    public partial class FailedToSendEmailEvent<TId> : EmailResponseEventBase<TId>, IModelViaCodeGen
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="EmailFailedToSendEvent{TId}"/> class.
+        /// Initializes a new instance of the <see cref="FailedToSendEmailEvent{TId}"/> class.
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <param name="timestampUtc">The timestamp in UTC.</param>
-        /// <param name="emailRequest">The request to send the email.</param>
         /// <param name="emailResponse">The result of sending the email.</param>
-        public EmailFailedToSendEvent(
+        public FailedToSendEmailEvent(
             TId id,
             DateTime timestampUtc,
-            EmailRequest emailRequest,
             EmailResponse emailResponse)
-            : base(id, timestampUtc, emailRequest, emailResponse)
+            : base(id, timestampUtc, emailResponse)
         {
             new { emailResponse.SendEmailResult }.AsArg(Invariant($"{nameof(emailResponse)}.{nameof(this.EmailResponse.SendEmailResult)}")).Must().NotBeEqualTo(SendEmailResult.Success);
         }

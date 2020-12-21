@@ -259,6 +259,10 @@
     <Compile Include=".recipes\OBeautifulCode.Type\TypeDummyFactory.designer.cs" />
     <Compile Include=".recipes\OBeautifulCode.Type\TypeExtensions.cs" />
     <Compile Include="ConsoleAbstraction.cs" />
+    <Compile Include="Events\EmailEventBase{TId}Test.cs" />
+    <Compile Include="Events\EmailEventBase{TId}Test.designer.cs">
+      <DependentUpon>EmailEventBase{TId}Test.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Classes\EmailAttachmentTest.cs" />
     <Compile Include="Models\Classes\EmailAttachmentTest.designer.cs">
       <DependentUpon>EmailAttachmentTest.cs</DependentUpon>
@@ -267,9 +271,9 @@
     <Compile Include="Models\Classes\EmailContentTest.designer.cs">
       <DependentUpon>EmailContentTest.cs</DependentUpon>
     </Compile>
-    <Compile Include="Events\EmailFailedToSendEvent{TId}Test.cs" />
-    <Compile Include="Events\EmailFailedToSendEvent{TId}Test.designer.cs">
-      <DependentUpon>EmailFailedToSendEvent{TId}Test.cs</DependentUpon>
+    <Compile Include="Events\FailedToSendEmailEvent{TId}Test.cs" />
+    <Compile Include="Events\FailedToSendEmailEvent{TId}Test.designer.cs">
+      <DependentUpon>FailedToSendEmailEvent{TId}Test.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Classes\EmailMailboxTest.cs" />
     <Compile Include="Models\Classes\EmailMailboxTest.designer.cs">
@@ -291,13 +295,13 @@
     <Compile Include="Models\Classes\EmailResponseTest.designer.cs">
       <DependentUpon>EmailResponseTest.cs</DependentUpon>
     </Compile>
-    <Compile Include="Events\EmailSendingEventBase{TId}Test.cs" />
-    <Compile Include="Events\EmailSendingEventBase{TId}Test.designer.cs">
-      <DependentUpon>EmailSendingEventBase{TId}Test.cs</DependentUpon>
+    <Compile Include="Events\EmailResponseEventBase{TId}Test.cs" />
+    <Compile Include="Events\EmailResponseEventBase{TId}Test.designer.cs">
+      <DependentUpon>EmailResponseEventBase{TId}Test.cs</DependentUpon>
     </Compile>
-    <Compile Include="Events\EmailSentEvent{TId}Test.cs" />
-    <Compile Include="Events\EmailSentEvent{TId}Test.designer.cs">
-      <DependentUpon>EmailSentEvent{TId}Test.cs</DependentUpon>
+    <Compile Include="Events\SucceededInSendingEmailEvent{TId}Test.cs" />
+    <Compile Include="Events\SucceededInSendingEmailEvent{TId}Test.designer.cs">
+      <DependentUpon>SucceededInSendingEmailEvent{TId}Test.cs</DependentUpon>
     </Compile>
     <Compile Include="Logic\Extensions\EmailMailboxExtensionsTest.cs" />
     <Compile Include="EmailDummyFactoryTest.designer.cs">
@@ -310,6 +314,10 @@
       <DependentUpon>SendEmailOpTest.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\ProjectInfo.cs" />
+    <Compile Include="Events\SendEmailRequestedEvent{TId}Test.cs" />
+    <Compile Include="Events\SendEmailRequestedEvent{TId}Test.designer.cs">
+      <DependentUpon>SendEmailRequestedEvent{TId}Test.cs</DependentUpon>
+    </Compile>
     <Compile Include="SerializationConfigurationTypes.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="EmailDummyFactory.cs" />
