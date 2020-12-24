@@ -22,15 +22,15 @@ namespace Naos.Email.Domain
     using static global::System.FormattableString;
 
     [Serializable]
-    public partial class EmailRequest : IModel<EmailRequest>
+    public partial class SendEmailRequest : IModel<SendEmailRequest>
     {
         /// <summary>
-        /// Determines whether two objects of type <see cref="EmailRequest"/> are equal.
+        /// Determines whether two objects of type <see cref="SendEmailRequest"/> are equal.
         /// </summary>
         /// <param name="left">The object to the left of the equality operator.</param>
         /// <param name="right">The object to the right of the equality operator.</param>
         /// <returns>true if the two items are equal; otherwise false.</returns>
-        public static bool operator ==(EmailRequest left, EmailRequest right)
+        public static bool operator ==(SendEmailRequest left, SendEmailRequest right)
         {
             if (ReferenceEquals(left, right))
             {
@@ -48,15 +48,15 @@ namespace Naos.Email.Domain
         }
 
         /// <summary>
-        /// Determines whether two objects of type <see cref="EmailRequest"/> are not equal.
+        /// Determines whether two objects of type <see cref="SendEmailRequest"/> are not equal.
         /// </summary>
         /// <param name="left">The object to the left of the equality operator.</param>
         /// <param name="right">The object to the right of the equality operator.</param>
         /// <returns>true if the two items are not equal; otherwise false.</returns>
-        public static bool operator !=(EmailRequest left, EmailRequest right) => !(left == right);
+        public static bool operator !=(SendEmailRequest left, SendEmailRequest right) => !(left == right);
 
         /// <inheritdoc />
-        public bool Equals(EmailRequest other)
+        public bool Equals(SendEmailRequest other)
         {
             if (ReferenceEquals(this, other))
             {
@@ -76,7 +76,7 @@ namespace Naos.Email.Domain
         }
 
         /// <inheritdoc />
-        public override bool Equals(object obj) => this == (obj as EmailRequest);
+        public override bool Equals(object obj) => this == (obj as SendEmailRequest);
 
         /// <inheritdoc />
         public override int GetHashCode() => HashCodeHelper.Initialize()
@@ -89,9 +89,9 @@ namespace Naos.Email.Domain
         public object Clone() => this.DeepClone();
 
         /// <inheritdoc />
-        public EmailRequest DeepClone()
+        public SendEmailRequest DeepClone()
         {
-            var result = new EmailRequest(
+            var result = new SendEmailRequest(
                                  this.EmailParticipants?.DeepClone(),
                                  this.EmailContent?.DeepClone(),
                                  this.EmailOptions?.DeepClone());
@@ -103,7 +103,7 @@ namespace Naos.Email.Domain
         /// Deep clones this object with a new <see cref="EmailParticipants" />.
         /// </summary>
         /// <param name="emailParticipants">The new <see cref="EmailParticipants" />.  This object will NOT be deep cloned; it is used as-is.</param>
-        /// <returns>New <see cref="EmailRequest" /> using the specified <paramref name="emailParticipants" /> for <see cref="EmailParticipants" /> and a deep clone of every other property.</returns>
+        /// <returns>New <see cref="SendEmailRequest" /> using the specified <paramref name="emailParticipants" /> for <see cref="EmailParticipants" /> and a deep clone of every other property.</returns>
         [SuppressMessage("Microsoft.Design", "CA1002: DoNotExposeGenericLists")]
         [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly")]
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly")]
@@ -119,9 +119,9 @@ namespace Naos.Email.Domain
         [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
         [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
-        public EmailRequest DeepCloneWithEmailParticipants(EmailParticipants emailParticipants)
+        public SendEmailRequest DeepCloneWithEmailParticipants(EmailParticipants emailParticipants)
         {
-            var result = new EmailRequest(
+            var result = new SendEmailRequest(
                                  emailParticipants,
                                  this.EmailContent?.DeepClone(),
                                  this.EmailOptions?.DeepClone());
@@ -133,7 +133,7 @@ namespace Naos.Email.Domain
         /// Deep clones this object with a new <see cref="EmailContent" />.
         /// </summary>
         /// <param name="emailContent">The new <see cref="EmailContent" />.  This object will NOT be deep cloned; it is used as-is.</param>
-        /// <returns>New <see cref="EmailRequest" /> using the specified <paramref name="emailContent" /> for <see cref="EmailContent" /> and a deep clone of every other property.</returns>
+        /// <returns>New <see cref="SendEmailRequest" /> using the specified <paramref name="emailContent" /> for <see cref="EmailContent" /> and a deep clone of every other property.</returns>
         [SuppressMessage("Microsoft.Design", "CA1002: DoNotExposeGenericLists")]
         [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly")]
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly")]
@@ -149,9 +149,9 @@ namespace Naos.Email.Domain
         [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
         [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
-        public EmailRequest DeepCloneWithEmailContent(EmailContent emailContent)
+        public SendEmailRequest DeepCloneWithEmailContent(EmailContent emailContent)
         {
-            var result = new EmailRequest(
+            var result = new SendEmailRequest(
                                  this.EmailParticipants?.DeepClone(),
                                  emailContent,
                                  this.EmailOptions?.DeepClone());
@@ -163,7 +163,7 @@ namespace Naos.Email.Domain
         /// Deep clones this object with a new <see cref="EmailOptions" />.
         /// </summary>
         /// <param name="emailOptions">The new <see cref="EmailOptions" />.  This object will NOT be deep cloned; it is used as-is.</param>
-        /// <returns>New <see cref="EmailRequest" /> using the specified <paramref name="emailOptions" /> for <see cref="EmailOptions" /> and a deep clone of every other property.</returns>
+        /// <returns>New <see cref="SendEmailRequest" /> using the specified <paramref name="emailOptions" /> for <see cref="EmailOptions" /> and a deep clone of every other property.</returns>
         [SuppressMessage("Microsoft.Design", "CA1002: DoNotExposeGenericLists")]
         [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly")]
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly")]
@@ -179,9 +179,9 @@ namespace Naos.Email.Domain
         [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
         [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
-        public EmailRequest DeepCloneWithEmailOptions(EmailOptions emailOptions)
+        public SendEmailRequest DeepCloneWithEmailOptions(EmailOptions emailOptions)
         {
-            var result = new EmailRequest(
+            var result = new SendEmailRequest(
                                  this.EmailParticipants?.DeepClone(),
                                  this.EmailContent?.DeepClone(),
                                  emailOptions);
@@ -193,7 +193,7 @@ namespace Naos.Email.Domain
         [SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity")]
         public override string ToString()
         {
-            var result = Invariant($"Naos.Email.Domain.EmailRequest: EmailParticipants = {this.EmailParticipants?.ToString() ?? "<null>"}, EmailContent = {this.EmailContent?.ToString() ?? "<null>"}, EmailOptions = {this.EmailOptions?.ToString() ?? "<null>"}.");
+            var result = Invariant($"Naos.Email.Domain.SendEmailRequest: EmailParticipants = {this.EmailParticipants?.ToString() ?? "<null>"}, EmailContent = {this.EmailContent?.ToString() ?? "<null>"}, EmailOptions = {this.EmailOptions?.ToString() ?? "<null>"}.");
 
             return result;
         }

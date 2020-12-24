@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="EmailResponse.cs" company="Naos Project">
+// <copyright file="SendEmailResponse.cs" company="Naos Project">
 //    Copyright (c) Naos Project 2019. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
@@ -17,18 +17,18 @@ namespace Naos.Email.Domain
     using static System.FormattableString;
 
     /// <summary>
-    /// The result of sending an email.
+    /// The response to a request to send an email.
     /// </summary>
-    public partial class EmailResponse : IModelViaCodeGen
+    public partial class SendEmailResponse : IModelViaCodeGen
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="EmailResponse"/> class.
+        /// Initializes a new instance of the <see cref="SendEmailResponse"/> class.
         /// </summary>
         /// <param name="sendEmailResult">The result of sending the email.</param>
         /// <param name="exceptionToString">OPTIONAL <see cref="object.ToString()"/> of the <see cref="Exception"/> if a failure has occurred.  DEFAULT is no exception information.</param>
         /// <param name="communicationLog">OPTIONAL log of communication between client and server.  DEFAULT is the absence of any communication log.</param>
         [SuppressMessage("Microsoft.Naming", "CA1720:IdentifiersShouldNotContainTypeNames", MessageId = "string", Justification = NaosSuppressBecause.CA1720_IdentifiersShouldNotContainTypeNames_TypeNameAddsClarityToIdentifierAndAlternativesDegradeClarity)]
-        public EmailResponse(
+        public SendEmailResponse(
             SendEmailResult sendEmailResult,
             string exceptionToString = null,
             string communicationLog = null)

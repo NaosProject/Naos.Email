@@ -100,8 +100,8 @@
     <Compile Include="Events\EmailEventBase{TId}.designer.cs">
       <DependentUpon>EmailEventBase{TId}.cs</DependentUpon>
     </Compile>
-    <Compile Include="Events\EmailResponseEventBase{TId}.designer.cs">
-      <DependentUpon>EmailResponseEventBase{TId}.cs</DependentUpon>
+    <Compile Include="Events\SendEmailResponseEventBase{TId}.designer.cs">
+      <DependentUpon>SendEmailResponseEventBase{TId}.cs</DependentUpon>
     </Compile>
     <Compile Include="Events\SendEmailRequestedEvent{TId}.designer.cs">
       <DependentUpon>SendEmailRequestedEvent{TId}.cs</DependentUpon>
@@ -120,7 +120,7 @@
       <DependentUpon>EmailContent.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Classes\EmailMailbox.cs" />
-    <Compile Include="Events\EmailResponseEventBase{TId}.cs" />
+    <Compile Include="Events\SendEmailResponseEventBase{TId}.cs" />
     <Compile Include="Models\Classes\EmailMailbox.designer.cs">
       <DependentUpon>EmailMailbox.cs</DependentUpon>
     </Compile>
@@ -130,18 +130,18 @@
     <Compile Include="Models\Classes\EmailParticipants.designer.cs">
       <DependentUpon>EmailParticipants.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\Classes\EmailRequest.designer.cs">
-      <DependentUpon>EmailRequest.cs</DependentUpon>
+    <Compile Include="Models\Classes\SendEmailRequest.designer.cs">
+      <DependentUpon>SendEmailRequest.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\Classes\EmailResponse.cs" />
-    <Compile Include="Models\Classes\EmailRequest.cs" />
+    <Compile Include="Models\Classes\SendEmailResponse.cs" />
+    <Compile Include="Models\Classes\SendEmailRequest.cs" />
     <Compile Include="Logic\Extensions\MediaTypeExtensions.cs" />
     <Compile Include="Logic\Extensions\EmailAttachmentExtensions.cs" />
     <Compile Include="Models\Classes\EmailOptions.cs" />
     <Compile Include="Models\Classes\EmailContent.cs" />
     <Compile Include="Models\Classes\EmailAttachment.cs" />
-    <Compile Include="Models\Classes\EmailResponse.designer.cs">
-      <DependentUpon>EmailResponse.cs</DependentUpon>
+    <Compile Include="Models\Classes\SendEmailResponse.designer.cs">
+      <DependentUpon>SendEmailResponse.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Classes\SmtpServerConnectionDefinition.cs" />
     <Compile Include="Models\Classes\EmailParticipants.cs" />

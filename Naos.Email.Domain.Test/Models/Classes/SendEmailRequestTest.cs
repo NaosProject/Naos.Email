@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="EmailRequestTest.cs" company="Naos Project">
+// <copyright file="SendEmailRequestTest.cs" company="Naos Project">
 //    Copyright (c) Naos Project 2019. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
@@ -23,23 +23,23 @@ namespace Naos.Email.Domain.Test
     using static System.FormattableString;
 
     [SuppressMessage("Microsoft.Maintainability", "CA1505:AvoidUnmaintainableCode", Justification = ObcSuppressBecause.CA1505_AvoidUnmaintainableCode_DisagreeWithAssessment)]
-    public static partial class EmailRequestTest
+    public static partial class SendEmailRequestTest
     {
         [SuppressMessage("Microsoft.Maintainability", "CA1505:AvoidUnmaintainableCode", Justification = ObcSuppressBecause.CA1505_AvoidUnmaintainableCode_DisagreeWithAssessment)]
         [SuppressMessage("Microsoft.Performance", "CA1810:InitializeReferenceTypeStaticFieldsInline", Justification = ObcSuppressBecause.CA1810_InitializeReferenceTypeStaticFieldsInline_FieldsDeclaredInCodeGeneratedPartialTestClass)]
-        static EmailRequestTest()
+        static SendEmailRequestTest()
         {
             ConstructorArgumentValidationTestScenarios
                 .RemoveAllScenarios()
                 .AddScenario(() =>
-                    new ConstructorArgumentValidationTestScenario<EmailRequest>
+                    new ConstructorArgumentValidationTestScenario<SendEmailRequest>
                     {
                         Name = "constructor should throw ArgumentNullException when parameter 'emailParticipants' is null scenario",
                         ConstructionFunc = () =>
                         {
-                            var referenceObject = A.Dummy<EmailRequest>();
+                            var referenceObject = A.Dummy<SendEmailRequest>();
 
-                            var result = new EmailRequest(
+                            var result = new SendEmailRequest(
                                                  null,
                                                  referenceObject.EmailContent,
                                                  referenceObject.EmailOptions);
@@ -50,14 +50,14 @@ namespace Naos.Email.Domain.Test
                         ExpectedExceptionMessageContains = new[] { "emailParticipants", },
                     })
                 .AddScenario(() =>
-                    new ConstructorArgumentValidationTestScenario<EmailRequest>
+                    new ConstructorArgumentValidationTestScenario<SendEmailRequest>
                     {
                         Name = "constructor should throw ArgumentNullException when parameter 'emailContent' is null scenario",
                         ConstructionFunc = () =>
                         {
-                            var referenceObject = A.Dummy<EmailRequest>();
+                            var referenceObject = A.Dummy<SendEmailRequest>();
 
-                            var result = new EmailRequest(
+                            var result = new SendEmailRequest(
                                                  referenceObject.EmailParticipants,
                                                  null,
                                                  referenceObject.EmailOptions);

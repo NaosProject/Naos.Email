@@ -42,13 +42,13 @@ namespace Naos.Email.Domain.Test
                 () => new FailedToSendEmailEvent<Version>(
                                  A.Dummy<Version>(),
                                  A.Dummy<DateTime>(),
-                                 A.Dummy<EmailResponse>()));
+                                 A.Dummy<SendEmailResponse>()));
 
             AutoFixtureBackedDummyFactory.AddDummyCreator(
                 () => new SendEmailRequestedEvent<Version>(
                                  A.Dummy<Version>(),
                                  A.Dummy<DateTime>(),
-                                 A.Dummy<EmailRequest>()));
+                                 A.Dummy<SendEmailRequest>()));
 
             AutoFixtureBackedDummyFactory.AddDummyCreator(
                 () =>
@@ -70,10 +70,28 @@ namespace Naos.Email.Domain.Test
                 });
 
             AutoFixtureBackedDummyFactory.AddDummyCreator(
+                () =>
+                {
+                    var availableTypes = new[]
+                    {
+                        typeof(FailedToSendEmailEvent<Version>),
+                        typeof(SucceededInSendingEmailEvent<Version>)
+                    };
+
+                    var randomIndex = ThreadSafeRandom.Next(0, availableTypes.Length);
+
+                    var randomType = availableTypes[randomIndex];
+
+                    var result = (SendEmailResponseEventBase<Version>)AD.ummy(randomType);
+
+                    return result;
+                });
+
+            AutoFixtureBackedDummyFactory.AddDummyCreator(
                 () => new SucceededInSendingEmailEvent<Version>(
                                  A.Dummy<Version>(),
                                  A.Dummy<DateTime>(),
-                                 A.Dummy<EmailResponse>()));
+                                 A.Dummy<SendEmailResponse>()));
 
             AutoFixtureBackedDummyFactory.AddDummyCreator(
                 () => new EmailAttachment(
@@ -99,24 +117,6 @@ namespace Naos.Email.Domain.Test
                                  A.Dummy<string>()));
 
             AutoFixtureBackedDummyFactory.AddDummyCreator(
-                () =>
-                {
-                    var availableTypes = new[]
-                    {
-                        typeof(FailedToSendEmailEvent<Version>),
-                        typeof(SucceededInSendingEmailEvent<Version>)
-                    };
-
-                    var randomIndex = ThreadSafeRandom.Next(0, availableTypes.Length);
-
-                    var randomType = availableTypes[randomIndex];
-
-                    var result = (EmailResponseEventBase<Version>)AD.ummy(randomType);
-
-                    return result;
-                });
-
-            AutoFixtureBackedDummyFactory.AddDummyCreator(
                 () => new EmailOptions(
                                  A.Dummy<MailPriority?>(),
                                  A.Dummy<DeliveryNotificationOptions?>()));
@@ -130,13 +130,13 @@ namespace Naos.Email.Domain.Test
                                  A.Dummy<IReadOnlyCollection<EmailMailbox>>()));
 
             AutoFixtureBackedDummyFactory.AddDummyCreator(
-                () => new EmailRequest(
+                () => new SendEmailRequest(
                                  A.Dummy<EmailParticipants>(),
                                  A.Dummy<EmailContent>(),
                                  A.Dummy<EmailOptions>()));
 
             AutoFixtureBackedDummyFactory.AddDummyCreator(
-                () => new EmailResponse(
+                () => new SendEmailResponse(
                                  A.Dummy<SendEmailResult>(),
                                  A.Dummy<string>(),
                                  A.Dummy<string>()));
@@ -151,7 +151,7 @@ namespace Naos.Email.Domain.Test
 
             AutoFixtureBackedDummyFactory.AddDummyCreator(
                 () => new SendEmailOp(
-                                 A.Dummy<EmailRequest>()));
+                                 A.Dummy<SendEmailRequest>()));
         }
 
         /// <inheritdoc />

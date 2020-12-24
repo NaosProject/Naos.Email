@@ -23,21 +23,21 @@ namespace Naos.Email.Domain
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <param name="timestampUtc">The timestamp in UTC.</param>
-        /// <param name="emailRequest">The request to send the email.</param>
+        /// <param name="sendEmailRequest">The request to send the email.</param>
         public SendEmailRequestedEvent(
             TId id,
             DateTime timestampUtc,
-            EmailRequest emailRequest)
+            SendEmailRequest sendEmailRequest)
             : base(id, timestampUtc)
         {
-            new { emailRequest }.AsArg().Must().NotBeNull();
+            new { sendEmailRequest }.AsArg().Must().NotBeNull();
 
-            this.EmailRequest = emailRequest;
+            this.SendEmailRequest = sendEmailRequest;
         }
 
         /// <summary>
         /// Gets the request to send the email.
         /// </summary>
-        public EmailRequest EmailRequest { get; private set; }
+        public SendEmailRequest SendEmailRequest { get; private set; }
     }
 }

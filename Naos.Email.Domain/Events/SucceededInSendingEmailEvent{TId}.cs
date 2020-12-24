@@ -18,21 +18,21 @@ namespace Naos.Email.Domain
     /// </summary>
     /// <typeparam name="TId">The type of the identifier.</typeparam>
     // ReSharper disable once RedundantExtendsListEntry
-    public partial class SucceededInSendingEmailEvent<TId> : EmailResponseEventBase<TId>, IModelViaCodeGen
+    public partial class SucceededInSendingEmailEvent<TId> : SendEmailResponseEventBase<TId>, IModelViaCodeGen
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SucceededInSendingEmailEvent{TId}"/> class.
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <param name="timestampUtc">The timestamp in UTC.</param>
-        /// <param name="emailResponse">The result of sending the email.</param>
+        /// <param name="sendEmailResponse">The result of sending the email.</param>
         public SucceededInSendingEmailEvent(
             TId id,
             DateTime timestampUtc,
-            EmailResponse emailResponse)
-            : base(id, timestampUtc, emailResponse)
+            SendEmailResponse sendEmailResponse)
+            : base(id, timestampUtc, sendEmailResponse)
         {
-            new { emailResponse.SendEmailResult }.AsArg(Invariant($"{nameof(emailResponse)}.{nameof(this.EmailResponse.SendEmailResult)}")).Must().BeEqualTo(SendEmailResult.Success);
+            new { sendEmailResponse.SendEmailResult }.AsArg(Invariant($"{nameof(sendEmailResponse)}.{nameof(this.SendEmailResponse.SendEmailResult)}")).Must().BeEqualTo(SendEmailResult.Success);
         }
     }
 }

@@ -79,14 +79,14 @@ namespace Naos.Email.Domain.Test
 
             AutoFixtureBackedDummyFactory.AddDummyCreator(() =>
             {
-                var result = new SendEmailRequestedEvent<Version>(A.Dummy<Version>(), A.Dummy<DateTime>().ToUniversalTime(), A.Dummy<EmailRequest>());
+                var result = new SendEmailRequestedEvent<Version>(A.Dummy<Version>(), A.Dummy<DateTime>().ToUniversalTime(), A.Dummy<SendEmailRequest>());
 
                 return result;
             });
 
             AutoFixtureBackedDummyFactory.AddDummyCreator(() =>
             {
-                var emailResponse = new EmailResponse(A.Dummy<SendEmailResult>().ThatIsNot(SendEmailResult.Success), A.Dummy<string>());
+                var emailResponse = new SendEmailResponse(A.Dummy<SendEmailResult>().ThatIsNot(SendEmailResult.Success), A.Dummy<string>());
 
                 var result = new FailedToSendEmailEvent<Version>(A.Dummy<Version>(), A.Dummy<DateTime>().ToUniversalTime(), emailResponse);
 
@@ -95,7 +95,7 @@ namespace Naos.Email.Domain.Test
 
             AutoFixtureBackedDummyFactory.AddDummyCreator(() =>
             {
-                var emailResponse = new EmailResponse(SendEmailResult.Success, null, A.Dummy<string>());
+                var emailResponse = new SendEmailResponse(SendEmailResult.Success, null, A.Dummy<string>());
 
                 var result = new SucceededInSendingEmailEvent<Version>(A.Dummy<Version>(), A.Dummy<DateTime>().ToUniversalTime(), emailResponse);
 
@@ -112,7 +112,7 @@ namespace Naos.Email.Domain.Test
 
                 var communicationLog = A.Dummy<string>();
 
-                var result = new EmailResponse(sendEmailResult, exceptionToString, communicationLog);
+                var result = new SendEmailResponse(sendEmailResult, exceptionToString, communicationLog);
 
                 return result;
             });

@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="EmailRequest.cs" company="Naos Project">
+// <copyright file="SendEmailRequest.cs" company="Naos Project">
 //    Copyright (c) Naos Project 2019. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
@@ -12,15 +12,15 @@ namespace Naos.Email.Domain
     /// <summary>
     /// A request to send an email.
     /// </summary>
-    public partial class EmailRequest : IModelViaCodeGen
+    public partial class SendEmailRequest : IModelViaCodeGen
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="EmailRequest"/> class.
+        /// Initializes a new instance of the <see cref="SendEmailRequest"/> class.
         /// </summary>
         /// <param name="emailParticipants">The email mailboxes of all of the participants in an email.</param>
         /// <param name="emailContent">The content of the email.</param>
         /// <param name="emailOptions">OPTIONAL options/instructions for sending the email.  DEFAULT is to use the system defaults.</param>
-        public EmailRequest(
+        public SendEmailRequest(
             EmailParticipants emailParticipants,
             EmailContent emailContent,
             EmailOptions emailOptions = null)

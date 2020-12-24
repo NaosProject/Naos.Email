@@ -70,7 +70,7 @@ namespace Naos.Email.Domain
                 return false;
             }
 
-            var result = this.EmailRequest.IsEqualTo(other.EmailRequest);
+            var result = this.SendEmailRequest.IsEqualTo(other.SendEmailRequest);
 
             return result;
         }
@@ -80,17 +80,17 @@ namespace Naos.Email.Domain
 
         /// <inheritdoc />
         public override int GetHashCode() => HashCodeHelper.Initialize()
-            .Hash(this.EmailRequest)
+            .Hash(this.SendEmailRequest)
             .Value;
 
         /// <inheritdoc />
         public new SendEmailOp DeepClone() => (SendEmailOp)this.DeepCloneInternal();
 
         /// <summary>
-        /// Deep clones this object with a new <see cref="EmailRequest" />.
+        /// Deep clones this object with a new <see cref="SendEmailRequest" />.
         /// </summary>
-        /// <param name="emailRequest">The new <see cref="EmailRequest" />.  This object will NOT be deep cloned; it is used as-is.</param>
-        /// <returns>New <see cref="SendEmailOp" /> using the specified <paramref name="emailRequest" /> for <see cref="EmailRequest" /> and a deep clone of every other property.</returns>
+        /// <param name="sendEmailRequest">The new <see cref="SendEmailRequest" />.  This object will NOT be deep cloned; it is used as-is.</param>
+        /// <returns>New <see cref="SendEmailOp" /> using the specified <paramref name="sendEmailRequest" /> for <see cref="SendEmailRequest" /> and a deep clone of every other property.</returns>
         [SuppressMessage("Microsoft.Design", "CA1002: DoNotExposeGenericLists")]
         [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly")]
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly")]
@@ -106,10 +106,10 @@ namespace Naos.Email.Domain
         [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
         [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
-        public SendEmailOp DeepCloneWithEmailRequest(EmailRequest emailRequest)
+        public SendEmailOp DeepCloneWithSendEmailRequest(SendEmailRequest sendEmailRequest)
         {
             var result = new SendEmailOp(
-                                 emailRequest);
+                                 sendEmailRequest);
 
             return result;
         }
@@ -118,7 +118,7 @@ namespace Naos.Email.Domain
         protected override OperationBase DeepCloneInternal()
         {
             var result = new SendEmailOp(
-                                 this.EmailRequest?.DeepClone());
+                                 this.SendEmailRequest?.DeepClone());
 
             return result;
         }
@@ -127,7 +127,7 @@ namespace Naos.Email.Domain
         [SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity")]
         public override string ToString()
         {
-            var result = Invariant($"Naos.Email.Domain.SendEmailOp: EmailRequest = {this.EmailRequest?.ToString() ?? "<null>"}.");
+            var result = Invariant($"Naos.Email.Domain.SendEmailOp: SendEmailRequest = {this.SendEmailRequest?.ToString() ?? "<null>"}.");
 
             return result;
         }

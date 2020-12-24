@@ -31,7 +31,7 @@ namespace Naos.Email.Protocol.Client
     /// <summary>
     /// Executes a <see cref="SendEmailProtocol"/>.
     /// </summary>
-    public class SendEmailProtocol : AsyncSpecificReturningProtocolBase<SendEmailOp, EmailResponse>, ISendEmailProtocol
+    public class SendEmailProtocol : AsyncSpecificReturningProtocolBase<SendEmailOp, SendEmailResponse>, ISendEmailProtocol
     {
         private readonly SmtpServerConnectionDefinition smtpServerConnectionDefinition;
 
@@ -48,42 +48,42 @@ namespace Naos.Email.Protocol.Client
         }
 
         /// <inheritdoc />
-        public override async Task<EmailResponse> ExecuteAsync(
+        public override async Task<SendEmailResponse> ExecuteAsync(
             SendEmailOp operation)
         {
             using (var message = new MailMessage())
             {
-                EmailResponse result;
+                SendEmailResponse result;
 
                 try
                 {
-                    AddEmailParticipantsToMessage(message, operation.EmailRequest.EmailParticipants);
+                    AddEmailParticipantsToMessage(message, operation.SendEmailRequest.EmailParticipants);
                 }
                 catch (Exception ex)
                 {
-                    result = new EmailResponse(SendEmailResult.FailedToAddParticipantsToEmail, ex.ToString());
+                    result = new SendEmailResponse(SendEmailResult.FailedToAddParticipantsToEmail, ex.ToString());
 
                     return result;
                 }
 
                 try
                 {
-                    AddContentToMessage(message, operation.EmailRequest.EmailContent);
+                    AddContentToMessage(message, operation.SendEmailRequest.EmailContent);
                 }
                 catch (Exception ex)
                 {
-                    result = new EmailResponse(SendEmailResult.FailedToAddContentToEmail, ex.ToString());
+                    result = new SendEmailResponse(SendEmailResult.FailedToAddContentToEmail, ex.ToString());
 
                     return result;
                 }
 
                 try
                 {
-                    AddOptionsToMessage(message, operation.EmailRequest.EmailOptions);
+                    AddOptionsToMessage(message, operation.SendEmailRequest.EmailOptions);
                 }
                 catch (Exception ex)
                 {
-                    result = new EmailResponse(SendEmailResult.FailedToAddOptionsToEmail, ex.ToString());
+                    result = new SendEmailResponse(SendEmailResult.FailedToAddOptionsToEmail, ex.ToString());
 
                     return result;
                 }
@@ -96,7 +96,7 @@ namespace Naos.Email.Protocol.Client
                 }
                 catch (Exception ex)
                 {
-                    result = new EmailResponse(SendEmailResult.FailedToPackageEmailForSending, ex.ToString());
+                    result = new SendEmailResponse(SendEmailResult.FailedToPackageEmailForSending, ex.ToString());
 
                     return result;
                 }
@@ -211,7 +211,7 @@ namespace Naos.Email.Protocol.Client
             }
         }
 
-        private static async Task<EmailResponse> SendMessageAsync(
+        private static async Task<SendEmailResponse> SendMessageAsync(
             MimeMessage mimeMessage,
             SmtpServerConnectionDefinition smtpServerConnectionDefinition)
         {
@@ -221,7 +221,7 @@ namespace Naos.Email.Protocol.Client
                 {
                     using (var smtpClient = new MailKit.Net.Smtp.SmtpClient(protocolLogger))
                     {
-                        EmailResponse result;
+                        SendEmailResponse result;
 
                         string logMessages;
 
@@ -235,7 +235,7 @@ namespace Naos.Email.Protocol.Client
                         {
                             logMessages = GetLogMessages(logStream);
 
-                            result = new EmailResponse(SendEmailResult.FailedToConnectToServer, ex.ToString(), logMessages);
+                            result = new SendEmailResponse(SendEmailResult.FailedToConnectToServer, ex.ToString(), logMessages);
 
                             return result;
                         }
@@ -248,7 +248,7 @@ namespace Naos.Email.Protocol.Client
                         {
                             logMessages = GetLogMessages(logStream);
 
-                            result = new EmailResponse(SendEmailResult.FailedToAuthenticateWithServer, ex.ToString(), logMessages);
+                            result = new SendEmailResponse(SendEmailResult.FailedToAuthenticateWithServer, ex.ToString(), logMessages);
 
                             return result;
                         }
@@ -261,7 +261,7 @@ namespace Naos.Email.Protocol.Client
                         {
                             logMessages = GetLogMessages(logStream);
 
-                            result = new EmailResponse(SendEmailResult.FailedToSendEmailToServer, ex.ToString(), logMessages);
+                            result = new SendEmailResponse(SendEmailResult.FailedToSendEmailToServer, ex.ToString(), logMessages);
 
                             return result;
                         }
@@ -277,7 +277,7 @@ namespace Naos.Email.Protocol.Client
 
                         logMessages = GetLogMessages(logStream);
 
-                        result = new EmailResponse(SendEmailResult.Success, null, logMessages);
+                        result = new SendEmailResponse(SendEmailResult.Success, null, logMessages);
 
                         return result;
                     }

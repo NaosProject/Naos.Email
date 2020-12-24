@@ -13,23 +13,23 @@ namespace Naos.Email.Domain
     /// <summary>
     /// Sends an email.
     /// </summary>
-    public partial class SendEmailOp : ReturningOperationBase<EmailResponse>
+    public partial class SendEmailOp : ReturningOperationBase<SendEmailResponse>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SendEmailOp"/> class.
         /// </summary>
-        /// <param name="emailRequest">The request to send an email.</param>
+        /// <param name="sendEmailRequest">The request to send an email.</param>
         public SendEmailOp(
-            EmailRequest emailRequest)
+            SendEmailRequest sendEmailRequest)
         {
-            new { emailRequest }.AsArg().Must().NotBeNull();
+            new { sendEmailRequest }.AsArg().Must().NotBeNull();
 
-            this.EmailRequest = emailRequest;
+            this.SendEmailRequest = sendEmailRequest;
         }
 
         /// <summary>
         /// Gets the request to send the email.
         /// </summary>
-        public EmailRequest EmailRequest { get; private set; }
+        public SendEmailRequest SendEmailRequest { get; private set; }
     }
 }

@@ -33,239 +33,257 @@ namespace Naos.Email.Domain.Test
 
     using static global::System.FormattableString;
 
-    public static partial class EmailRequestTest
+    public static partial class SendEmailResponseTest
     {
-        private static readonly StringRepresentationTestScenarios<EmailRequest> StringRepresentationTestScenarios = new StringRepresentationTestScenarios<EmailRequest>()
+        private static readonly StringRepresentationTestScenarios<SendEmailResponse> StringRepresentationTestScenarios = new StringRepresentationTestScenarios<SendEmailResponse>()
             .AddScenario(() =>
-                new StringRepresentationTestScenario<EmailRequest>
+                new StringRepresentationTestScenario<SendEmailResponse>
                 {
                     Name = "Default Code Generated Scenario",
                     SystemUnderTestExpectedStringRepresentationFunc = () =>
                     {
-                        var systemUnderTest = A.Dummy<EmailRequest>();
+                        var systemUnderTest = A.Dummy<SendEmailResponse>();
 
-                        var result = new SystemUnderTestExpectedStringRepresentation<EmailRequest>
+                        var result = new SystemUnderTestExpectedStringRepresentation<SendEmailResponse>
                         {
                             SystemUnderTest = systemUnderTest,
-                            ExpectedStringRepresentation = Invariant($"Naos.Email.Domain.EmailRequest: EmailParticipants = {systemUnderTest.EmailParticipants?.ToString() ?? "<null>"}, EmailContent = {systemUnderTest.EmailContent?.ToString() ?? "<null>"}, EmailOptions = {systemUnderTest.EmailOptions?.ToString() ?? "<null>"}."),
+                            ExpectedStringRepresentation = Invariant($"Naos.Email.Domain.SendEmailResponse: SendEmailResult = {systemUnderTest.SendEmailResult.ToString() ?? "<null>"}, ExceptionToString = {systemUnderTest.ExceptionToString?.ToString(CultureInfo.InvariantCulture) ?? "<null>"}, CommunicationLog = {systemUnderTest.CommunicationLog?.ToString(CultureInfo.InvariantCulture) ?? "<null>"}."),
                         };
 
                         return result;
                     },
                 });
 
-        private static readonly ConstructorArgumentValidationTestScenarios<EmailRequest> ConstructorArgumentValidationTestScenarios = new ConstructorArgumentValidationTestScenarios<EmailRequest>()
+        private static readonly ConstructorArgumentValidationTestScenarios<SendEmailResponse> ConstructorArgumentValidationTestScenarios = new ConstructorArgumentValidationTestScenarios<SendEmailResponse>()
             .AddScenario(() =>
-                new ConstructorArgumentValidationTestScenario<EmailRequest>
+                new ConstructorArgumentValidationTestScenario<SendEmailResponse>
                 {
-                    Name = "constructor should throw ArgumentNullException when parameter 'emailParticipants' is null scenario",
+                    Name = "constructor should throw ArgumentNullException when parameter 'exceptionToString' is null scenario",
                     ConstructionFunc = () =>
                     {
-                        var referenceObject = A.Dummy<EmailRequest>();
+                        var referenceObject = A.Dummy<SendEmailResponse>();
 
-                        var result = new EmailRequest(
+                        var result = new SendEmailResponse(
+                                             referenceObject.SendEmailResult,
                                              null,
-                                             referenceObject.EmailContent,
-                                             referenceObject.EmailOptions);
+                                             referenceObject.CommunicationLog);
 
                         return result;
                     },
                     ExpectedExceptionType = typeof(ArgumentNullException),
-                    ExpectedExceptionMessageContains = new[] { "emailParticipants", },
+                    ExpectedExceptionMessageContains = new[] { "exceptionToString", },
                 })
             .AddScenario(() =>
-                new ConstructorArgumentValidationTestScenario<EmailRequest>
+                new ConstructorArgumentValidationTestScenario<SendEmailResponse>
                 {
-                    Name = "constructor should throw ArgumentNullException when parameter 'emailContent' is null scenario",
+                    Name = "constructor should throw ArgumentException when parameter 'exceptionToString' is white space scenario",
                     ConstructionFunc = () =>
                     {
-                        var referenceObject = A.Dummy<EmailRequest>();
+                        var referenceObject = A.Dummy<SendEmailResponse>();
 
-                        var result = new EmailRequest(
-                                             referenceObject.EmailParticipants,
-                                             null,
-                                             referenceObject.EmailOptions);
+                        var result = new SendEmailResponse(
+                                             referenceObject.SendEmailResult,
+                                             Invariant($"  {Environment.NewLine}  "),
+                                             referenceObject.CommunicationLog);
 
                         return result;
                     },
-                    ExpectedExceptionType = typeof(ArgumentNullException),
-                    ExpectedExceptionMessageContains = new[] { "emailContent", },
+                    ExpectedExceptionType = typeof(ArgumentException),
+                    ExpectedExceptionMessageContains = new[] { "exceptionToString", "white space", },
                 })
             .AddScenario(() =>
-                new ConstructorArgumentValidationTestScenario<EmailRequest>
+                new ConstructorArgumentValidationTestScenario<SendEmailResponse>
                 {
-                    Name = "constructor should throw ArgumentNullException when parameter 'emailOptions' is null scenario",
+                    Name = "constructor should throw ArgumentNullException when parameter 'communicationLog' is null scenario",
                     ConstructionFunc = () =>
                     {
-                        var referenceObject = A.Dummy<EmailRequest>();
+                        var referenceObject = A.Dummy<SendEmailResponse>();
 
-                        var result = new EmailRequest(
-                                             referenceObject.EmailParticipants,
-                                             referenceObject.EmailContent,
+                        var result = new SendEmailResponse(
+                                             referenceObject.SendEmailResult,
+                                             referenceObject.ExceptionToString,
                                              null);
 
                         return result;
                     },
                     ExpectedExceptionType = typeof(ArgumentNullException),
-                    ExpectedExceptionMessageContains = new[] { "emailOptions", },
+                    ExpectedExceptionMessageContains = new[] { "communicationLog", },
+                })
+            .AddScenario(() =>
+                new ConstructorArgumentValidationTestScenario<SendEmailResponse>
+                {
+                    Name = "constructor should throw ArgumentException when parameter 'communicationLog' is white space scenario",
+                    ConstructionFunc = () =>
+                    {
+                        var referenceObject = A.Dummy<SendEmailResponse>();
+
+                        var result = new SendEmailResponse(
+                                             referenceObject.SendEmailResult,
+                                             referenceObject.ExceptionToString,
+                                             Invariant($"  {Environment.NewLine}  "));
+
+                        return result;
+                    },
+                    ExpectedExceptionType = typeof(ArgumentException),
+                    ExpectedExceptionMessageContains = new[] { "communicationLog", "white space", },
                 });
 
-        private static readonly ConstructorPropertyAssignmentTestScenarios<EmailRequest> ConstructorPropertyAssignmentTestScenarios = new ConstructorPropertyAssignmentTestScenarios<EmailRequest>()
+        private static readonly ConstructorPropertyAssignmentTestScenarios<SendEmailResponse> ConstructorPropertyAssignmentTestScenarios = new ConstructorPropertyAssignmentTestScenarios<SendEmailResponse>()
             .AddScenario(() =>
-                new ConstructorPropertyAssignmentTestScenario<EmailRequest>
+                new ConstructorPropertyAssignmentTestScenario<SendEmailResponse>
                 {
-                    Name = "EmailParticipants should return same 'emailParticipants' parameter passed to constructor when getting",
+                    Name = "SendEmailResult should return same 'sendEmailResult' parameter passed to constructor when getting",
                     SystemUnderTestExpectedPropertyValueFunc = () =>
                     {
-                        var referenceObject = A.Dummy<EmailRequest>();
+                        var referenceObject = A.Dummy<SendEmailResponse>();
 
-                        var result = new SystemUnderTestExpectedPropertyValue<EmailRequest>
+                        var result = new SystemUnderTestExpectedPropertyValue<SendEmailResponse>
                         {
-                            SystemUnderTest = new EmailRequest(
-                                                      referenceObject.EmailParticipants,
-                                                      referenceObject.EmailContent,
-                                                      referenceObject.EmailOptions),
-                            ExpectedPropertyValue = referenceObject.EmailParticipants,
+                            SystemUnderTest = new SendEmailResponse(
+                                                      referenceObject.SendEmailResult,
+                                                      referenceObject.ExceptionToString,
+                                                      referenceObject.CommunicationLog),
+                            ExpectedPropertyValue = referenceObject.SendEmailResult,
                         };
 
                         return result;
                     },
-                    PropertyName = "EmailParticipants",
+                    PropertyName = "SendEmailResult",
                 })
             .AddScenario(() =>
-                new ConstructorPropertyAssignmentTestScenario<EmailRequest>
+                new ConstructorPropertyAssignmentTestScenario<SendEmailResponse>
                 {
-                    Name = "EmailContent should return same 'emailContent' parameter passed to constructor when getting",
+                    Name = "ExceptionToString should return same 'exceptionToString' parameter passed to constructor when getting",
                     SystemUnderTestExpectedPropertyValueFunc = () =>
                     {
-                        var referenceObject = A.Dummy<EmailRequest>();
+                        var referenceObject = A.Dummy<SendEmailResponse>();
 
-                        var result = new SystemUnderTestExpectedPropertyValue<EmailRequest>
+                        var result = new SystemUnderTestExpectedPropertyValue<SendEmailResponse>
                         {
-                            SystemUnderTest = new EmailRequest(
-                                                      referenceObject.EmailParticipants,
-                                                      referenceObject.EmailContent,
-                                                      referenceObject.EmailOptions),
-                            ExpectedPropertyValue = referenceObject.EmailContent,
+                            SystemUnderTest = new SendEmailResponse(
+                                                      referenceObject.SendEmailResult,
+                                                      referenceObject.ExceptionToString,
+                                                      referenceObject.CommunicationLog),
+                            ExpectedPropertyValue = referenceObject.ExceptionToString,
                         };
 
                         return result;
                     },
-                    PropertyName = "EmailContent",
+                    PropertyName = "ExceptionToString",
                 })
             .AddScenario(() =>
-                new ConstructorPropertyAssignmentTestScenario<EmailRequest>
+                new ConstructorPropertyAssignmentTestScenario<SendEmailResponse>
                 {
-                    Name = "EmailOptions should return same 'emailOptions' parameter passed to constructor when getting",
+                    Name = "CommunicationLog should return same 'communicationLog' parameter passed to constructor when getting",
                     SystemUnderTestExpectedPropertyValueFunc = () =>
                     {
-                        var referenceObject = A.Dummy<EmailRequest>();
+                        var referenceObject = A.Dummy<SendEmailResponse>();
 
-                        var result = new SystemUnderTestExpectedPropertyValue<EmailRequest>
+                        var result = new SystemUnderTestExpectedPropertyValue<SendEmailResponse>
                         {
-                            SystemUnderTest = new EmailRequest(
-                                                      referenceObject.EmailParticipants,
-                                                      referenceObject.EmailContent,
-                                                      referenceObject.EmailOptions),
-                            ExpectedPropertyValue = referenceObject.EmailOptions,
+                            SystemUnderTest = new SendEmailResponse(
+                                                      referenceObject.SendEmailResult,
+                                                      referenceObject.ExceptionToString,
+                                                      referenceObject.CommunicationLog),
+                            ExpectedPropertyValue = referenceObject.CommunicationLog,
                         };
 
                         return result;
                     },
-                    PropertyName = "EmailOptions",
+                    PropertyName = "CommunicationLog",
                 });
 
-        private static readonly DeepCloneWithTestScenarios<EmailRequest> DeepCloneWithTestScenarios = new DeepCloneWithTestScenarios<EmailRequest>()
+        private static readonly DeepCloneWithTestScenarios<SendEmailResponse> DeepCloneWithTestScenarios = new DeepCloneWithTestScenarios<SendEmailResponse>()
             .AddScenario(() =>
-                new DeepCloneWithTestScenario<EmailRequest>
+                new DeepCloneWithTestScenario<SendEmailResponse>
                 {
-                    Name = "DeepCloneWithEmailParticipants should deep clone object and replace EmailParticipants with the provided emailParticipants",
-                    WithPropertyName = "EmailParticipants",
+                    Name = "DeepCloneWithSendEmailResult should deep clone object and replace SendEmailResult with the provided sendEmailResult",
+                    WithPropertyName = "SendEmailResult",
                     SystemUnderTestDeepCloneWithValueFunc = () =>
                     {
-                        var systemUnderTest = A.Dummy<EmailRequest>();
+                        var systemUnderTest = A.Dummy<SendEmailResponse>();
 
-                        var referenceObject = A.Dummy<EmailRequest>().ThatIs(_ => !systemUnderTest.EmailParticipants.IsEqualTo(_.EmailParticipants));
+                        var referenceObject = A.Dummy<SendEmailResponse>().ThatIs(_ => !systemUnderTest.SendEmailResult.IsEqualTo(_.SendEmailResult));
 
-                        var result = new SystemUnderTestDeepCloneWithValue<EmailRequest>
+                        var result = new SystemUnderTestDeepCloneWithValue<SendEmailResponse>
                         {
                             SystemUnderTest = systemUnderTest,
-                            DeepCloneWithValue = referenceObject.EmailParticipants,
+                            DeepCloneWithValue = referenceObject.SendEmailResult,
                         };
 
                         return result;
                     },
                 })
             .AddScenario(() =>
-                new DeepCloneWithTestScenario<EmailRequest>
+                new DeepCloneWithTestScenario<SendEmailResponse>
                 {
-                    Name = "DeepCloneWithEmailContent should deep clone object and replace EmailContent with the provided emailContent",
-                    WithPropertyName = "EmailContent",
+                    Name = "DeepCloneWithExceptionToString should deep clone object and replace ExceptionToString with the provided exceptionToString",
+                    WithPropertyName = "ExceptionToString",
                     SystemUnderTestDeepCloneWithValueFunc = () =>
                     {
-                        var systemUnderTest = A.Dummy<EmailRequest>();
+                        var systemUnderTest = A.Dummy<SendEmailResponse>();
 
-                        var referenceObject = A.Dummy<EmailRequest>().ThatIs(_ => !systemUnderTest.EmailContent.IsEqualTo(_.EmailContent));
+                        var referenceObject = A.Dummy<SendEmailResponse>().ThatIs(_ => !systemUnderTest.ExceptionToString.IsEqualTo(_.ExceptionToString));
 
-                        var result = new SystemUnderTestDeepCloneWithValue<EmailRequest>
+                        var result = new SystemUnderTestDeepCloneWithValue<SendEmailResponse>
                         {
                             SystemUnderTest = systemUnderTest,
-                            DeepCloneWithValue = referenceObject.EmailContent,
+                            DeepCloneWithValue = referenceObject.ExceptionToString,
                         };
 
                         return result;
                     },
                 })
             .AddScenario(() =>
-                new DeepCloneWithTestScenario<EmailRequest>
+                new DeepCloneWithTestScenario<SendEmailResponse>
                 {
-                    Name = "DeepCloneWithEmailOptions should deep clone object and replace EmailOptions with the provided emailOptions",
-                    WithPropertyName = "EmailOptions",
+                    Name = "DeepCloneWithCommunicationLog should deep clone object and replace CommunicationLog with the provided communicationLog",
+                    WithPropertyName = "CommunicationLog",
                     SystemUnderTestDeepCloneWithValueFunc = () =>
                     {
-                        var systemUnderTest = A.Dummy<EmailRequest>();
+                        var systemUnderTest = A.Dummy<SendEmailResponse>();
 
-                        var referenceObject = A.Dummy<EmailRequest>().ThatIs(_ => !systemUnderTest.EmailOptions.IsEqualTo(_.EmailOptions));
+                        var referenceObject = A.Dummy<SendEmailResponse>().ThatIs(_ => !systemUnderTest.CommunicationLog.IsEqualTo(_.CommunicationLog));
 
-                        var result = new SystemUnderTestDeepCloneWithValue<EmailRequest>
+                        var result = new SystemUnderTestDeepCloneWithValue<SendEmailResponse>
                         {
                             SystemUnderTest = systemUnderTest,
-                            DeepCloneWithValue = referenceObject.EmailOptions,
+                            DeepCloneWithValue = referenceObject.CommunicationLog,
                         };
 
                         return result;
                     },
                 });
 
-        private static readonly EmailRequest ReferenceObjectForEquatableTestScenarios = A.Dummy<EmailRequest>();
+        private static readonly SendEmailResponse ReferenceObjectForEquatableTestScenarios = A.Dummy<SendEmailResponse>();
 
-        private static readonly EquatableTestScenarios<EmailRequest> EquatableTestScenarios = new EquatableTestScenarios<EmailRequest>()
+        private static readonly EquatableTestScenarios<SendEmailResponse> EquatableTestScenarios = new EquatableTestScenarios<SendEmailResponse>()
             .AddScenario(() =>
-                new EquatableTestScenario<EmailRequest>
+                new EquatableTestScenario<SendEmailResponse>
                 {
                     Name = "Default Code Generated Scenario",
                     ReferenceObject = ReferenceObjectForEquatableTestScenarios,
-                    ObjectsThatAreEqualToButNotTheSameAsReferenceObject = new EmailRequest[]
+                    ObjectsThatAreEqualToButNotTheSameAsReferenceObject = new SendEmailResponse[]
                     {
-                        new EmailRequest(
-                                ReferenceObjectForEquatableTestScenarios.EmailParticipants,
-                                ReferenceObjectForEquatableTestScenarios.EmailContent,
-                                ReferenceObjectForEquatableTestScenarios.EmailOptions),
+                        new SendEmailResponse(
+                                ReferenceObjectForEquatableTestScenarios.SendEmailResult,
+                                ReferenceObjectForEquatableTestScenarios.ExceptionToString,
+                                ReferenceObjectForEquatableTestScenarios.CommunicationLog),
                     },
-                    ObjectsThatAreNotEqualToReferenceObject = new EmailRequest[]
+                    ObjectsThatAreNotEqualToReferenceObject = new SendEmailResponse[]
                     {
-                        new EmailRequest(
-                                A.Dummy<EmailRequest>().Whose(_ => !_.EmailParticipants.IsEqualTo(ReferenceObjectForEquatableTestScenarios.EmailParticipants)).EmailParticipants,
-                                ReferenceObjectForEquatableTestScenarios.EmailContent,
-                                ReferenceObjectForEquatableTestScenarios.EmailOptions),
-                        new EmailRequest(
-                                ReferenceObjectForEquatableTestScenarios.EmailParticipants,
-                                A.Dummy<EmailRequest>().Whose(_ => !_.EmailContent.IsEqualTo(ReferenceObjectForEquatableTestScenarios.EmailContent)).EmailContent,
-                                ReferenceObjectForEquatableTestScenarios.EmailOptions),
-                        new EmailRequest(
-                                ReferenceObjectForEquatableTestScenarios.EmailParticipants,
-                                ReferenceObjectForEquatableTestScenarios.EmailContent,
-                                A.Dummy<EmailRequest>().Whose(_ => !_.EmailOptions.IsEqualTo(ReferenceObjectForEquatableTestScenarios.EmailOptions)).EmailOptions),
+                        new SendEmailResponse(
+                                A.Dummy<SendEmailResponse>().Whose(_ => !_.SendEmailResult.IsEqualTo(ReferenceObjectForEquatableTestScenarios.SendEmailResult)).SendEmailResult,
+                                ReferenceObjectForEquatableTestScenarios.ExceptionToString,
+                                ReferenceObjectForEquatableTestScenarios.CommunicationLog),
+                        new SendEmailResponse(
+                                ReferenceObjectForEquatableTestScenarios.SendEmailResult,
+                                A.Dummy<SendEmailResponse>().Whose(_ => !_.ExceptionToString.IsEqualTo(ReferenceObjectForEquatableTestScenarios.ExceptionToString)).ExceptionToString,
+                                ReferenceObjectForEquatableTestScenarios.CommunicationLog),
+                        new SendEmailResponse(
+                                ReferenceObjectForEquatableTestScenarios.SendEmailResult,
+                                ReferenceObjectForEquatableTestScenarios.ExceptionToString,
+                                A.Dummy<SendEmailResponse>().Whose(_ => !_.CommunicationLog.IsEqualTo(ReferenceObjectForEquatableTestScenarios.CommunicationLog)).CommunicationLog),
                     },
                     ObjectsThatAreNotOfTheSameTypeAsReferenceObject = new object[]
                     {
@@ -295,12 +313,12 @@ namespace Naos.Email.Domain.Test
             [SuppressMessage("Microsoft.Naming", "CA1725:ParameterNamesShouldMatchBaseDeclaration")]
             [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
             [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
-            public static void EmailRequest___Should_implement_IModel_of_EmailRequest___When_reflecting()
+            public static void SendEmailResponse___Should_implement_IModel_of_SendEmailResponse___When_reflecting()
             {
                 // Arrange
-                var type = typeof(EmailRequest);
+                var type = typeof(SendEmailResponse);
 
-                var expectedModelMethods = typeof(IModel<EmailRequest>).GetInterfaceDeclaredAndImplementedMethods();
+                var expectedModelMethods = typeof(IModel<SendEmailResponse>).GetInterfaceDeclaredAndImplementedMethods();
 
                 var expectedModelMethodHashes = expectedModelMethods.Select(_ => _.GetSignatureHash());
 
@@ -310,7 +328,7 @@ namespace Naos.Email.Domain.Test
                 var actualModelMethodHashes = actualModelMethods.Select(_ => _.GetSignatureHash());
 
                 // Assert
-                actualInterfaces.AsTest().Must().ContainElement(typeof(IModel<EmailRequest>));
+                actualInterfaces.AsTest().Must().ContainElement(typeof(IModel<SendEmailResponse>));
                 expectedModelMethodHashes.Except(actualModelMethodHashes).AsTest().Must().BeEmptyEnumerable();
             }
 
@@ -328,10 +346,10 @@ namespace Naos.Email.Domain.Test
             [SuppressMessage("Microsoft.Naming", "CA1725:ParameterNamesShouldMatchBaseDeclaration")]
             [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
             [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
-            public static void EmailRequest___Should_be_attributed_with_Serializable____When_reflecting()
+            public static void SendEmailResponse___Should_be_attributed_with_Serializable____When_reflecting()
             {
                 // Arrange
-                var type = typeof(EmailRequest);
+                var type = typeof(SendEmailResponse);
 
                 // Act
                 var actualAttributes = type.GetCustomAttributes(typeof(SerializableAttribute), false);
@@ -504,10 +522,10 @@ namespace Naos.Email.Domain.Test
             public static void Clone___Should_clone_object___When_called()
             {
                 // Arrange
-                var systemUnderTest = A.Dummy<EmailRequest>();
+                var systemUnderTest = A.Dummy<SendEmailResponse>();
 
                 // Act
-                var actual = (EmailRequest)systemUnderTest.Clone();
+                var actual = (SendEmailResponse)systemUnderTest.Clone();
 
                 // Assert
                 actual.AsTest().Must().BeEqualTo(systemUnderTest);
@@ -531,7 +549,7 @@ namespace Naos.Email.Domain.Test
             public static void DeepClone___Should_deep_clone_object___When_called()
             {
                 // Arrange
-                var systemUnderTest = A.Dummy<EmailRequest>();
+                var systemUnderTest = A.Dummy<SendEmailResponse>();
 
                 // Act
                 var actual = systemUnderTest.DeepClone();
@@ -539,33 +557,6 @@ namespace Naos.Email.Domain.Test
                 // Assert
                 actual.AsTest().Must().BeEqualTo(systemUnderTest);
                 actual.AsTest().Must().NotBeSameReferenceAs(systemUnderTest);
-
-                if (systemUnderTest.EmailParticipants == null)
-                {
-                    actual.EmailParticipants.AsTest().Must().BeNull();
-                }
-                else
-                {
-                    actual.EmailParticipants.AsTest().Must().NotBeSameReferenceAs(systemUnderTest.EmailParticipants);
-                }
-
-                if (systemUnderTest.EmailContent == null)
-                {
-                    actual.EmailContent.AsTest().Must().BeNull();
-                }
-                else
-                {
-                    actual.EmailContent.AsTest().Must().NotBeSameReferenceAs(systemUnderTest.EmailContent);
-                }
-
-                if (systemUnderTest.EmailOptions == null)
-                {
-                    actual.EmailOptions.AsTest().Must().BeNull();
-                }
-                else
-                {
-                    actual.EmailOptions.AsTest().Must().NotBeSameReferenceAs(systemUnderTest.EmailOptions);
-                }
             }
 
             [Fact]
@@ -584,7 +575,7 @@ namespace Naos.Email.Domain.Test
             [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
             public static void DeepCloneWith___Should_deep_clone_object_and_replace_the_associated_property_with_the_provided_value___When_called()
             {
-                var propertyNames = new string[] { "EmailParticipants", "EmailContent", "EmailOptions" };
+                var propertyNames = new string[] { "SendEmailResult", "ExceptionToString", "CommunicationLog" };
 
                 var scenarios = DeepCloneWithTestScenarios.ValidateAndPrepareForTesting();
 
@@ -601,12 +592,12 @@ namespace Naos.Email.Domain.Test
                     }
 
                     // Act
-                    var actual = (EmailRequest)scenario.DeepCloneWithMethod.Invoke(scenario.SystemUnderTest, new[] { scenario.WithValue });
+                    var actual = (SendEmailResponse)scenario.DeepCloneWithMethod.Invoke(scenario.SystemUnderTest, new[] { scenario.WithValue });
 
                     // Assert
                     foreach(var propertyName in propertyNames)
                     {
-                        var propertyInfo = typeof(EmailRequest).GetPropertyFiltered(propertyName, MemberRelationships.DeclaredOrInherited, MemberOwners.Instance, MemberAccessModifiers.Public);
+                        var propertyInfo = typeof(SendEmailResponse).GetPropertyFiltered(propertyName, MemberRelationships.DeclaredOrInherited, MemberOwners.Instance, MemberAccessModifiers.Public);
 
                         var propertyType = propertyInfo.PropertyType;
 
@@ -674,7 +665,7 @@ namespace Naos.Email.Domain.Test
             public static void Deserialize___Should_roundtrip_object___When_serializing_to_and_deserializing_from_string_using_ObcBsonSerializer()
             {
                 // Arrange
-                var expected = A.Dummy<EmailRequest>();
+                var expected = A.Dummy<SendEmailResponse>();
 
                 var serializationConfigurationType = SerializationConfigurationTypes.BsonSerializationConfigurationType.ConcreteSerializationConfigurationDerivativeType;
 
@@ -703,7 +694,7 @@ namespace Naos.Email.Domain.Test
             public static void Deserialize___Should_roundtrip_object___When_serializing_to_and_deserializing_from_bytes_using_ObcBsonSerializer()
             {
                 // Arrange
-                var expected = A.Dummy<EmailRequest>();
+                var expected = A.Dummy<SendEmailResponse>();
 
                 var serializationConfigurationType = SerializationConfigurationTypes.BsonSerializationConfigurationType.ConcreteSerializationConfigurationDerivativeType;
 
@@ -732,7 +723,7 @@ namespace Naos.Email.Domain.Test
             public static void Deserialize___Should_roundtrip_object___When_serializing_to_and_deserializing_from_string_using_ObcJsonSerializer()
             {
                 // Arrange
-                var expected = A.Dummy<EmailRequest>();
+                var expected = A.Dummy<SendEmailResponse>();
 
                 var serializationConfigurationType = SerializationConfigurationTypes.JsonSerializationConfigurationType.ConcreteSerializationConfigurationDerivativeType;
 
@@ -761,7 +752,7 @@ namespace Naos.Email.Domain.Test
             public static void Deserialize___Should_roundtrip_object___When_serializing_to_and_deserializing_from_bytes_using_ObcJsonSerializer()
             {
                 // Arrange
-                var expected = A.Dummy<EmailRequest>();
+                var expected = A.Dummy<SendEmailResponse>();
 
                 var serializationConfigurationType = SerializationConfigurationTypes.JsonSerializationConfigurationType.ConcreteSerializationConfigurationDerivativeType;
 
@@ -795,8 +786,8 @@ namespace Naos.Email.Domain.Test
             public static void EqualsOperator___Should_return_true___When_both_sides_of_operator_are_null()
             {
                 // Arrange
-                EmailRequest systemUnderTest1 = null;
-                EmailRequest systemUnderTest2 = null;
+                SendEmailResponse systemUnderTest1 = null;
+                SendEmailResponse systemUnderTest2 = null;
 
                 // Act
                 var actual = systemUnderTest1 == systemUnderTest2;
@@ -826,7 +817,7 @@ namespace Naos.Email.Domain.Test
                 foreach (var scenario in scenarios)
                 {
                     // Arrange
-                    EmailRequest systemUnderTest = null;
+                    SendEmailResponse systemUnderTest = null;
 
                     // Act
                     var actual1 = systemUnderTest == scenario.ReferenceObject;
@@ -975,8 +966,8 @@ namespace Naos.Email.Domain.Test
             public static void NotEqualsOperator___Should_return_false___When_both_sides_of_operator_are_null()
             {
                 // Arrange
-                EmailRequest systemUnderTest1 = null;
-                EmailRequest systemUnderTest2 = null;
+                SendEmailResponse systemUnderTest1 = null;
+                SendEmailResponse systemUnderTest2 = null;
 
                 // Act
                 var actual = systemUnderTest1 != systemUnderTest2;
@@ -1006,7 +997,7 @@ namespace Naos.Email.Domain.Test
                 foreach (var scenario in scenarios)
                 {
                     // Arrange
-                    EmailRequest systemUnderTest = null;
+                    SendEmailResponse systemUnderTest = null;
 
                     // Act
                     var actual1 = systemUnderTest != scenario.ReferenceObject;
@@ -1152,14 +1143,14 @@ namespace Naos.Email.Domain.Test
             [SuppressMessage("Microsoft.Naming", "CA1725:ParameterNamesShouldMatchBaseDeclaration")]
             [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
             [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
-            public static void Equals_with_EmailRequest___Should_return_false___When_parameter_other_is_null()
+            public static void Equals_with_SendEmailResponse___Should_return_false___When_parameter_other_is_null()
             {
                 var scenarios = EquatableTestScenarios.ValidateAndPrepareForTesting();
 
                 foreach (var scenario in scenarios)
                 {
                     // Arrange
-                    EmailRequest systemUnderTest = null;
+                    SendEmailResponse systemUnderTest = null;
 
                     // Act
                     var actual = scenario.ReferenceObject.Equals(systemUnderTest);
@@ -1183,7 +1174,7 @@ namespace Naos.Email.Domain.Test
             [SuppressMessage("Microsoft.Naming", "CA1725:ParameterNamesShouldMatchBaseDeclaration")]
             [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
             [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
-            public static void Equals_with_EmailRequest___Should_return_true___When_parameter_other_is_same_object()
+            public static void Equals_with_SendEmailResponse___Should_return_true___When_parameter_other_is_same_object()
             {
                 var scenarios = EquatableTestScenarios.ValidateAndPrepareForTesting();
 
@@ -1211,7 +1202,7 @@ namespace Naos.Email.Domain.Test
             [SuppressMessage("Microsoft.Naming", "CA1725:ParameterNamesShouldMatchBaseDeclaration")]
             [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
             [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
-            public static void Equals_with_EmailRequest___Should_return_false___When_parameter_other_is_derived_from_the_same_type_but_is_not_of_the_same_type_as_this_object()
+            public static void Equals_with_SendEmailResponse___Should_return_false___When_parameter_other_is_derived_from_the_same_type_but_is_not_of_the_same_type_as_this_object()
             {
                 var scenarios = EquatableTestScenarios.ValidateAndPrepareForTesting();
 
@@ -1239,7 +1230,7 @@ namespace Naos.Email.Domain.Test
             [SuppressMessage("Microsoft.Naming", "CA1725:ParameterNamesShouldMatchBaseDeclaration")]
             [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
             [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
-            public static void Equals_with_EmailRequest___Should_return_false___When_objects_being_compared_have_different_property_values()
+            public static void Equals_with_SendEmailResponse___Should_return_false___When_objects_being_compared_have_different_property_values()
             {
                 var scenarios = EquatableTestScenarios.ValidateAndPrepareForTesting();
 
@@ -1267,7 +1258,7 @@ namespace Naos.Email.Domain.Test
             [SuppressMessage("Microsoft.Naming", "CA1725:ParameterNamesShouldMatchBaseDeclaration")]
             [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
             [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
-            public static void Equals_with_EmailRequest___Should_return_true___When_objects_being_compared_have_same_property_values()
+            public static void Equals_with_SendEmailResponse___Should_return_true___When_objects_being_compared_have_same_property_values()
             {
                 var scenarios = EquatableTestScenarios.ValidateAndPrepareForTesting();
 
@@ -1428,7 +1419,7 @@ namespace Naos.Email.Domain.Test
         [SuppressMessage("Microsoft.Naming", "CA1724:TypeNamesShouldNotMatchNamespaces")]
         public static class Hashing
         {
-            [Fact(Skip = "It's possible (and even probable after a few runs of this test) that two dummy, unequal models will have the same hash code.  The model being tested contains at least one property who's type (or a type nested within the generic type, or a property of the IModel type) is a dictionary with keys that are not comparable or an unordered collection with elements that are not comparable.  In these cases the hashing method cannot hash the elements and must resort to hashing the element count.  Two dummies could easily have the same element count for such a type.")]
+            [Fact]
             [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly")]
             [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly")]
             [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly")]

@@ -287,18 +287,6 @@
     <Compile Include="Models\Classes\EmailParticipantsTest.designer.cs">
       <DependentUpon>EmailParticipantsTest.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\Classes\EmailRequestTest.cs" />
-    <Compile Include="Models\Classes\EmailRequestTest.designer.cs">
-      <DependentUpon>EmailRequestTest.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Classes\EmailResponseTest.cs" />
-    <Compile Include="Models\Classes\EmailResponseTest.designer.cs">
-      <DependentUpon>EmailResponseTest.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Events\EmailResponseEventBase{TId}Test.cs" />
-    <Compile Include="Events\EmailResponseEventBase{TId}Test.designer.cs">
-      <DependentUpon>EmailResponseEventBase{TId}Test.cs</DependentUpon>
-    </Compile>
     <Compile Include="Events\SucceededInSendingEmailEvent{TId}Test.cs" />
     <Compile Include="Events\SucceededInSendingEmailEvent{TId}Test.designer.cs">
       <DependentUpon>SucceededInSendingEmailEvent{TId}Test.cs</DependentUpon>
@@ -317,6 +305,18 @@
     <Compile Include="Events\SendEmailRequestedEvent{TId}Test.cs" />
     <Compile Include="Events\SendEmailRequestedEvent{TId}Test.designer.cs">
       <DependentUpon>SendEmailRequestedEvent{TId}Test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Classes\SendEmailRequestTest.cs" />
+    <Compile Include="Models\Classes\SendEmailRequestTest.designer.cs">
+      <DependentUpon>SendEmailRequestTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Events\SendEmailResponseEventBase{TId}Test.cs" />
+    <Compile Include="Events\SendEmailResponseEventBase{TId}Test.designer.cs">
+      <DependentUpon>SendEmailResponseEventBase{TId}Test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Classes\SendEmailResponseTest.cs" />
+    <Compile Include="Models\Classes\SendEmailResponseTest.designer.cs">
+      <DependentUpon>SendEmailResponseTest.cs</DependentUpon>
     </Compile>
     <Compile Include="SerializationConfigurationTypes.cs" />
     <Compile Include="GlobalSuppressions.cs" />

@@ -34,7 +34,7 @@ namespace Naos.Email.Domain.Test
                 .AddScenario(() =>
                     new ConstructorArgumentValidationTestScenario<FailedToSendEmailEvent<Version>>
                     {
-                        Name = "constructor should throw ArgumentNullException when parameter 'emailResponse' is null scenario",
+                        Name = "constructor should throw ArgumentNullException when parameter 'sendEmailResponse' is null scenario",
                         ConstructionFunc = () =>
                         {
                             var referenceObject = A.Dummy<FailedToSendEmailEvent<Version>>();
@@ -47,22 +47,22 @@ namespace Naos.Email.Domain.Test
                             return result;
                         },
                         ExpectedExceptionType = typeof(ArgumentNullException),
-                        ExpectedExceptionMessageContains = new[] { "emailResponse", },
+                        ExpectedExceptionMessageContains = new[] { "sendEmailResponse", },
                     })
                 .AddScenario(() =>
                     new ConstructorArgumentValidationTestScenario<FailedToSendEmailEvent<Version>>
                     {
-                        Name = "constructor should throw ArgumentOutOfRangeException when emailResponse.SendEmailResult == SendEmailRequest.Success scenario",
+                        Name = "constructor should throw ArgumentOutOfRangeException when sendEmailResponse.SendEmailResult == SendEmailRequest.Success scenario",
                         ConstructionFunc = () =>
                         {
                             var emailSentEvent = A.Dummy<SucceededInSendingEmailEvent<Version>>();
 
-                            var result = new FailedToSendEmailEvent<Version>(emailSentEvent.Id, emailSentEvent.TimestampUtc, emailSentEvent.EmailResponse);
+                            var result = new FailedToSendEmailEvent<Version>(emailSentEvent.Id, emailSentEvent.TimestampUtc, emailSentEvent.SendEmailResponse);
 
                             return result;
                         },
                         ExpectedExceptionType = typeof(ArgumentOutOfRangeException),
-                        ExpectedExceptionMessageContains = new[] { "emailResponse.SendEmailResult", "Success" },
+                        ExpectedExceptionMessageContains = new[] { "sendEmailResponse.SendEmailResult", "Success" },
                     });
         }
     }

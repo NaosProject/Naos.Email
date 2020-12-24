@@ -49,7 +49,7 @@ namespace Naos.Email.Domain.Test
                         var result = new SystemUnderTestExpectedStringRepresentation<SendEmailOp>
                         {
                             SystemUnderTest = systemUnderTest,
-                            ExpectedStringRepresentation = Invariant($"Naos.Email.Domain.SendEmailOp: EmailRequest = {systemUnderTest.EmailRequest?.ToString() ?? "<null>"}."),
+                            ExpectedStringRepresentation = Invariant($"Naos.Email.Domain.SendEmailOp: SendEmailRequest = {systemUnderTest.SendEmailRequest?.ToString() ?? "<null>"}."),
                         };
 
                         return result;
@@ -60,7 +60,7 @@ namespace Naos.Email.Domain.Test
             .AddScenario(() =>
                 new ConstructorArgumentValidationTestScenario<SendEmailOp>
                 {
-                    Name = "constructor should throw ArgumentNullException when parameter 'emailRequest' is null scenario",
+                    Name = "constructor should throw ArgumentNullException when parameter 'sendEmailRequest' is null scenario",
                     ConstructionFunc = () =>
                     {
                         var result = new SendEmailOp(
@@ -69,14 +69,14 @@ namespace Naos.Email.Domain.Test
                         return result;
                     },
                     ExpectedExceptionType = typeof(ArgumentNullException),
-                    ExpectedExceptionMessageContains = new[] { "emailRequest", },
+                    ExpectedExceptionMessageContains = new[] { "sendEmailRequest", },
                 });
 
         private static readonly ConstructorPropertyAssignmentTestScenarios<SendEmailOp> ConstructorPropertyAssignmentTestScenarios = new ConstructorPropertyAssignmentTestScenarios<SendEmailOp>()
             .AddScenario(() =>
                 new ConstructorPropertyAssignmentTestScenario<SendEmailOp>
                 {
-                    Name = "EmailRequest should return same 'emailRequest' parameter passed to constructor when getting",
+                    Name = "SendEmailRequest should return same 'sendEmailRequest' parameter passed to constructor when getting",
                     SystemUnderTestExpectedPropertyValueFunc = () =>
                     {
                         var referenceObject = A.Dummy<SendEmailOp>();
@@ -84,31 +84,31 @@ namespace Naos.Email.Domain.Test
                         var result = new SystemUnderTestExpectedPropertyValue<SendEmailOp>
                         {
                             SystemUnderTest = new SendEmailOp(
-                                                      referenceObject.EmailRequest),
-                            ExpectedPropertyValue = referenceObject.EmailRequest,
+                                                      referenceObject.SendEmailRequest),
+                            ExpectedPropertyValue = referenceObject.SendEmailRequest,
                         };
 
                         return result;
                     },
-                    PropertyName = "EmailRequest",
+                    PropertyName = "SendEmailRequest",
                 });
 
         private static readonly DeepCloneWithTestScenarios<SendEmailOp> DeepCloneWithTestScenarios = new DeepCloneWithTestScenarios<SendEmailOp>()
             .AddScenario(() =>
                 new DeepCloneWithTestScenario<SendEmailOp>
                 {
-                    Name = "DeepCloneWithEmailRequest should deep clone object and replace EmailRequest with the provided emailRequest",
-                    WithPropertyName = "EmailRequest",
+                    Name = "DeepCloneWithSendEmailRequest should deep clone object and replace SendEmailRequest with the provided sendEmailRequest",
+                    WithPropertyName = "SendEmailRequest",
                     SystemUnderTestDeepCloneWithValueFunc = () =>
                     {
                         var systemUnderTest = A.Dummy<SendEmailOp>();
 
-                        var referenceObject = A.Dummy<SendEmailOp>().ThatIs(_ => !systemUnderTest.EmailRequest.IsEqualTo(_.EmailRequest));
+                        var referenceObject = A.Dummy<SendEmailOp>().ThatIs(_ => !systemUnderTest.SendEmailRequest.IsEqualTo(_.SendEmailRequest));
 
                         var result = new SystemUnderTestDeepCloneWithValue<SendEmailOp>
                         {
                             SystemUnderTest = systemUnderTest,
-                            DeepCloneWithValue = referenceObject.EmailRequest,
+                            DeepCloneWithValue = referenceObject.SendEmailRequest,
                         };
 
                         return result;
@@ -126,12 +126,12 @@ namespace Naos.Email.Domain.Test
                     ObjectsThatAreEqualToButNotTheSameAsReferenceObject = new SendEmailOp[]
                     {
                         new SendEmailOp(
-                                ReferenceObjectForEquatableTestScenarios.EmailRequest),
+                                ReferenceObjectForEquatableTestScenarios.SendEmailRequest),
                     },
                     ObjectsThatAreNotEqualToReferenceObject = new SendEmailOp[]
                     {
                         new SendEmailOp(
-                                A.Dummy<SendEmailOp>().Whose(_ => !_.EmailRequest.IsEqualTo(ReferenceObjectForEquatableTestScenarios.EmailRequest)).EmailRequest),
+                                A.Dummy<SendEmailOp>().Whose(_ => !_.SendEmailRequest.IsEqualTo(ReferenceObjectForEquatableTestScenarios.SendEmailRequest)).SendEmailRequest),
                     },
                     ObjectsThatAreNotOfTheSameTypeAsReferenceObject = new object[]
                     {
@@ -406,13 +406,13 @@ namespace Naos.Email.Domain.Test
                 actual.AsTest().Must().BeEqualTo(systemUnderTest);
                 actual.AsTest().Must().NotBeSameReferenceAs(systemUnderTest);
 
-                if (systemUnderTest.EmailRequest == null)
+                if (systemUnderTest.SendEmailRequest == null)
                 {
-                    actual.EmailRequest.AsTest().Must().BeNull();
+                    actual.SendEmailRequest.AsTest().Must().BeNull();
                 }
                 else
                 {
-                    actual.EmailRequest.AsTest().Must().NotBeSameReferenceAs(systemUnderTest.EmailRequest);
+                    actual.SendEmailRequest.AsTest().Must().NotBeSameReferenceAs(systemUnderTest.SendEmailRequest);
                 }
             }
 
@@ -432,7 +432,7 @@ namespace Naos.Email.Domain.Test
             [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
             public static void DeepCloneWith___Should_deep_clone_object_and_replace_the_associated_property_with_the_provided_value___When_called()
             {
-                var propertyNames = new string[] { "EmailRequest" };
+                var propertyNames = new string[] { "SendEmailRequest" };
 
                 var scenarios = DeepCloneWithTestScenarios.ValidateAndPrepareForTesting();
 
@@ -1150,10 +1150,10 @@ namespace Naos.Email.Domain.Test
                 foreach (var scenario in scenarios)
                 {
                     // Arrange
-                    ReturningOperationBase<EmailResponse> systemUnderTest = null;
+                    ReturningOperationBase<SendEmailResponse> systemUnderTest = null;
 
                     // Act
-                    var actual = scenario.ReferenceObject.Equals((ReturningOperationBase<EmailResponse>)systemUnderTest);
+                    var actual = scenario.ReferenceObject.Equals((ReturningOperationBase<SendEmailResponse>)systemUnderTest);
 
                     // Assert
                     actual.AsTest().Must().BeFalse(because: scenario.Id);
@@ -1181,7 +1181,7 @@ namespace Naos.Email.Domain.Test
                 foreach (var scenario in scenarios)
                 {
                     // Arrange, Act
-                    var actual = scenario.ReferenceObject.Equals((ReturningOperationBase<EmailResponse>)scenario.ReferenceObject);
+                    var actual = scenario.ReferenceObject.Equals((ReturningOperationBase<SendEmailResponse>)scenario.ReferenceObject);
 
                     // Assert
                     actual.AsTest().Must().BeTrue(because: scenario.Id);
@@ -1209,7 +1209,7 @@ namespace Naos.Email.Domain.Test
                 foreach (var scenario in scenarios)
                 {
                     // Arrange, Act
-                    var actuals = scenario.ObjectsThatDeriveFromScenarioTypeButAreNotOfTheSameTypeAsReferenceObject.Select(_ => scenario.ReferenceObject.Equals((ReturningOperationBase<EmailResponse>)_)).ToList();
+                    var actuals = scenario.ObjectsThatDeriveFromScenarioTypeButAreNotOfTheSameTypeAsReferenceObject.Select(_ => scenario.ReferenceObject.Equals((ReturningOperationBase<SendEmailResponse>)_)).ToList();
 
                     // Assert
                     actuals.AsTest().Must().Each().BeFalse(because: scenario.Id);
@@ -1237,7 +1237,7 @@ namespace Naos.Email.Domain.Test
                 foreach (var scenario in scenarios)
                 {
                     // Arrange, Act
-                    var actuals = scenario.ObjectsThatAreNotEqualToReferenceObject.Select(_ => scenario.ReferenceObject.Equals((ReturningOperationBase<EmailResponse>)_)).ToList();
+                    var actuals = scenario.ObjectsThatAreNotEqualToReferenceObject.Select(_ => scenario.ReferenceObject.Equals((ReturningOperationBase<SendEmailResponse>)_)).ToList();
 
                     // Assert
                     actuals.AsTest().Must().Each().BeFalse(because: scenario.Id);
@@ -1265,7 +1265,7 @@ namespace Naos.Email.Domain.Test
                 foreach (var scenario in scenarios)
                 {
                     // Arrange, Act
-                    var actuals = scenario.ObjectsThatAreEqualToButNotTheSameAsReferenceObject.Select(_ => scenario.ReferenceObject.Equals((ReturningOperationBase<EmailResponse>)_)).ToList();
+                    var actuals = scenario.ObjectsThatAreEqualToButNotTheSameAsReferenceObject.Select(_ => scenario.ReferenceObject.Equals((ReturningOperationBase<SendEmailResponse>)_)).ToList();
 
                     // Assert
                     actuals.AsTest().Must().Each().BeTrue(because: scenario.Id);

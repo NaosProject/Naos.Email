@@ -22,15 +22,15 @@ namespace Naos.Email.Domain
     using static global::System.FormattableString;
 
     [Serializable]
-    public partial class EmailResponse : IModel<EmailResponse>
+    public partial class SendEmailResponse : IModel<SendEmailResponse>
     {
         /// <summary>
-        /// Determines whether two objects of type <see cref="EmailResponse"/> are equal.
+        /// Determines whether two objects of type <see cref="SendEmailResponse"/> are equal.
         /// </summary>
         /// <param name="left">The object to the left of the equality operator.</param>
         /// <param name="right">The object to the right of the equality operator.</param>
         /// <returns>true if the two items are equal; otherwise false.</returns>
-        public static bool operator ==(EmailResponse left, EmailResponse right)
+        public static bool operator ==(SendEmailResponse left, SendEmailResponse right)
         {
             if (ReferenceEquals(left, right))
             {
@@ -48,15 +48,15 @@ namespace Naos.Email.Domain
         }
 
         /// <summary>
-        /// Determines whether two objects of type <see cref="EmailResponse"/> are not equal.
+        /// Determines whether two objects of type <see cref="SendEmailResponse"/> are not equal.
         /// </summary>
         /// <param name="left">The object to the left of the equality operator.</param>
         /// <param name="right">The object to the right of the equality operator.</param>
         /// <returns>true if the two items are not equal; otherwise false.</returns>
-        public static bool operator !=(EmailResponse left, EmailResponse right) => !(left == right);
+        public static bool operator !=(SendEmailResponse left, SendEmailResponse right) => !(left == right);
 
         /// <inheritdoc />
-        public bool Equals(EmailResponse other)
+        public bool Equals(SendEmailResponse other)
         {
             if (ReferenceEquals(this, other))
             {
@@ -76,7 +76,7 @@ namespace Naos.Email.Domain
         }
 
         /// <inheritdoc />
-        public override bool Equals(object obj) => this == (obj as EmailResponse);
+        public override bool Equals(object obj) => this == (obj as SendEmailResponse);
 
         /// <inheritdoc />
         public override int GetHashCode() => HashCodeHelper.Initialize()
@@ -89,9 +89,9 @@ namespace Naos.Email.Domain
         public object Clone() => this.DeepClone();
 
         /// <inheritdoc />
-        public EmailResponse DeepClone()
+        public SendEmailResponse DeepClone()
         {
-            var result = new EmailResponse(
+            var result = new SendEmailResponse(
                                  this.SendEmailResult,
                                  this.ExceptionToString?.DeepClone(),
                                  this.CommunicationLog?.DeepClone());
@@ -103,7 +103,7 @@ namespace Naos.Email.Domain
         /// Deep clones this object with a new <see cref="SendEmailResult" />.
         /// </summary>
         /// <param name="sendEmailResult">The new <see cref="SendEmailResult" />.  This object will NOT be deep cloned; it is used as-is.</param>
-        /// <returns>New <see cref="EmailResponse" /> using the specified <paramref name="sendEmailResult" /> for <see cref="SendEmailResult" /> and a deep clone of every other property.</returns>
+        /// <returns>New <see cref="SendEmailResponse" /> using the specified <paramref name="sendEmailResult" /> for <see cref="SendEmailResult" /> and a deep clone of every other property.</returns>
         [SuppressMessage("Microsoft.Design", "CA1002: DoNotExposeGenericLists")]
         [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly")]
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly")]
@@ -119,9 +119,9 @@ namespace Naos.Email.Domain
         [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
         [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
-        public EmailResponse DeepCloneWithSendEmailResult(SendEmailResult sendEmailResult)
+        public SendEmailResponse DeepCloneWithSendEmailResult(SendEmailResult sendEmailResult)
         {
-            var result = new EmailResponse(
+            var result = new SendEmailResponse(
                                  sendEmailResult,
                                  this.ExceptionToString?.DeepClone(),
                                  this.CommunicationLog?.DeepClone());
@@ -133,7 +133,7 @@ namespace Naos.Email.Domain
         /// Deep clones this object with a new <see cref="ExceptionToString" />.
         /// </summary>
         /// <param name="exceptionToString">The new <see cref="ExceptionToString" />.  This object will NOT be deep cloned; it is used as-is.</param>
-        /// <returns>New <see cref="EmailResponse" /> using the specified <paramref name="exceptionToString" /> for <see cref="ExceptionToString" /> and a deep clone of every other property.</returns>
+        /// <returns>New <see cref="SendEmailResponse" /> using the specified <paramref name="exceptionToString" /> for <see cref="ExceptionToString" /> and a deep clone of every other property.</returns>
         [SuppressMessage("Microsoft.Design", "CA1002: DoNotExposeGenericLists")]
         [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly")]
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly")]
@@ -149,9 +149,9 @@ namespace Naos.Email.Domain
         [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
         [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
-        public EmailResponse DeepCloneWithExceptionToString(string exceptionToString)
+        public SendEmailResponse DeepCloneWithExceptionToString(string exceptionToString)
         {
-            var result = new EmailResponse(
+            var result = new SendEmailResponse(
                                  this.SendEmailResult,
                                  exceptionToString,
                                  this.CommunicationLog?.DeepClone());
@@ -163,7 +163,7 @@ namespace Naos.Email.Domain
         /// Deep clones this object with a new <see cref="CommunicationLog" />.
         /// </summary>
         /// <param name="communicationLog">The new <see cref="CommunicationLog" />.  This object will NOT be deep cloned; it is used as-is.</param>
-        /// <returns>New <see cref="EmailResponse" /> using the specified <paramref name="communicationLog" /> for <see cref="CommunicationLog" /> and a deep clone of every other property.</returns>
+        /// <returns>New <see cref="SendEmailResponse" /> using the specified <paramref name="communicationLog" /> for <see cref="CommunicationLog" /> and a deep clone of every other property.</returns>
         [SuppressMessage("Microsoft.Design", "CA1002: DoNotExposeGenericLists")]
         [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly")]
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly")]
@@ -179,9 +179,9 @@ namespace Naos.Email.Domain
         [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
         [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
-        public EmailResponse DeepCloneWithCommunicationLog(string communicationLog)
+        public SendEmailResponse DeepCloneWithCommunicationLog(string communicationLog)
         {
-            var result = new EmailResponse(
+            var result = new SendEmailResponse(
                                  this.SendEmailResult,
                                  this.ExceptionToString?.DeepClone(),
                                  communicationLog);
@@ -193,7 +193,7 @@ namespace Naos.Email.Domain
         [SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity")]
         public override string ToString()
         {
-            var result = Invariant($"Naos.Email.Domain.EmailResponse: SendEmailResult = {this.SendEmailResult.ToString() ?? "<null>"}, ExceptionToString = {this.ExceptionToString?.ToString(CultureInfo.InvariantCulture) ?? "<null>"}, CommunicationLog = {this.CommunicationLog?.ToString(CultureInfo.InvariantCulture) ?? "<null>"}.");
+            var result = Invariant($"Naos.Email.Domain.SendEmailResponse: SendEmailResult = {this.SendEmailResult.ToString() ?? "<null>"}, ExceptionToString = {this.ExceptionToString?.ToString(CultureInfo.InvariantCulture) ?? "<null>"}, CommunicationLog = {this.CommunicationLog?.ToString(CultureInfo.InvariantCulture) ?? "<null>"}.");
 
             return result;
         }

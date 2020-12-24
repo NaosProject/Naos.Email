@@ -34,7 +34,7 @@ namespace Naos.Email.Domain.Test
                 .AddScenario(() =>
                     new ConstructorArgumentValidationTestScenario<SendEmailRequestedEvent<Version>>
                     {
-                        Name = "constructor should throw ArgumentNullException when parameter 'emailRequest' is null scenario",
+                        Name = "constructor should throw ArgumentNullException when parameter 'sendEmailRequest' is null scenario",
                         ConstructionFunc = () =>
                         {
                             var referenceObject = A.Dummy<SendEmailRequestedEvent<Version>>();
@@ -47,7 +47,7 @@ namespace Naos.Email.Domain.Test
                             return result;
                         },
                         ExpectedExceptionType = typeof(ArgumentNullException),
-                        ExpectedExceptionMessageContains = new[] { "emailRequest", },
+                        ExpectedExceptionMessageContains = new[] { "sendEmailRequest", },
                     });
         }
     }

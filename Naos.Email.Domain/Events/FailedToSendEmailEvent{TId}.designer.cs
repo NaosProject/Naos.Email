@@ -72,7 +72,7 @@ namespace Naos.Email.Domain
 
             var result = this.TimestampUtc.IsEqualTo(other.TimestampUtc)
                       && this.Id.IsEqualTo(other.Id)
-                      && this.EmailResponse.IsEqualTo(other.EmailResponse);
+                      && this.SendEmailResponse.IsEqualTo(other.SendEmailResponse);
 
             return result;
         }
@@ -84,7 +84,7 @@ namespace Naos.Email.Domain
         public override int GetHashCode() => HashCodeHelper.Initialize()
             .Hash(this.TimestampUtc)
             .Hash(this.Id)
-            .Hash(this.EmailResponse)
+            .Hash(this.SendEmailResponse)
             .Value;
 
         /// <inheritdoc />
@@ -111,7 +111,7 @@ namespace Naos.Email.Domain
             var result = new FailedToSendEmailEvent<TId>(
                                  DeepCloneGeneric(this.Id),
                                  timestampUtc,
-                                 this.EmailResponse?.DeepClone());
+                                 this.SendEmailResponse?.DeepClone());
 
             return result;
         }
@@ -137,7 +137,7 @@ namespace Naos.Email.Domain
             var result = new FailedToSendEmailEvent<TId>(
                                  id,
                                  this.TimestampUtc,
-                                 this.EmailResponse?.DeepClone());
+                                 this.SendEmailResponse?.DeepClone());
 
             return result;
         }
@@ -158,12 +158,12 @@ namespace Naos.Email.Domain
         [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
         [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
-        public override EmailResponseEventBase<TId> DeepCloneWithEmailResponse(EmailResponse emailResponse)
+        public override SendEmailResponseEventBase<TId> DeepCloneWithSendEmailResponse(SendEmailResponse sendEmailResponse)
         {
             var result = new FailedToSendEmailEvent<TId>(
                                  DeepCloneGeneric(this.Id),
                                  this.TimestampUtc,
-                                 emailResponse);
+                                 sendEmailResponse);
 
             return result;
         }
@@ -174,7 +174,7 @@ namespace Naos.Email.Domain
             var result = new FailedToSendEmailEvent<TId>(
                                  DeepCloneGeneric(this.Id),
                                  this.TimestampUtc,
-                                 this.EmailResponse?.DeepClone());
+                                 this.SendEmailResponse?.DeepClone());
 
             return result;
         }
@@ -224,7 +224,7 @@ namespace Naos.Email.Domain
         [SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity")]
         public override string ToString()
         {
-            var result = Invariant($"Naos.Email.Domain.{this.GetType().ToStringReadable()}: TimestampUtc = {this.TimestampUtc.ToString(CultureInfo.InvariantCulture) ?? "<null>"}, Id = {this.Id?.ToString() ?? "<null>"}, EmailResponse = {this.EmailResponse?.ToString() ?? "<null>"}.");
+            var result = Invariant($"Naos.Email.Domain.{this.GetType().ToStringReadable()}: TimestampUtc = {this.TimestampUtc.ToString(CultureInfo.InvariantCulture) ?? "<null>"}, Id = {this.Id?.ToString() ?? "<null>"}, SendEmailResponse = {this.SendEmailResponse?.ToString() ?? "<null>"}.");
 
             return result;
         }

@@ -11,7 +11,7 @@ namespace Naos.Email.Domain
     /// <summary>
     /// Executes a <see cref="SendEmailOp"/>.
     /// </summary>
-    public interface ISendEmailProtocol : ISyncAndAsyncReturningProtocol<SendEmailOp, EmailResponse>
+    public interface ISendEmailProtocol : ISyncAndAsyncReturningProtocol<SendEmailOp, SendEmailResponse>
     {
     }
 }

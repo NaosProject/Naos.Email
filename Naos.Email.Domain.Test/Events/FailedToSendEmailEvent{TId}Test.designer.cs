@@ -49,7 +49,7 @@ namespace Naos.Email.Domain.Test
                         var result = new SystemUnderTestExpectedStringRepresentation<FailedToSendEmailEvent<Version>>
                         {
                             SystemUnderTest = systemUnderTest,
-                            ExpectedStringRepresentation = Invariant($"Naos.Email.Domain.FailedToSendEmailEvent<Version>: TimestampUtc = {systemUnderTest.TimestampUtc.ToString(CultureInfo.InvariantCulture) ?? "<null>"}, Id = {systemUnderTest.Id?.ToString() ?? "<null>"}, EmailResponse = {systemUnderTest.EmailResponse?.ToString() ?? "<null>"}."),
+                            ExpectedStringRepresentation = Invariant($"Naos.Email.Domain.FailedToSendEmailEvent<Version>: TimestampUtc = {systemUnderTest.TimestampUtc.ToString(CultureInfo.InvariantCulture) ?? "<null>"}, Id = {systemUnderTest.Id?.ToString() ?? "<null>"}, SendEmailResponse = {systemUnderTest.SendEmailResponse?.ToString() ?? "<null>"}."),
                         };
 
                         return result;
@@ -68,7 +68,7 @@ namespace Naos.Email.Domain.Test
                         var result = new FailedToSendEmailEvent<Version>(
                                              null,
                                              referenceObject.TimestampUtc,
-                                             referenceObject.EmailResponse);
+                                             referenceObject.SendEmailResponse);
 
                         return result;
                     },
@@ -78,7 +78,7 @@ namespace Naos.Email.Domain.Test
             .AddScenario(() =>
                 new ConstructorArgumentValidationTestScenario<FailedToSendEmailEvent<Version>>
                 {
-                    Name = "constructor should throw ArgumentNullException when parameter 'emailResponse' is null scenario",
+                    Name = "constructor should throw ArgumentNullException when parameter 'sendEmailResponse' is null scenario",
                     ConstructionFunc = () =>
                     {
                         var referenceObject = A.Dummy<FailedToSendEmailEvent<Version>>();
@@ -91,7 +91,7 @@ namespace Naos.Email.Domain.Test
                         return result;
                     },
                     ExpectedExceptionType = typeof(ArgumentNullException),
-                    ExpectedExceptionMessageContains = new[] { "emailResponse", },
+                    ExpectedExceptionMessageContains = new[] { "sendEmailResponse", },
                 });
 
         private static readonly ConstructorPropertyAssignmentTestScenarios<FailedToSendEmailEvent<Version>> ConstructorPropertyAssignmentTestScenarios = new ConstructorPropertyAssignmentTestScenarios<FailedToSendEmailEvent<Version>>()
@@ -108,7 +108,7 @@ namespace Naos.Email.Domain.Test
                             SystemUnderTest = new FailedToSendEmailEvent<Version>(
                                                       referenceObject.Id,
                                                       referenceObject.TimestampUtc,
-                                                      referenceObject.EmailResponse),
+                                                      referenceObject.SendEmailResponse),
                             ExpectedPropertyValue = referenceObject.Id,
                         };
 
@@ -129,7 +129,7 @@ namespace Naos.Email.Domain.Test
                             SystemUnderTest = new FailedToSendEmailEvent<Version>(
                                                       referenceObject.Id,
                                                       referenceObject.TimestampUtc,
-                                                      referenceObject.EmailResponse),
+                                                      referenceObject.SendEmailResponse),
                             ExpectedPropertyValue = referenceObject.TimestampUtc,
                         };
 
@@ -140,7 +140,7 @@ namespace Naos.Email.Domain.Test
             .AddScenario(() =>
                 new ConstructorPropertyAssignmentTestScenario<FailedToSendEmailEvent<Version>>
                 {
-                    Name = "EmailResponse should return same 'emailResponse' parameter passed to constructor when getting",
+                    Name = "SendEmailResponse should return same 'sendEmailResponse' parameter passed to constructor when getting",
                     SystemUnderTestExpectedPropertyValueFunc = () =>
                     {
                         var referenceObject = A.Dummy<FailedToSendEmailEvent<Version>>();
@@ -150,13 +150,13 @@ namespace Naos.Email.Domain.Test
                             SystemUnderTest = new FailedToSendEmailEvent<Version>(
                                                       referenceObject.Id,
                                                       referenceObject.TimestampUtc,
-                                                      referenceObject.EmailResponse),
-                            ExpectedPropertyValue = referenceObject.EmailResponse,
+                                                      referenceObject.SendEmailResponse),
+                            ExpectedPropertyValue = referenceObject.SendEmailResponse,
                         };
 
                         return result;
                     },
-                    PropertyName = "EmailResponse",
+                    PropertyName = "SendEmailResponse",
                 });
 
         private static readonly DeepCloneWithTestScenarios<FailedToSendEmailEvent<Version>> DeepCloneWithTestScenarios = new DeepCloneWithTestScenarios<FailedToSendEmailEvent<Version>>()
@@ -203,18 +203,18 @@ namespace Naos.Email.Domain.Test
             .AddScenario(() =>
                 new DeepCloneWithTestScenario<FailedToSendEmailEvent<Version>>
                 {
-                    Name = "DeepCloneWithEmailResponse should deep clone object and replace EmailResponse with the provided emailResponse",
-                    WithPropertyName = "EmailResponse",
+                    Name = "DeepCloneWithSendEmailResponse should deep clone object and replace SendEmailResponse with the provided sendEmailResponse",
+                    WithPropertyName = "SendEmailResponse",
                     SystemUnderTestDeepCloneWithValueFunc = () =>
                     {
                         var systemUnderTest = A.Dummy<FailedToSendEmailEvent<Version>>();
 
-                        var referenceObject = A.Dummy<FailedToSendEmailEvent<Version>>().ThatIs(_ => !systemUnderTest.EmailResponse.IsEqualTo(_.EmailResponse));
+                        var referenceObject = A.Dummy<FailedToSendEmailEvent<Version>>().ThatIs(_ => !systemUnderTest.SendEmailResponse.IsEqualTo(_.SendEmailResponse));
 
                         var result = new SystemUnderTestDeepCloneWithValue<FailedToSendEmailEvent<Version>>
                         {
                             SystemUnderTest = systemUnderTest,
-                            DeepCloneWithValue = referenceObject.EmailResponse,
+                            DeepCloneWithValue = referenceObject.SendEmailResponse,
                         };
 
                         return result;
@@ -234,22 +234,22 @@ namespace Naos.Email.Domain.Test
                         new FailedToSendEmailEvent<Version>(
                                 ReferenceObjectForEquatableTestScenarios.Id,
                                 ReferenceObjectForEquatableTestScenarios.TimestampUtc,
-                                ReferenceObjectForEquatableTestScenarios.EmailResponse),
+                                ReferenceObjectForEquatableTestScenarios.SendEmailResponse),
                     },
                     ObjectsThatAreNotEqualToReferenceObject = new FailedToSendEmailEvent<Version>[]
                     {
                         new FailedToSendEmailEvent<Version>(
                                 ReferenceObjectForEquatableTestScenarios.Id,
                                 A.Dummy<FailedToSendEmailEvent<Version>>().Whose(_ => !_.TimestampUtc.IsEqualTo(ReferenceObjectForEquatableTestScenarios.TimestampUtc)).TimestampUtc,
-                                ReferenceObjectForEquatableTestScenarios.EmailResponse),
+                                ReferenceObjectForEquatableTestScenarios.SendEmailResponse),
                         new FailedToSendEmailEvent<Version>(
                                 A.Dummy<FailedToSendEmailEvent<Version>>().Whose(_ => !_.Id.IsEqualTo(ReferenceObjectForEquatableTestScenarios.Id)).Id,
                                 ReferenceObjectForEquatableTestScenarios.TimestampUtc,
-                                ReferenceObjectForEquatableTestScenarios.EmailResponse),
+                                ReferenceObjectForEquatableTestScenarios.SendEmailResponse),
                         new FailedToSendEmailEvent<Version>(
                                 ReferenceObjectForEquatableTestScenarios.Id,
                                 ReferenceObjectForEquatableTestScenarios.TimestampUtc,
-                                A.Dummy<FailedToSendEmailEvent<Version>>().Whose(_ => !_.EmailResponse.IsEqualTo(ReferenceObjectForEquatableTestScenarios.EmailResponse)).EmailResponse),
+                                A.Dummy<FailedToSendEmailEvent<Version>>().Whose(_ => !_.SendEmailResponse.IsEqualTo(ReferenceObjectForEquatableTestScenarios.SendEmailResponse)).SendEmailResponse),
                     },
                     ObjectsThatAreNotOfTheSameTypeAsReferenceObject = new object[]
                     {
@@ -535,13 +535,13 @@ namespace Naos.Email.Domain.Test
                     actual.Id.AsTest().Must().NotBeSameReferenceAs(systemUnderTest.Id);
                 }
 
-                if (systemUnderTest.EmailResponse == null)
+                if (systemUnderTest.SendEmailResponse == null)
                 {
-                    actual.EmailResponse.AsTest().Must().BeNull();
+                    actual.SendEmailResponse.AsTest().Must().BeNull();
                 }
                 else
                 {
-                    actual.EmailResponse.AsTest().Must().NotBeSameReferenceAs(systemUnderTest.EmailResponse);
+                    actual.SendEmailResponse.AsTest().Must().NotBeSameReferenceAs(systemUnderTest.SendEmailResponse);
                 }
             }
 
@@ -561,7 +561,7 @@ namespace Naos.Email.Domain.Test
             [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
             public static void DeepCloneWith___Should_deep_clone_object_and_replace_the_associated_property_with_the_provided_value___When_called()
             {
-                var propertyNames = new string[] { "TimestampUtc", "Id", "EmailResponse" };
+                var propertyNames = new string[] { "TimestampUtc", "Id", "SendEmailResponse" };
 
                 var scenarios = DeepCloneWithTestScenarios.ValidateAndPrepareForTesting();
 
@@ -1558,17 +1558,17 @@ namespace Naos.Email.Domain.Test
             [SuppressMessage("Microsoft.Naming", "CA1725:ParameterNamesShouldMatchBaseDeclaration")]
             [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
             [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
-            public static void Equals_with_EmailResponseEventBase___Should_return_false___When_parameter_other_is_null()
+            public static void Equals_with_SendEmailResponseEventBase___Should_return_false___When_parameter_other_is_null()
             {
                 var scenarios = EquatableTestScenarios.ValidateAndPrepareForTesting();
 
                 foreach (var scenario in scenarios)
                 {
                     // Arrange
-                    EmailResponseEventBase<Version> systemUnderTest = null;
+                    SendEmailResponseEventBase<Version> systemUnderTest = null;
 
                     // Act
-                    var actual = scenario.ReferenceObject.Equals((EmailResponseEventBase<Version>)systemUnderTest);
+                    var actual = scenario.ReferenceObject.Equals((SendEmailResponseEventBase<Version>)systemUnderTest);
 
                     // Assert
                     actual.AsTest().Must().BeFalse(because: scenario.Id);
@@ -1589,14 +1589,14 @@ namespace Naos.Email.Domain.Test
             [SuppressMessage("Microsoft.Naming", "CA1725:ParameterNamesShouldMatchBaseDeclaration")]
             [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
             [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
-            public static void Equals_with_EmailResponseEventBase___Should_return_true___When_parameter_other_is_same_object()
+            public static void Equals_with_SendEmailResponseEventBase___Should_return_true___When_parameter_other_is_same_object()
             {
                 var scenarios = EquatableTestScenarios.ValidateAndPrepareForTesting();
 
                 foreach (var scenario in scenarios)
                 {
                     // Arrange, Act
-                    var actual = scenario.ReferenceObject.Equals((EmailResponseEventBase<Version>)scenario.ReferenceObject);
+                    var actual = scenario.ReferenceObject.Equals((SendEmailResponseEventBase<Version>)scenario.ReferenceObject);
 
                     // Assert
                     actual.AsTest().Must().BeTrue(because: scenario.Id);
@@ -1617,14 +1617,14 @@ namespace Naos.Email.Domain.Test
             [SuppressMessage("Microsoft.Naming", "CA1725:ParameterNamesShouldMatchBaseDeclaration")]
             [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
             [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
-            public static void Equals_with_EmailResponseEventBase___Should_return_false___When_parameter_other_is_derived_from_the_same_type_but_is_not_of_the_same_type_as_this_object()
+            public static void Equals_with_SendEmailResponseEventBase___Should_return_false___When_parameter_other_is_derived_from_the_same_type_but_is_not_of_the_same_type_as_this_object()
             {
                 var scenarios = EquatableTestScenarios.ValidateAndPrepareForTesting();
 
                 foreach (var scenario in scenarios)
                 {
                     // Arrange, Act
-                    var actuals = scenario.ObjectsThatDeriveFromScenarioTypeButAreNotOfTheSameTypeAsReferenceObject.Select(_ => scenario.ReferenceObject.Equals((EmailResponseEventBase<Version>)_)).ToList();
+                    var actuals = scenario.ObjectsThatDeriveFromScenarioTypeButAreNotOfTheSameTypeAsReferenceObject.Select(_ => scenario.ReferenceObject.Equals((SendEmailResponseEventBase<Version>)_)).ToList();
 
                     // Assert
                     actuals.AsTest().Must().Each().BeFalse(because: scenario.Id);
@@ -1645,14 +1645,14 @@ namespace Naos.Email.Domain.Test
             [SuppressMessage("Microsoft.Naming", "CA1725:ParameterNamesShouldMatchBaseDeclaration")]
             [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
             [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
-            public static void Equals_with_EmailResponseEventBase___Should_return_false___When_objects_being_compared_have_different_property_values()
+            public static void Equals_with_SendEmailResponseEventBase___Should_return_false___When_objects_being_compared_have_different_property_values()
             {
                 var scenarios = EquatableTestScenarios.ValidateAndPrepareForTesting();
 
                 foreach (var scenario in scenarios)
                 {
                     // Arrange, Act
-                    var actuals = scenario.ObjectsThatAreNotEqualToReferenceObject.Select(_ => scenario.ReferenceObject.Equals((EmailResponseEventBase<Version>)_)).ToList();
+                    var actuals = scenario.ObjectsThatAreNotEqualToReferenceObject.Select(_ => scenario.ReferenceObject.Equals((SendEmailResponseEventBase<Version>)_)).ToList();
 
                     // Assert
                     actuals.AsTest().Must().Each().BeFalse(because: scenario.Id);
@@ -1673,14 +1673,14 @@ namespace Naos.Email.Domain.Test
             [SuppressMessage("Microsoft.Naming", "CA1725:ParameterNamesShouldMatchBaseDeclaration")]
             [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
             [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
-            public static void Equals_with_EmailResponseEventBase___Should_return_true___When_objects_being_compared_have_same_property_values()
+            public static void Equals_with_SendEmailResponseEventBase___Should_return_true___When_objects_being_compared_have_same_property_values()
             {
                 var scenarios = EquatableTestScenarios.ValidateAndPrepareForTesting();
 
                 foreach (var scenario in scenarios)
                 {
                     // Arrange, Act
-                    var actuals = scenario.ObjectsThatAreEqualToButNotTheSameAsReferenceObject.Select(_ => scenario.ReferenceObject.Equals((EmailResponseEventBase<Version>)_)).ToList();
+                    var actuals = scenario.ObjectsThatAreEqualToButNotTheSameAsReferenceObject.Select(_ => scenario.ReferenceObject.Equals((SendEmailResponseEventBase<Version>)_)).ToList();
 
                     // Assert
                     actuals.AsTest().Must().Each().BeTrue(because: scenario.Id);
