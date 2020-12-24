@@ -29,7 +29,7 @@ namespace Naos.Email.Protocol.Client
     using static System.FormattableString;
 
     /// <summary>
-    /// Executes a <see cref="SendEmailProtocol"/>.
+    /// Executes a <see cref="SendEmailOp"/>.
     /// </summary>
     public class SendEmailProtocol : AsyncSpecificReturningProtocolBase<SendEmailOp, SendEmailResponse>, ISendEmailProtocol
     {
