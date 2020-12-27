@@ -22,25 +22,25 @@ namespace Naos.Email.Domain
         /// <param name="host">The host to connect to.</param>
         /// <param name="port">The port to connect to.</param>
         /// <param name="secureConnectionMethod">The method by which the connection is secured.</param>
-        /// <param name="userName">The userName to use for authentication.</param>
+        /// <param name="username">The username to use for authentication.</param>
         /// <param name="clearTextPassword">The clear text password to use for authentication.</param>
         public SmtpServerConnectionDefinition(
             string host,
             int port,
             SecureConnectionMethod secureConnectionMethod,
-            string userName,
+            string username,
             string clearTextPassword)
         {
             new { host }.AsArg().Must().NotBeNullNorWhiteSpace();
             new { port }.AsArg().Must().BeGreaterThanOrEqualTo(1).And().BeLessThanOrEqualTo(65535);
             new { secureConnectionMethod }.AsArg().Must().NotBeEqualTo(SecureConnectionMethod.Unknown);
-            new { userName }.AsArg().Must().NotBeNullNorWhiteSpace();
+            new { username }.AsArg().Must().NotBeNullNorWhiteSpace();
             new { clearTextPassword }.AsArg().Must().NotBeNullNorWhiteSpace();
 
             this.Host = host;
             this.Port = port;
             this.SecureConnectionMethod = secureConnectionMethod;
-            this.UserName = userName;
+            this.Username = username;
             this.ClearTextPassword = clearTextPassword;
         }
 
@@ -60,9 +60,9 @@ namespace Naos.Email.Domain
         public SecureConnectionMethod SecureConnectionMethod { get; private set; }
 
         /// <summary>
-        /// Gets the userName to use for authentication.
+        /// Gets the username to use for authentication.
         /// </summary>
-        public string UserName { get; private set; }
+        public string Username { get; private set; }
 
         /// <summary>
         /// Gets the clear text password to use for authentication.

@@ -242,7 +242,7 @@ namespace Naos.Email.Protocol.Client
 
                         try
                         {
-                            await smtpClient.AuthenticateAsync(smtpServerConnectionDefinition.UserName, smtpServerConnectionDefinition.ClearTextPassword);
+                            await smtpClient.AuthenticateAsync(smtpServerConnectionDefinition.Username, smtpServerConnectionDefinition.ClearTextPassword);
                         }
                         catch (Exception ex)
                         {

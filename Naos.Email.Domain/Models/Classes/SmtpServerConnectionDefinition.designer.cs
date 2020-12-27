@@ -71,7 +71,7 @@ namespace Naos.Email.Domain
             var result = this.Host.IsEqualTo(other.Host, StringComparer.Ordinal)
                       && this.Port.IsEqualTo(other.Port)
                       && this.SecureConnectionMethod.IsEqualTo(other.SecureConnectionMethod)
-                      && this.UserName.IsEqualTo(other.UserName, StringComparer.Ordinal)
+                      && this.Username.IsEqualTo(other.Username, StringComparer.Ordinal)
                       && this.ClearTextPassword.IsEqualTo(other.ClearTextPassword, StringComparer.Ordinal);
 
             return result;
@@ -85,7 +85,7 @@ namespace Naos.Email.Domain
             .Hash(this.Host)
             .Hash(this.Port)
             .Hash(this.SecureConnectionMethod)
-            .Hash(this.UserName)
+            .Hash(this.Username)
             .Hash(this.ClearTextPassword)
             .Value;
 
@@ -99,7 +99,7 @@ namespace Naos.Email.Domain
                                  this.Host?.DeepClone(),
                                  this.Port,
                                  this.SecureConnectionMethod,
-                                 this.UserName?.DeepClone(),
+                                 this.Username?.DeepClone(),
                                  this.ClearTextPassword?.DeepClone());
 
             return result;
@@ -131,7 +131,7 @@ namespace Naos.Email.Domain
                                  host,
                                  this.Port,
                                  this.SecureConnectionMethod,
-                                 this.UserName?.DeepClone(),
+                                 this.Username?.DeepClone(),
                                  this.ClearTextPassword?.DeepClone());
 
             return result;
@@ -163,7 +163,7 @@ namespace Naos.Email.Domain
                                  this.Host?.DeepClone(),
                                  port,
                                  this.SecureConnectionMethod,
-                                 this.UserName?.DeepClone(),
+                                 this.Username?.DeepClone(),
                                  this.ClearTextPassword?.DeepClone());
 
             return result;
@@ -195,17 +195,17 @@ namespace Naos.Email.Domain
                                  this.Host?.DeepClone(),
                                  this.Port,
                                  secureConnectionMethod,
-                                 this.UserName?.DeepClone(),
+                                 this.Username?.DeepClone(),
                                  this.ClearTextPassword?.DeepClone());
 
             return result;
         }
 
         /// <summary>
-        /// Deep clones this object with a new <see cref="UserName" />.
+        /// Deep clones this object with a new <see cref="Username" />.
         /// </summary>
-        /// <param name="userName">The new <see cref="UserName" />.  This object will NOT be deep cloned; it is used as-is.</param>
-        /// <returns>New <see cref="SmtpServerConnectionDefinition" /> using the specified <paramref name="userName" /> for <see cref="UserName" /> and a deep clone of every other property.</returns>
+        /// <param name="username">The new <see cref="Username" />.  This object will NOT be deep cloned; it is used as-is.</param>
+        /// <returns>New <see cref="SmtpServerConnectionDefinition" /> using the specified <paramref name="username" /> for <see cref="Username" /> and a deep clone of every other property.</returns>
         [SuppressMessage("Microsoft.Design", "CA1002: DoNotExposeGenericLists")]
         [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly")]
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly")]
@@ -221,13 +221,13 @@ namespace Naos.Email.Domain
         [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
         [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
-        public SmtpServerConnectionDefinition DeepCloneWithUserName(string userName)
+        public SmtpServerConnectionDefinition DeepCloneWithUsername(string username)
         {
             var result = new SmtpServerConnectionDefinition(
                                  this.Host?.DeepClone(),
                                  this.Port,
                                  this.SecureConnectionMethod,
-                                 userName,
+                                 username,
                                  this.ClearTextPassword?.DeepClone());
 
             return result;
@@ -259,7 +259,7 @@ namespace Naos.Email.Domain
                                  this.Host?.DeepClone(),
                                  this.Port,
                                  this.SecureConnectionMethod,
-                                 this.UserName?.DeepClone(),
+                                 this.Username?.DeepClone(),
                                  clearTextPassword);
 
             return result;
@@ -269,7 +269,7 @@ namespace Naos.Email.Domain
         [SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity")]
         public override string ToString()
         {
-            var result = Invariant($"Naos.Email.Domain.SmtpServerConnectionDefinition: Host = {this.Host?.ToString(CultureInfo.InvariantCulture) ?? "<null>"}, Port = {this.Port.ToString(CultureInfo.InvariantCulture) ?? "<null>"}, SecureConnectionMethod = {this.SecureConnectionMethod.ToString() ?? "<null>"}, UserName = {this.UserName?.ToString(CultureInfo.InvariantCulture) ?? "<null>"}, ClearTextPassword = {this.ClearTextPassword?.ToString(CultureInfo.InvariantCulture) ?? "<null>"}.");
+            var result = Invariant($"Naos.Email.Domain.SmtpServerConnectionDefinition: Host = {this.Host?.ToString(CultureInfo.InvariantCulture) ?? "<null>"}, Port = {this.Port.ToString(CultureInfo.InvariantCulture) ?? "<null>"}, SecureConnectionMethod = {this.SecureConnectionMethod.ToString() ?? "<null>"}, Username = {this.Username?.ToString(CultureInfo.InvariantCulture) ?? "<null>"}, ClearTextPassword = {this.ClearTextPassword?.ToString(CultureInfo.InvariantCulture) ?? "<null>"}.");
 
             return result;
         }

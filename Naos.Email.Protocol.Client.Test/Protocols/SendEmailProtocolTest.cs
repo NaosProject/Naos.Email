@@ -156,7 +156,7 @@ namespace Naos.Email.Protocol.Client.Test
         public static async Task ExecuteAsync___Should_return_SendEmailResponse_with_SendEmailResult_FailedToAuthenticateWithServer___When_when_credentials_are_invalid()
         {
             // Arrange
-            var smtpServerConnectionDefinition = new SmtpServerConnectionDefinition("email-smtp.us-east-1.amazonaws.com", 587, SecureConnectionMethod.StartTls, "userName", "password");
+            var smtpServerConnectionDefinition = new SmtpServerConnectionDefinition("email-smtp.us-east-1.amazonaws.com", 587, SecureConnectionMethod.StartTls, "username", "password");
 
             var sendEmailRequest = A.Dummy<SendEmailRequest>();
 
