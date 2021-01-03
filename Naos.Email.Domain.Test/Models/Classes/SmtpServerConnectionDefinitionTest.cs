@@ -29,6 +29,67 @@ namespace Naos.Email.Domain.Test
         [SuppressMessage("Microsoft.Performance", "CA1810:InitializeReferenceTypeStaticFieldsInline", Justification = ObcSuppressBecause.CA1810_InitializeReferenceTypeStaticFieldsInline_FieldsDeclaredInCodeGeneratedPartialTestClass)]
         static SmtpServerConnectionDefinitionTest()
         {
+            ConstructorArgumentValidationTestScenarios
+                .AddScenario(() =>
+                    new ConstructorArgumentValidationTestScenario<SmtpServerConnectionDefinition>
+                    {
+                        Name = "constructor should throw ArgumentOutOfRangeException when parameter 'port' is = 0",
+                        ConstructionFunc = () =>
+                        {
+                            var referenceObject = A.Dummy<SmtpServerConnectionDefinition>();
+
+                            var result = new SmtpServerConnectionDefinition(
+                                referenceObject.Host,
+                                0,
+                                referenceObject.SecureConnectionMethod,
+                                referenceObject.Username,
+                                referenceObject.ClearTextPassword);
+
+                            return result;
+                        },
+                        ExpectedExceptionType = typeof(ArgumentOutOfRangeException),
+                        ExpectedExceptionMessageContains = new[] { "port", },
+                    })
+                .AddScenario(() =>
+                    new ConstructorArgumentValidationTestScenario<SmtpServerConnectionDefinition>
+                    {
+                        Name = "constructor should throw ArgumentOutOfRangeException when parameter 'port' is < 0",
+                        ConstructionFunc = () =>
+                        {
+                            var referenceObject = A.Dummy<SmtpServerConnectionDefinition>();
+
+                            var result = new SmtpServerConnectionDefinition(
+                                referenceObject.Host,
+                                A.Dummy<NegativeInteger>(),
+                                referenceObject.SecureConnectionMethod,
+                                referenceObject.Username,
+                                referenceObject.ClearTextPassword);
+
+                            return result;
+                        },
+                        ExpectedExceptionType = typeof(ArgumentOutOfRangeException),
+                        ExpectedExceptionMessageContains = new[] { "port", },
+                    })
+                .AddScenario(() =>
+                    new ConstructorArgumentValidationTestScenario<SmtpServerConnectionDefinition>
+                    {
+                        Name = "constructor should throw ArgumentOutOfRangeException when parameter 'port' is > 65535",
+                        ConstructionFunc = () =>
+                        {
+                            var referenceObject = A.Dummy<SmtpServerConnectionDefinition>();
+
+                            var result = new SmtpServerConnectionDefinition(
+                                referenceObject.Host,
+                                65536,
+                                referenceObject.SecureConnectionMethod,
+                                referenceObject.Username,
+                                referenceObject.ClearTextPassword);
+
+                            return result;
+                        },
+                        ExpectedExceptionType = typeof(ArgumentOutOfRangeException),
+                        ExpectedExceptionMessageContains = new[] { "port", },
+                    });
         }
     }
 }
