@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
   <metadata>
-    <id>Naos.Email.Domain.Recipes.DummyFactory</id>
+    <id>Naos.Email.Recipes.DummyFactory</id>
     <description>A Dummy Factory for types in Naos.Email.Domain</description>
     <tags>dummyfactory dummy factory fakeiteasy autofixture snippet codeinclude utility shared recipe Email</tags>
     <dependencies>
