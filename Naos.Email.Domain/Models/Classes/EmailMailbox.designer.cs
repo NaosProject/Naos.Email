@@ -14,6 +14,7 @@ namespace Naos.Email.Domain
     using global::System.Diagnostics.CodeAnalysis;
     using global::System.Globalization;
     using global::System.Linq;
+    using global::OBeautifulCode.Cloning.Recipes;
 
     using global::OBeautifulCode.Equality.Recipes;
     using global::OBeautifulCode.Type;

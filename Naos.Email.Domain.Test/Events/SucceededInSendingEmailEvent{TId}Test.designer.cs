@@ -18,7 +18,6 @@ namespace Naos.Email.Domain.Test
 
     using global::FakeItEasy;
 
-    using global::Naos.Protocol.Domain;
 
     using global::OBeautifulCode.Assertion.Recipes;
     using global::OBeautifulCode.AutoFakeItEasy;
@@ -1136,10 +1135,10 @@ namespace Naos.Email.Domain.Test
                 foreach (var scenario in scenarios)
                 {
                     // Arrange
-                    EventBaseBase systemUnderTest = null;
+                    EventBase systemUnderTest = null;
 
                     // Act
-                    var actual = scenario.ReferenceObject.Equals((EventBaseBase)systemUnderTest);
+                    var actual = scenario.ReferenceObject.Equals((EventBase)systemUnderTest);
 
                     // Assert
                     actual.AsTest().Must().BeFalse(because: scenario.Id);
@@ -1167,7 +1166,7 @@ namespace Naos.Email.Domain.Test
                 foreach (var scenario in scenarios)
                 {
                     // Arrange, Act
-                    var actual = scenario.ReferenceObject.Equals((EventBaseBase)scenario.ReferenceObject);
+                    var actual = scenario.ReferenceObject.Equals((EventBase)scenario.ReferenceObject);
 
                     // Assert
                     actual.AsTest().Must().BeTrue(because: scenario.Id);
@@ -1195,7 +1194,7 @@ namespace Naos.Email.Domain.Test
                 foreach (var scenario in scenarios)
                 {
                     // Arrange, Act
-                    var actuals = scenario.ObjectsThatDeriveFromScenarioTypeButAreNotOfTheSameTypeAsReferenceObject.Select(_ => scenario.ReferenceObject.Equals((EventBaseBase)_)).ToList();
+                    var actuals = scenario.ObjectsThatDeriveFromScenarioTypeButAreNotOfTheSameTypeAsReferenceObject.Select(_ => scenario.ReferenceObject.Equals((EventBase)_)).ToList();
 
                     // Assert
                     actuals.AsTest().Must().Each().BeFalse(because: scenario.Id);
@@ -1223,7 +1222,7 @@ namespace Naos.Email.Domain.Test
                 foreach (var scenario in scenarios)
                 {
                     // Arrange, Act
-                    var actuals = scenario.ObjectsThatAreNotEqualToReferenceObject.Select(_ => scenario.ReferenceObject.Equals((EventBaseBase)_)).ToList();
+                    var actuals = scenario.ObjectsThatAreNotEqualToReferenceObject.Select(_ => scenario.ReferenceObject.Equals((EventBase)_)).ToList();
 
                     // Assert
                     actuals.AsTest().Must().Each().BeFalse(because: scenario.Id);
@@ -1251,7 +1250,7 @@ namespace Naos.Email.Domain.Test
                 foreach (var scenario in scenarios)
                 {
                     // Arrange, Act
-                    var actuals = scenario.ObjectsThatAreEqualToButNotTheSameAsReferenceObject.Select(_ => scenario.ReferenceObject.Equals((EventBaseBase)_)).ToList();
+                    var actuals = scenario.ObjectsThatAreEqualToButNotTheSameAsReferenceObject.Select(_ => scenario.ReferenceObject.Equals((EventBase)_)).ToList();
 
                     // Assert
                     actuals.AsTest().Must().Each().BeTrue(because: scenario.Id);

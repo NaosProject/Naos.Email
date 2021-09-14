@@ -6,15 +6,13 @@
 
 namespace Naos.Email.Domain
 {
-    using Naos.Protocol.Domain;
-
     using OBeautifulCode.Assertion.Recipes;
     using OBeautifulCode.Type;
 
     /// <summary>
     /// Locates an SMTP server along with credentials for connecting to the server.
     /// </summary>
-    public partial class SmtpServerConnectionDefinition : IResourceLocator, IModelViaCodeGen
+    public partial class SmtpServerConnectionDefinition : IModelViaCodeGen
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SmtpServerConnectionDefinition"/> class.

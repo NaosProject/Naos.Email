@@ -14,8 +14,8 @@ namespace Naos.Email.Domain
     using global::System.Diagnostics.CodeAnalysis;
     using global::System.Globalization;
     using global::System.Linq;
+    using global::OBeautifulCode.Cloning.Recipes;
 
-    using global::Naos.Protocol.Domain;
 
     using global::OBeautifulCode.Equality.Recipes;
     using global::OBeautifulCode.Type;
@@ -106,7 +106,7 @@ namespace Naos.Email.Domain
         [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
         [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
-        public override EventBaseBase DeepCloneWithTimestampUtc(DateTime timestampUtc)
+        public override EventBase DeepCloneWithTimestampUtc(DateTime timestampUtc)
         {
             var result = new FailedToSendEmailEvent<TId>(
                                  DeepCloneGeneric(this.Id),
@@ -169,7 +169,7 @@ namespace Naos.Email.Domain
         }
 
         /// <inheritdoc />
-        protected override EventBaseBase DeepCloneInternal()
+        protected override EventBase DeepCloneInternal()
         {
             var result = new FailedToSendEmailEvent<TId>(
                                  DeepCloneGeneric(this.Id),

@@ -6,7 +6,7 @@
 
 namespace Naos.Email.Domain
 {
-    using Naos.Protocol.Domain;
+    using OBeautifulCode.Type;
 
     /// <summary>
     /// Executes a <see cref="SendEmailOp"/>.

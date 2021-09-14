@@ -18,6 +18,7 @@ namespace Naos.Email.Domain
     using global::OBeautifulCode.Equality.Recipes;
     using global::OBeautifulCode.Type;
     using global::OBeautifulCode.Type.Recipes;
+    using global::OBeautifulCode.Cloning.Recipes;
 
     using static global::System.FormattableString;
 

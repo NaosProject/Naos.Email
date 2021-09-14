@@ -6,9 +6,8 @@
 
 namespace Naos.Email.Domain
 {
-    using Naos.Protocol.Domain;
-
     using OBeautifulCode.Assertion.Recipes;
+    using OBeautifulCode.Type;
 
     /// <summary>
     /// Sends an email.
