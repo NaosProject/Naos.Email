@@ -12,6 +12,7 @@ namespace Naos.Email.Protocol.Client
     using System.IO;
     using System.Net.Mail;
     using System.Text;
+    using System.Text.RegularExpressions;
     using System.Threading.Tasks;
 
     using MailKit;
@@ -32,18 +33,27 @@ namespace Naos.Email.Protocol.Client
     /// </summary>
     public class SendEmailProtocol : AsyncSpecificReturningProtocolBase<SendEmailOp, SendEmailResponse>, ISendEmailProtocol
     {
+        private const string ObfuscatedCredentialsLogLine = "C: AUTH PLAIN ******";
+
+        private static readonly Regex HideCredentialsRegex = new Regex("^C: AUTH PLAIN.*?$", RegexOptions.Multiline | RegexOptions.Compiled);
+
         private readonly SmtpServerConnectionDefinition smtpServerConnectionDefinition;
+
+        private readonly bool obfuscateCredentialsInLogs;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SendEmailProtocol"/> class.
         /// </summary>
         /// <param name="smtpServerConnectionDefinition">Locates an SMTP server along with credentials for connecting to the server.</param>
+        /// <param name="obfuscateCredentialsInLogs">OPTIONAL value that determines whether or not to obfuscate credentials in SMTP logs.  DEFAULT is to obfuscate credentials.</param>
         public SendEmailProtocol(
-            SmtpServerConnectionDefinition smtpServerConnectionDefinition)
+            SmtpServerConnectionDefinition smtpServerConnectionDefinition,
+            bool obfuscateCredentialsInLogs = true)
         {
             new { smtpServerConnectionDefinition }.AsArg().Must().NotBeNull();
 
             this.smtpServerConnectionDefinition = smtpServerConnectionDefinition;
+            this.obfuscateCredentialsInLogs = obfuscateCredentialsInLogs;
         }
 
         /// <inheritdoc />
@@ -100,7 +110,7 @@ namespace Naos.Email.Protocol.Client
                     return result;
                 }
 
-                result = await SendMessageAsync(mimeMessage, this.smtpServerConnectionDefinition);
+                result = await SendMessageAsync(mimeMessage, this.smtpServerConnectionDefinition, this.obfuscateCredentialsInLogs);
 
                 return result;
             }
@@ -212,7 +222,8 @@ namespace Naos.Email.Protocol.Client
 
         private static async Task<SendEmailResponse> SendMessageAsync(
             MimeMessage mimeMessage,
-            SmtpServerConnectionDefinition smtpServerConnectionDefinition)
+            SmtpServerConnectionDefinition smtpServerConnectionDefinition,
+            bool obfuscateCredentialsInLogs)
         {
             using (var logStream = new MemoryStream())
             {
@@ -232,7 +243,7 @@ namespace Naos.Email.Protocol.Client
                         }
                         catch (Exception ex)
                         {
-                            logMessages = GetLogMessages(logStream);
+                            logMessages = GetLogMessages(logStream, obfuscateCredentialsInLogs);
 
                             result = new SendEmailResponse(SendEmailResult.FailedToConnectToServer, ex.ToString(), logMessages);
 
@@ -245,7 +256,7 @@ namespace Naos.Email.Protocol.Client
                         }
                         catch (Exception ex)
                         {
-                            logMessages = GetLogMessages(logStream);
+                            logMessages = GetLogMessages(logStream, obfuscateCredentialsInLogs);
 
                             result = new SendEmailResponse(SendEmailResult.FailedToAuthenticateWithServer, ex.ToString(), logMessages);
 
@@ -258,7 +269,7 @@ namespace Naos.Email.Protocol.Client
                         }
                         catch (Exception ex)
                         {
-                            logMessages = GetLogMessages(logStream);
+                            logMessages = GetLogMessages(logStream, obfuscateCredentialsInLogs);
 
                             result = new SendEmailResponse(SendEmailResult.FailedToSendEmailToServer, ex.ToString(), logMessages);
 
@@ -274,7 +285,7 @@ namespace Naos.Email.Protocol.Client
                             // This doesn't constitute a failure; the email has been sent.
                         }
 
-                        logMessages = GetLogMessages(logStream);
+                        logMessages = GetLogMessages(logStream, obfuscateCredentialsInLogs);
 
                         result = new SendEmailResponse(SendEmailResult.Success, null, logMessages);
 
@@ -305,11 +316,17 @@ namespace Naos.Email.Protocol.Client
         }
 
         private static string GetLogMessages(
-            MemoryStream logStream)
+            MemoryStream logStream,
+            bool obfuscateCredentialsInLogs)
         {
             var logBytes = logStream.ToArray();
 
             var result = Encoding.UTF8.GetString(logBytes);
+
+            if (obfuscateCredentialsInLogs)
+            {
+                result = HideCredentialsRegex.Replace(result, ObfuscatedCredentialsLogLine);
+            }
 
             return result;
         }
