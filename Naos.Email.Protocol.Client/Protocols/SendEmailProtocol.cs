@@ -33,9 +33,9 @@ namespace Naos.Email.Protocol.Client
     /// </summary>
     public class SendEmailProtocol : AsyncSpecificReturningProtocolBase<SendEmailOp, SendEmailResponse>, ISendEmailProtocol
     {
-        private const string ObfuscatedCredentialsLogLine = "C: AUTH PLAIN ******";
+        private const string ObfuscatedCredentialsLogLine = "C: AUTH PLAIN ******\r\n";
 
-        private static readonly Regex HideCredentialsRegex = new Regex("^C: AUTH PLAIN.*?$", RegexOptions.Multiline | RegexOptions.Compiled);
+        private static readonly Regex HideCredentialsRegex = new Regex("^C: AUTH PLAIN.*?\r\n", RegexOptions.Multiline | RegexOptions.Compiled);
 
         private readonly SmtpServerConnectionDefinition smtpServerConnectionDefinition;
 
