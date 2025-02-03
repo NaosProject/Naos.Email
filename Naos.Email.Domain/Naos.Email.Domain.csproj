@@ -39,11 +39,14 @@
     <CodeAnalysisRuleSet />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="OBeautifulCode.IO, Version=1.0.43.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\OBeautifulCode.IO.1.0.43\lib\net462\OBeautifulCode.IO.dll</HintPath>
+    </Reference>
     <Reference Include="OBeautifulCode.Representation.System, Version=1.0.63.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\OBeautifulCode.Representation.System.1.0.63\lib\net462\OBeautifulCode.Representation.System.dll</HintPath>
     </Reference>
-    <Reference Include="OBeautifulCode.Type, Version=1.0.119.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\OBeautifulCode.Type.1.0.119\lib\net462\OBeautifulCode.Type.dll</HintPath>
+    <Reference Include="OBeautifulCode.Type, Version=1.0.130.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\OBeautifulCode.Type.1.0.130\lib\net462\OBeautifulCode.Type.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
@@ -143,7 +146,6 @@
     </Compile>
     <Compile Include="Models\Classes\SendEmailResponse.cs" />
     <Compile Include="Models\Classes\SendEmailRequest.cs" />
-    <Compile Include="Logic\Extensions\MediaTypeExtensions.cs" />
     <Compile Include="Logic\Extensions\EmailAttachmentExtensions.cs" />
     <Compile Include="Models\Classes\EmailOptions.cs" />
     <Compile Include="Models\Classes\EmailContent.cs" />
@@ -159,7 +161,6 @@
     <Compile Include="Models\Enums\SecureConnectionMethod.cs" />
     <Compile Include="Operations\SendEmailOp.cs" />
     <Compile Include="Models\Enums\SendEmailResult.cs" />
-    <Compile Include="Models\Enums\MediaType.cs" />
     <Compile Include="Operations\SendEmailOp.designer.cs">
       <DependentUpon>SendEmailOp.cs</DependentUpon>
     </Compile>

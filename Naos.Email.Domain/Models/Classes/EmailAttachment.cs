@@ -11,6 +11,7 @@ namespace Naos.Email.Domain
     using Naos.CodeAnalysis.Recipes;
 
     using OBeautifulCode.Assertion.Recipes;
+    using OBeautifulCode.IO;
     using OBeautifulCode.Type;
 
     /// <summary>

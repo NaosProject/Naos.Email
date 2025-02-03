@@ -24,6 +24,7 @@ namespace Naos.Email.Protocol.Client
     using Naos.Email.Domain;
 
     using OBeautifulCode.Assertion.Recipes;
+    using OBeautifulCode.IO;
     using OBeautifulCode.Type;
 
     using static System.FormattableString;

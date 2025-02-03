@@ -14,6 +14,7 @@ namespace Naos.Email.Protocol.Client.Test
     using Naos.Email.Domain;
 
     using OBeautifulCode.Assertion.Recipes;
+    using OBeautifulCode.IO;
     using OBeautifulCode.Reflection.Recipes;
 
     using Xunit;

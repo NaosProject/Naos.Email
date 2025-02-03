@@ -19,6 +19,7 @@ namespace Naos.Email.Domain.Test
     using global::Naos.Email.Domain;
 
     using global::OBeautifulCode.AutoFakeItEasy;
+    using global::OBeautifulCode.IO;
     using global::OBeautifulCode.Math.Recipes;
     using global::OBeautifulCode.Type;
 
