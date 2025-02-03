@@ -9,6 +9,7 @@ namespace Naos.Email.Serialization.Json
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using OBeautifulCode.IO.Serialization.Json;
     using OBeautifulCode.Serialization.Json;
     using OBeautifulCode.Type;
     using OBeautifulCode.Type.Recipes;
@@ -22,6 +23,13 @@ namespace Naos.Email.Serialization.Json
             {
                 Naos.Email.Domain.ProjectInfo.Namespace,
             };
+
+        /// <inheritdoc />
+        protected override IReadOnlyCollection<JsonSerializationConfigurationType>
+            DependentJsonSerializationConfigurationTypes => new[]
+        {
+            typeof(IOJsonSerializationConfiguration).ToJsonSerializationConfigurationType(),
+        };
 
         /// <inheritdoc />
         protected override IReadOnlyCollection<TypeToRegisterForJson> TypesToRegisterForJson => new Type[0]

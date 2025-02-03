@@ -9,6 +9,7 @@ namespace Naos.Email.Serialization.Bson
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using OBeautifulCode.IO.Serialization.Bson;
     using OBeautifulCode.Serialization.Bson;
     using OBeautifulCode.Type;
     using OBeautifulCode.Type.Recipes;
@@ -22,6 +23,13 @@ namespace Naos.Email.Serialization.Bson
             {
                 Naos.Email.Domain.ProjectInfo.Namespace,
             };
+
+        /// <inheritdoc />
+        protected override IReadOnlyCollection<BsonSerializationConfigurationType>
+            DependentBsonSerializationConfigurationTypes => new[]
+        {
+            typeof(IOBsonSerializationConfiguration).ToBsonSerializationConfigurationType(),
+        };
 
         /// <inheritdoc />
         protected override IReadOnlyCollection<TypeToRegisterForBson> TypesToRegisterForBson => new Type[0]
