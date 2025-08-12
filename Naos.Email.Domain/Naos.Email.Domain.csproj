@@ -42,8 +42,8 @@
     <Reference Include="OBeautifulCode.Compression, Version=1.0.27.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\OBeautifulCode.Compression.1.0.27\lib\net462\OBeautifulCode.Compression.dll</HintPath>
     </Reference>
-    <Reference Include="OBeautifulCode.IO, Version=1.0.50.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\OBeautifulCode.IO.1.0.50\lib\net462\OBeautifulCode.IO.dll</HintPath>
+    <Reference Include="OBeautifulCode.IO, Version=1.0.51.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\OBeautifulCode.IO.1.0.51\lib\net462\OBeautifulCode.IO.dll</HintPath>
     </Reference>
     <Reference Include="OBeautifulCode.Representation.System, Version=1.0.67.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\OBeautifulCode.Representation.System.1.0.67\lib\net462\OBeautifulCode.Representation.System.dll</HintPath>
